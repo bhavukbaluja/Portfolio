@@ -18,6 +18,7 @@ const SinglePageLoader = ({ page, isMobile, loading, setLoading }) => {
     });
     useEffect(() => {
         const fetchPage = async () => {
+            setLoading(true);
             await getGridData(Page_URL+`/getPageData?id=`+page?.value).then((res)=>{
             setPageData(he.decode(res?.description).replaceAll("$BASE_URL",URL_CONFIG.API_URL));
             
