@@ -9,7 +9,7 @@ import { getAppName } from "../Helper";
  * Refresh the access token using the refresh token (stored in HTTP-only cookie)
  * @returns {Promise<string|null>} New access token
  */
-export const refreshAccessToken = async () => {
+export const refreshAccessToken = async () => {debugger;
   try {
     const response = await axios.post(
       URL_CONFIG.API_URL + RefreshAccessToken_URL, 
