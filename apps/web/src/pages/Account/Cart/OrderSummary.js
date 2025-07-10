@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Box, Typography, Divider } from "@mui/material";
 import BaseTextField2 from "@ui/components/UI/fields/BaseTextField2";
 import Literal from "@ui/literals";
+import { AuthContext } from '@utils/helper/ApiConfig/AuthProvider';
 
 const DELIVERY_CHARGE = 49;
 const FREE_DELIVERY_THRESHOLD = 999;
@@ -24,8 +25,12 @@ const OrderSummary = ({
   selectedTotal,
   emptyCart,
   onProceedToBuy,
-  proceedLabel
+  proceedLabel,
+  setIsLoginSignupOpen
 }) => {
+
+  const { user } = useContext(AuthContext);
+  
   return (
     <Box
       sx={{
@@ -158,7 +163,7 @@ const OrderSummary = ({
           className="form-button"
           style={{ minWidth: '180px', height: '45px', flex: 1.8 }}
           disabled={selectedItems.length === 0}
-          onClick={onProceedToBuy}
+          onClick={()=> {user? onProceedToBuy(): setIsLoginSignupOpen(true)}}
         >
           {proceedLabel}
         </button>

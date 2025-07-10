@@ -31,7 +31,7 @@ const COUPON_CODES = {
 
 const imageCache = new Map();
 
-const CartWrapper = ({ isMobile, showSnackBar, setLoading, loading }) => {
+const CartWrapper = ({ isMobile, showSnackBar, setLoading, loading, setIsLoginSignupOpen }) => {
   const { cart, emptyCart } = useCart();
   const { getEntities } = WebsiteServices();
   const {createDraftOrder} = OrderServices();
@@ -345,6 +345,7 @@ const CartWrapper = ({ isMobile, showSnackBar, setLoading, loading }) => {
             proceedLabel={Literal[lang].proceedToBuy}
             onProceedToBuy={proceedToBuy}
             showButtons={true}
+            setIsLoginSignupOpen={setIsLoginSignupOpen}
           />        
         )}
       </Box>
