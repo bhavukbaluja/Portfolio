@@ -22,7 +22,7 @@ import useNavigateTo from "@utils/helper/ApiConfig/useNavigateTo";
 import BaseShareButton from "@ui/components/UI/widgets/BaseShareButton";
 import HeartWishlistButton from "@ui/components/UI/widgets/HeartWishlistButton";
 
-const CartItemTile = ({ item, isSelected, onToggleSelect, setRemovedItem, key, showSnackBar, setLoading, loading  }) => {
+const CartItemTile = ({ item, isSelected, onToggleSelect, setRemovedItem, key, showSnackBar, setLoading, loading, hideActionbuttons = false, hideSelectingOption = false  }) => {
   const { removeFromCart, updateQuantity } = useCart();
   const { lang } = React.useContext(LanguageContext);
   const NavigateTo = useNavigateTo();
@@ -156,26 +156,27 @@ const CartItemTile = ({ item, isSelected, onToggleSelect, setRemovedItem, key, s
           </IconButton>
         </Box>
       </div>
+      {!hideActionbuttons && (
+        <Box sx={{ display: "flex", gap: 1, flexGrow: 1, justifyContent: 'space-evenly' }}>
+          <Tooltip title={Literal[lang].delete}>
+            <IconButton className="share-button" onClick={() => handleRemove()}>
+              <DeleteOutlineOutlinedIcon style={{ fontSize: '1.7rem' }} />
+            </IconButton>
+          </Tooltip>
 
-      <Box sx={{ display: "flex", gap: 1, flexGrow: 1, justifyContent: 'space-evenly' }}>
-        <Tooltip title={Literal[lang].delete}>
-          <IconButton className="share-button" onClick={() => handleRemove()}>
-            <DeleteOutlineOutlinedIcon style={{ fontSize: '1.7rem' }} />
-          </IconButton>
-        </Tooltip>
+          <HeartWishlistButton isActive={isWishlisted} onToggle={toggleWishlist} tooltipmsg={Literal[lang].moveToWishlist} />
 
-        <HeartWishlistButton isActive={isWishlisted} onToggle={toggleWishlist} tooltipmsg={Literal[lang].moveToWishlist} />
+          <Tooltip title={Literal[lang].changeSize}>
+            <IconButton className="share-button" onClick={handleChangeSize}>
+              <SwapHorizOutlinedIcon style={{ fontSize: '2.2rem' }} />
+            </IconButton>
+          </Tooltip>
 
-        <Tooltip title={Literal[lang].changeSize}>
-          <IconButton className="share-button" onClick={handleChangeSize}>
-            <SwapHorizOutlinedIcon style={{ fontSize: '2.2rem' }} />
-          </IconButton>
-        </Tooltip>
-
-        <Tooltip title={Literal[lang].share}>
-          <BaseShareButton onShare={handleShareProduct} />
-        </Tooltip>
-      </Box>
+          <Tooltip title={Literal[lang].share}>
+            <BaseShareButton onShare={handleShareProduct} />
+          </Tooltip>
+        </Box>
+      )}
     </Box>
   );
 
@@ -200,17 +201,19 @@ const CartItemTile = ({ item, isSelected, onToggleSelect, setRemovedItem, key, s
       sx={{
         width: "100%",
         boxShadow: "0px 2px 6px rgba(0,0,0,0.08)",
-        borderRadius: 2,
-        border: "1px solid #e0e0e0",
+        borderRadius: '16px',
+        border: `1px solid var(--color-gray-300)`,
         p: 2,
         mb: 2,
-        backgroundColor: "#fff",
+        backgroundColor: `var(--light-color)`,
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-        <Checkbox checked={isSelected} onChange={onToggleSelect} />
-        <Typography variant="subtitle2">{Literal[lang].selectItem || "Select Item"}</Typography>
-      </Box>
+      {!hideSelectingOption && (
+        <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+          <Checkbox checked={isSelected} onChange={onToggleSelect} />
+          <Typography variant="subtitle2">{Literal[lang].selectItem || "Select Item"}</Typography>
+        </Box>
+      )}
 
       <Box sx={{ display: "flex", flexDirection: "row", gap: 2 }}>
         <Box sx={{ width: "170px", flexShrink: 0, cursor: "pointer" }} onClick={handleNavigateToProduct}>

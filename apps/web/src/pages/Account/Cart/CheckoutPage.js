@@ -4,7 +4,7 @@ import {
   Typography,
   Divider,
   useMediaQuery,
-  useTheme
+  useTheme,
 } from "@mui/material";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { useCart } from "@utils/helper/ApiConfig/CartContext";
@@ -14,19 +14,20 @@ import { LanguageContext } from "@ui/literals/LanguageProvider";
 import Literal from "@ui/literals";
 import AddressSelectorDialog from "./AddressSelectorDialog";
 import OrderSummary from "./OrderSummary";
-import { Address_URL } from "@utils/Config/URLs";
+import CheckoutItemTile from "./CheckoutItemTile";
 
 const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
   const navigate = useNavigate();
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
-  const { cart, selectedItems, emptyCart } = useCart();
+  const { emptyCart } = useCart();
   const { getGridData } = PanelServices();
-  const { updateOrderStatus } = OrderServices();
+  const { getOrdersByStatus, updateOrderStatus, updateOrderAddress } = OrderServices();
   const { lang } = useContext(LanguageContext);
 
   const [searchParams] = useSearchParams();
-  const orderId = searchParams.get("orderId");
+  const [orderId, setOrderId] = useState(searchParams.get("orderId"));
+  const [orderItems, setOrderItems] = useState([]);
 
   const [addresses, setAddresses] = useState([]);
   const [selectedAddress, setSelectedAddress] = useState(null);
@@ -35,11 +36,12 @@ const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
   const [discount, setDiscount] = useState(0);
   const [couponApplied, setCouponApplied] = useState(false);
   const [couponError, setCouponError] = useState(false);
+  const [order, setOrder] = useState(null);
 
   const applyCouponCode = () => {
     const COUPON_CODES = {
       SAVE10: 0.1,
-      SAVE50: 0.5
+      SAVE50: 0.5,
     };
     if (COUPON_CODES[coupon]) {
       setDiscount(COUPON_CODES[coupon]);
@@ -53,46 +55,41 @@ const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
   };
 
   useEffect(() => {
-    const loadAddresses = async () => {
-      const url = `${Address_URL}/user?`;
-      await getGridData(url)
-        .then((res) => {
-          setAddresses(res?.data || []);
-          setSelectedAddress(res?.data.find((a) => a.isPrimary) || res?.data[0]);
-        })
-        .finally(() => setLoading(false));
+    const loadDraftOrder = async () => {
+      setLoading(true);
+      try {
+        const drafts = await getOrdersByStatus("draft");
+        const draft = drafts?.[0];
+        if (!draft || !draft.items || draft.items.length === 0) {
+          showSnackBar("No draft order found", "error");
+          navigate("/cart");
+          return;
+        }
+        setOrder(draft);
+        setOrderItems(draft.items);
+        setOrderId(draft.id);
+        setSelectedAddress(draft.address);
+      } catch (error) {
+        console.error("Failed to fetch draft order:", error);
+        showSnackBar("Failed to load order", "error");
+        navigate("/cart");
+      } finally {
+        setLoading(false);
+      }
     };
-    loadAddresses();
+
+    loadDraftOrder();
   }, []);
 
-  useEffect(() => {
-    if (!loading && (!selectedItems || selectedItems.length === 0)) {
-      navigate("/cart");
-    }
-  }, [selectedItems, loading]);
-
-  const selectedTotal = selectedItems.reduce((acc, item) => {
-    const inventory = item.product?.inventories?.find(
-      (inv) => inv?.type === item.inventoryType
-    );
-    const variant = inventory?.inventoryVariants?.find(
-      (v) => v?.size?.id === item.sizeChartId
-    );
-    const price =
-      variant?.salePrice -
-        (variant?.salePrice * (variant?.discount || 0)) / 100 ||
-      item?.price ||
-      0;
+  const selectedTotal = orderItems.reduce((acc, item) => {
+    const price = item?.price || 0;
     return acc + price * (item.quantity || 1);
   }, 0);
 
-  const totalRefundableSecurity = selectedItems.reduce((acc, item) => {
+  const totalRefundableSecurity = orderItems.reduce((acc, item) => {
     if (item.inventoryType === "RENTAL") {
-      const inventory = item.product?.inventories?.find(
-        (inv) => inv?.type === item.inventoryType
-      );
-      const security = inventory?.security || 0;
-      return acc + security * (item.quantity || 1);
+      const security = item?.security || 0;
+      return acc + security * (item?.quantity || 1);
     }
     return acc;
   }, 0);
@@ -117,16 +114,49 @@ const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
     }
   };
 
+  const updateDraft= async (entity, addressId) => {
+    try {
+      setLoading(true);
+  
+      await updateOrderAddress(addressId);
+  
+      if(entity=="address"){
+        showSnackBar(Literal[lang].chosenAddressUpdated)
+      }
+      else{
+        showSnackBar(Literal[lang].draftUpdated)
+      }
+      // NavigateTo(`/checkout?orderId=${order.id}`); // Pass the orderId in URL
+    } catch (err) {
+      console.error("Error creating draft order:", err);
+      showSnackBar("Failed to create draft order", "error");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   if (loading) {
     return (
       <Box sx={{ p: 3, textAlign: "center" }}>
-        <Typography>{Literal[lang].loadingCheckout || "Loading checkout..."}</Typography>
+        <Typography>
+          {Literal[lang].loadingCheckout || "Loading checkout..."}
+        </Typography>
       </Box>
     );
   }
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", p: 2, gap: 3, justifyContent: 'center', alignItems: 'center', width: '100%' }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        p: 2,
+        gap: 3,
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
+      }}
+    >
       <Typography variant="h4" gutterBottom>
         {Literal[lang].checkout}
       </Typography>
@@ -134,61 +164,83 @@ const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
       <Box
         sx={{
           display: "flex",
-          flexDirection: isSmallScreen ? "column" : "row",
-          gap: 3,
+          flexDirection: isMobile ? "column" : "row",
           alignItems: "flex-start",
-          width: '100%'
+          width: "100%",
         }}
       >
-        <Box sx={{ display: "flex", flexDirection: "column", flex: 3, p: 2, gap: 3, width: '100%' }}>
-          <Box sx={{ border: "1px solid #ddd", borderRadius: 2, p: 2 }}>
-            <Typography variant="h6" gutterBottom>
-              {Literal[lang].deliveryAddress}
-            </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            flex: 3,
+            p: 2,
+            pb: 0,
+            width: "100%",
+          }}
+        >
+          <Box sx={{ border: `1px solid var(--color-gray-300)`, borderRadius: '16px', p: 2 }}>
+            
             {selectedAddress ? (
-              <Box>
-                <Typography>{selectedAddress.fullName}</Typography>
-                <Typography>{selectedAddress.streetAddress1}</Typography>
-                <Typography>
-                  {selectedAddress.city}, {selectedAddress.state} - {selectedAddress.pinCode}
-                </Typography>
-                <Typography>Phone: {selectedAddress.mobile}</Typography>
-                <button
-                  type="button"
-                  className="form-skip-button"
-                  style={{ width: '100px', height: '45px', flex: 1 }}
-                  onClick={() => setAddressModalOpen(true)}
-                >
-                  {Literal[lang].change}
-                </button>
-              </Box>
+              <div style={{display: 'flex', flexDirection: isMobile? 'column': 'row', width: '100%', justifyContent: isMobile? 'center':'space-between'}}>
+                <div flex={3}>
+                  <Typography variant="h6" gutterBottom fontWeight= '501 !important' letterSpacing='0.05em'>
+                      {Literal[lang].deliveringTo}: {selectedAddress?.fullName}
+                  </Typography>
+                  <Box>
+                      <Typography variant="body2">
+                        {selectedAddress.streetAddress1}, {selectedAddress.streetAddress2}
+                      </Typography>
+                      <Typography variant="body2">
+                        {selectedAddress.city}, {selectedAddress.state} - {selectedAddress.pinCode},
+                      </Typography>
+                      <Typography variant="body2">
+                        {selectedAddress.country}
+                      </Typography>
+                      <Typography variant="body2">
+                        <b>{Literal[lang].landmark}:</b> {selectedAddress.landmark}
+                      </Typography>
+                      <Typography variant="body2"><b>{Literal[lang].mobile}:</b> {selectedAddress.mobile}</Typography>
+                  </Box>
+                </div>
+                <div flex={1} style={{display:'flex'}}>
+                  <button
+                    type="button"
+                    className="form-skip-button"
+                    style={{ width: "100px", height: "45px", flex: 1 }}
+                    onClick={() => setAddressModalOpen(true)}
+                  >
+                    {Literal[lang].change}
+                  </button>
+                </div>
+              </div>
             ) : (
-              <Typography color="error">{Literal[lang].noAddressFound}</Typography>
+              <Typography color="error">
+                {Literal[lang].noAddressFound}
+              </Typography>
             )}
           </Box>
-
-          <Box>
-            <Typography variant="h6" gutterBottom>
-              {Literal[lang].itemsInOrder}
+          <Box sx={{ mt: 2 }} >
+            {/* <Divider sx={{ mb: 2 }} /> */}
+            <Typography variant="h6" gutterBottom sx={{ml:1}}>
+              {Literal[lang].itemsInOrder}:
             </Typography>
-            <Divider sx={{ mb: 2 }} />
-            {selectedItems.map((item, i) => (
-              <Box key={i} sx={{ display: "flex", justifyContent: "space-between", mb: 2 }}>
-                <Box>
-                  <Typography>{item.product?.title}</Typography>
-                  <Typography variant="body2">
-                    {Literal[lang].size}: {item.size?.size || "-"} ({item.inventoryType})
-                  </Typography>
-                </Box>
-                <Typography>
-                  ₹{Math.round(item.price || 0)} x {item.quantity}
-                </Typography>
-              </Box>
+            {orderItems?.map((item, i) => (
+              <CheckoutItemTile key={item.id} item={item} />
             ))}
           </Box>
         </Box>
 
-        <Box sx={{ flex: 2, width: '100%' }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            flex: 2,
+            p: 2,
+            gap: 3,
+            width: "100%",
+          }}
+        >
           <OrderSummary
             lang={lang}
             entity="checkout"
@@ -198,7 +250,7 @@ const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
             couponApplied={couponApplied}
             couponError={couponError}
             discount={discount}
-            selectedItems={selectedItems}
+            selectedItems={orderItems}
             totalRefundableSecurity={totalRefundableSecurity}
             selectedTotal={selectedTotal}
             proceedLabel={Literal[lang].checkout}
@@ -212,7 +264,11 @@ const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
         open={addressModalOpen}
         onClose={() => setAddressModalOpen(false)}
         addresses={addresses}
+        isMobile={isMobile}
         selectedAddress={selectedAddress}
+        updateDraft={updateDraft}
+        showSnackBar={showSnackBar}
+        setSelectedAddress={setSelectedAddress}
         onSelect={(addr) => {
           setSelectedAddress(addr);
           setAddressModalOpen(false);

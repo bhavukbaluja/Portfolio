@@ -214,11 +214,11 @@ const CartWrapper = ({ isMobile, showSnackBar, setLoading, loading, setIsLoginSi
   
       const order = await createDraftOrder(draftItems, discount);
   
-      showSnackBar("Draft order created!");
+      showSnackBar(Literal[lang].proceedToCheckout);
       NavigateTo(`/checkout?orderId=${order.id}`); // Pass the orderId in URL
     } catch (err) {
       console.error("Error creating draft order:", err);
-      showSnackBar("Failed to create draft order");
+      showSnackBar("Failed to create draft order", "error");
     } finally {
       setLoading(false);
     }
@@ -329,24 +329,33 @@ const CartWrapper = ({ isMobile, showSnackBar, setLoading, loading, setIsLoginSi
         </Box>
 
         {!loading && enrichedCart.length > 0 && (
-          <OrderSummary
-            lang={lang}
-            entity="cart"
-            selectedItems={selectedItems}
-            coupon={coupon}
-            selectedTotal={selectedTotal}
-            setCoupon={setCoupon}
-            applyCouponCode={applyCouponCode}
-            discount={discount}
-            couponApplied={couponApplied}
-            couponError={couponError}
-            totalRefundableSecurity={totalRefundableSecurity}
-            emptyCart={emptyCart}
-            proceedLabel={Literal[lang].proceedToBuy}
-            onProceedToBuy={proceedToBuy}
-            showButtons={true}
-            setIsLoginSignupOpen={setIsLoginSignupOpen}
-          />        
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              flex: 2,
+              width: "100%",
+            }}
+          >
+            <OrderSummary
+              lang={lang}
+              entity="cart"
+              selectedItems={selectedItems}
+              coupon={coupon}
+              selectedTotal={selectedTotal}
+              setCoupon={setCoupon}
+              applyCouponCode={applyCouponCode}
+              discount={discount}
+              couponApplied={couponApplied}
+              couponError={couponError}
+              totalRefundableSecurity={totalRefundableSecurity}
+              emptyCart={emptyCart}
+              proceedLabel={Literal[lang].proceedToBuy}
+              onProceedToBuy={proceedToBuy}
+              showButtons={true}
+              setIsLoginSignupOpen={setIsLoginSignupOpen}
+            />     
+          </Box>
         )}
       </Box>
     </div>

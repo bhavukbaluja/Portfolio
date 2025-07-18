@@ -1,105 +1,221 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import {
-  Box,
-  Typography,
-  Divider,
-  Radio,
-  RadioGroup,
-  FormControlLabel,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
   Button,
+  useMediaQuery,
+  CircularProgress,
+  Grid2,
 } from "@mui/material";
-import BaseDialog from "@ui/components/UI/fields/BaseDialog";
+import { useTheme } from "@mui/material/styles";
+import AddressCard from "./AddressCard";
+import { OrderServices } from "@utils/services/OrderServices";
+import { useCart } from "@utils/helper/ApiConfig/CartContext";
+import AddAddress from "../Address/AddAddress";
+import BaseAddButton from "@ui/components/UI/widgets/BaseAddButton";
+import CustomConfirmBox from "@ui/components/Ui/widgets/CustomConfirmBox";
+import CustomAlertBox from "@ui/components/UI/widgets/CustomAlertBox";
 import Literal from "@ui/literals";
 import { LanguageContext } from "@ui/literals/LanguageProvider";
+import { PanelServices } from "@utils/services/PanelServices";
+import { Address_URL } from "@utils/Config/URLs";
+import BaseDialog from "@ui/components/UI/fields/BaseDialog";
 
 const AddressSelectorDialog = ({
   open,
   onClose,
-  addresses = [],
   selectedAddress,
-  onSelect,
+  setSelectedAddress,
+  showSnackBar,
+  isMobile
 }) => {
-  const { lang } = React.useContext(LanguageContext);
-  const [selectedId, setSelectedId] = React.useState(selectedAddress?.id || null);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const { lang } = useContext(LanguageContext);
+  const { setSubcategories, updateEntity, getGridData } = PanelServices();
+  const {updateOrderAddress} = OrderServices();
+  const { updateCart } = useCart();
 
-  const handleSelect = () => {
-    const found = addresses.find((addr) => addr.id === selectedId);
-    if (found) onSelect(found);
+  const [addresses, setAddresses] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [openAdd, setOpenAdd] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [action, setAction] = useState("create");
+  const [confirmBoxOpen, setConfirmBoxOpen] = useState(false);
+  const [alertMsg, setAlertMsg] = useState("");
+  const [openAlert, setOpenAlert] = useState(false);
+  const [children, setChildren] = useState([]);
+
+  const loadAddresses = async () => {
+    try {
+      return (await getGridData(`${Address_URL}/user`)) || [];
+    } catch (e) {
+      console.error("Failed to load addresses", e);
+    }
   };
 
-  React.useEffect(() => {
-    setSelectedId(selectedAddress?.id || null);
-  }, [selectedAddress]);
+  const refresh = async () => {
+    setLoading(true);
+    const res = await loadAddresses();
+    setAddresses(res?.data);
+    setLoading(false);
+  };
 
-  const Content = (
-    <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-      <RadioGroup
-        value={selectedId}
-        onChange={(e) => setSelectedId(parseInt(e.target.value))}
-      >
-        {addresses.map((addr) => (
-          <Box
-            key={addr.id}
-            sx={{
-              border: "1px solid #ccc",
-              borderRadius: 2,
-              p: 2,
-              mb: 1,
-            }}
-          >
-            <FormControlLabel
-              value={addr.id}
-              control={<Radio />}
-              label={
-                <Box>
-                  <Typography variant="body1" sx={{ fontWeight: 600 }}>
-                    {addr.fullName} {addr.isPrimary && `( ${Literal[lang].defaultAddress} )`}
-                  </Typography>
-                  <Typography variant="body2">
-                    {addr.streetAddress1}, {addr.streetAddress2}
-                  </Typography>
-                  <Typography variant="body2">
-                    {addr.city}, {addr.state}, {addr.pinCode}, {addr.country}
-                  </Typography>
-                  <Typography variant="body2">{addr.mobile}</Typography>
-                </Box>
-              }
-            />
-          </Box>
-        ))}
-      </RadioGroup>
+  useEffect(() => {
+    if (open) refresh();
+  }, [open]);
 
-      <Divider />
+  const handleSelect = async (address) => {
+    setLoading(true);
+    try {
+      const res = await updateOrderAddress(address.id);
+      if (res) {
+        // updateCart();
+        setSelectedAddress(address);
+        showSnackBar("Address updated successfully");
+        onClose();
+      }
+    } catch (e) {
+      showSnackBar("Failed to update address");
+    } finally {
+      setLoading(false);
+    }
+  };
 
-      <Box sx={{ display: "flex", justifyContent: "flex-end", gap: 2 }}>
-        <button
-            type="button"
-            className="form-skip-button"
-            style={{ width: '100px', height: '45px', flex: 1 }}
-            onClick={onClose}
-        >
-            {Literal[lang].cancel}
-        </button>
-        <button
-            type="button"
-            className="form-button"
-            style={{ width: '100px', height: '45px', flex: 1 }}
-            onClick={handleSelect}
-            disabled={selectedId === null}
-        >
-            {Literal[lang].deliverHere}
-        </button>
-      </Box>
-    </Box>
+  const clickAddAddress = () => {
+    setOpenAdd(true);
+    setAction("create");
+    setSelectedItem(null);
+  };
+
+  const resetData = () => {
+    setSelectedItem(null);
+    setAction("create");
+  };
+
+  const clickEdit = (row) => {
+    setSelectedItem(row);
+    setOpenAdd(true);
+    setAction("edit");
+  };
+
+  const clickView = (row) => {
+    setSelectedItem(row);
+    setOpenAdd(true);
+    setAction("view");
+  };
+
+  const closeConfirmBox = () => {
+    setConfirmBoxOpen(false);
+    resetData();
+  };
+
+  const deleteAddress = async () => {
+    await updateEntity(Address_URL + "/delete", selectedItem).then((res) => {
+      showSnackBar(res?.message || res);
+    });
+    resetData();
+    refresh();
+  };
+
+  const clickSetPrimary = async (id) => {
+    try {
+      setLoading(true);
+      await setSubcategories(`${Address_URL}/set-primary`, {
+        id: id,
+      });
+      showSnackBar(Literal[lang].setDefaultSuccess || "Address set as default");
+      refresh();
+    } catch (error) {
+      showSnackBar(Literal[lang].somethingWentWrong || "Failed to set default address");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const DialogContentBody = (
+    <Grid2
+      container
+      spacing={1}
+      width='100%'
+      padding="10px 20px"
+      flexDirection="column"
+      // wrap={isMobile ? "wrap" : "nowrap"}
+      justifyContent={isMobile ? "center" : "space-around"}
+      alignItems="flex-start"
+    >
+      <BaseAddButton
+        handleClick={clickAddAddress}
+        addMsg={`${Literal[lang].addNew} ${Literal[lang].address}`}
+        handleRefresh={refresh}
+        entity="address"
+      />
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        addresses?.map((address) => (
+          <AddressCard
+            key={address.id}
+            address={address}
+            selected={selectedAddress?.id === address.id}
+            onSelect={() => handleSelect(address)}
+            onEdit={() => clickEdit(address)}
+            onView={() => clickView(address)}
+            onPrimary={clickSetPrimary}
+          />
+        ))
+      )}
+    </Grid2>
   );
 
   return (
-    <BaseDialog
-      open={open}
-      setOpen={onClose}
-      title={Literal[lang].selectDeliveryAddress}
-      bodyComponent={Content}
-    />
+    <>
+      <BaseDialog
+        open={open}
+        setOpen={onClose}
+        fullScreen={fullScreen}
+        maxWidth="sm"
+        title={Literal[lang].selectDeliveryAddress}
+        bodyComponent={DialogContentBody}
+        actions={
+          <DialogActions>
+            <Button onClick={onClose}>{Literal[lang].cancel}</Button>
+          </DialogActions>
+        }
+      />
+
+      <AddAddress
+        dialogOpen={openAdd}
+        setDialogOpen={setOpenAdd}
+        isMobile={fullScreen}
+        loading={loading}
+        setLoading={setLoading}
+        showSnackBar={showSnackBar}
+        refresh={refresh}
+        addressToEdit={selectedItem}
+        setAddressToEdit={setSelectedItem}
+        resetData={resetData}
+        action={action}
+        entity="address"
+      />
+
+      <CustomConfirmBox
+        Msg={Literal[lang].deleteMsg
+          .replace("{0}", selectedItem?.fullName + "'s ")
+          .replace("{1}", Literal[lang].address)}
+        open={confirmBoxOpen}
+        setOpen={closeConfirmBox}
+        clickedYes={deleteAddress}
+      />
+
+      <CustomAlertBox
+        Msg={alertMsg}
+        open={openAlert}
+        setOpen={setOpenAlert}
+        children={children}
+      />
+    </>
   );
 };
 
