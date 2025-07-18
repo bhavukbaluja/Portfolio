@@ -11,10 +11,12 @@ import { useCart } from "@utils/helper/ApiConfig/CartContext";
 import { PanelServices } from "@utils/services/PanelServices";
 import { OrderServices } from "@utils/services/OrderServices";
 import { LanguageContext } from "@ui/literals/LanguageProvider";
+import {isEmpty} from "@utils/helper/Helper";
 import Literal from "@ui/literals";
 import AddressSelectorDialog from "./AddressSelectorDialog";
 import OrderSummary from "./OrderSummary";
 import CheckoutItemTile from "./CheckoutItemTile";
+import BaseRadioGroup from "@ui/components/UI/fields/BaseRadioGroup";
 
 const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
   const navigate = useNavigate();
@@ -37,6 +39,16 @@ const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
   const [couponApplied, setCouponApplied] = useState(false);
   const [couponError, setCouponError] = useState(false);
   const [order, setOrder] = useState(null);
+  const [shipType, setShipType] = useState(null);
+
+  const deliveryOpt = [
+    { label: "shipTogether", value: "ShipTogether" },
+    { label: "shipAsap", value: "ShipAsap" },
+  ];
+
+  const handleTypeSelect = (value) => {
+    setShipType(value);
+  };
 
   const applyCouponCode = () => {
     const COUPON_CODES = {
@@ -220,6 +232,21 @@ const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
               </Typography>
             )}
           </Box>
+          {orderItems?.length>1 && (
+            <Box sx={{ border: `1px solid var(--color-gray-300)`, borderRadius: '16px', p: 2, mt:2 }}>
+              <Box sx={{ flex: 1, minWidth: isMobile ? "100%" : "48%" }}>
+                <BaseRadioGroup
+                  required={true}
+                  label="shipItems"
+                  title="shipItems"
+                  options={deliveryOpt}
+                  value={shipType}
+                  // disabled={readOnly}
+                  onChange={(value) => handleTypeSelect(value)}
+                />
+              </Box>
+            </Box>
+          )}
           <Box sx={{ mt: 2 }} >
             {/* <Divider sx={{ mb: 2 }} /> */}
             <Typography variant="h6" gutterBottom sx={{ml:1}}>
@@ -245,6 +272,7 @@ const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
             lang={lang}
             entity="checkout"
             coupon={coupon}
+            disableButton={isEmpty(shipType) && orderItems.length>1}
             setCoupon={setCoupon}
             applyCouponCode={applyCouponCode}
             couponApplied={couponApplied}

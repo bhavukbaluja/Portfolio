@@ -22,8 +22,6 @@ import BaseTextField2 from "@ui/components/UI/fields/BaseTextField2";
 import OrderSummary from "./OrderSummary";
 import useNavigateTo from "@utils/helper/ApiConfig/useNavigateTo";
 
-const DELIVERY_CHARGE = 49;
-const FREE_DELIVERY_THRESHOLD = 999;
 const COUPON_CODES = {
   SAVE10: 0.1,
   SAVE50: 0.5,
@@ -178,17 +176,24 @@ const CartWrapper = ({ isMobile, showSnackBar, setLoading, loading, setIsLoginSi
   const selectedTotal = selectedItems.reduce((acc, item) => {
     const inventories = item.product?.inventories || [];
     const inventory = inventories.find((inv) => inv?.type === item.inventoryType);
-
-    const variant = inventory?.inventoryVariants?.find(
+  
+    let variant = inventory?.inventoryVariants?.find(
       (v) => v?.size?.id === item.sizeChartId
     );
+  
+    // Fallback to "custom" size match if exact sizeChartId not found
+    if (!variant) {
+      variant = inventory?.inventoryVariants?.find(
+        (v) => v?.size?.size?.toLowerCase() === "custom"
+      );
+    }
+  
     const price =
-      variant?.salePrice - (variant?.salePrice * (variant?.discount || 0)) / 100 ||
-      item?.price ||
-      0;
-
+      (variant?.salePrice ?? item?.price ?? 0) -
+      ((variant?.salePrice ?? item?.price ?? 0) * (variant?.discount || 0)) / 100;
+  
     return acc + price * (item.quantity || 1);
-  }, 0);
+  }, 0);  
 
   const totalRefundableSecurity = selectedItems.reduce((acc, item) => {
     if (item.inventoryType === "RENTAL") {
@@ -299,7 +304,7 @@ const CartWrapper = ({ isMobile, showSnackBar, setLoading, loading, setIsLoginSi
           width: "100%",
         }}
       >
-        <Box sx={{ flex: 2, width: "100%" }}>
+        <Box sx={{ flex: 3, width: "100%" }}>
           {loading ? (
             <Box sx={{ display: "flex", gap: 2, alignItems: "center" }}>
               <CircularProgress size={24} />

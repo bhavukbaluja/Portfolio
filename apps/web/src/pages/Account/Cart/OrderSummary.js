@@ -4,7 +4,7 @@ import BaseTextField2 from "@ui/components/UI/fields/BaseTextField2";
 import Literal from "@ui/literals";
 import { AuthContext } from '@utils/helper/ApiConfig/AuthProvider';
 
-const DELIVERY_CHARGE = 49;
+const DELIVERY_CHARGE = 100;
 const FREE_DELIVERY_THRESHOLD = 999;
 const COUPON_CODES = {
   SAVE10: 0.1,
@@ -26,7 +26,8 @@ const OrderSummary = ({
   emptyCart,
   onProceedToBuy,
   proceedLabel,
-  setIsLoginSignupOpen
+  setIsLoginSignupOpen,
+  disableButton
 }) => {
 
   const { user } = useContext(AuthContext);
@@ -155,7 +156,7 @@ const OrderSummary = ({
             type="button"
             className="form-button"
             style={{ minWidth: '180px', height: '45px', flex: 1.8 }}
-            disabled={selectedItems.length === 0}
+            disabled={selectedItems.length === 0 || disableButton}
             onClick={()=> {user? onProceedToBuy(): setIsLoginSignupOpen(true)}}
           >
             {proceedLabel}
