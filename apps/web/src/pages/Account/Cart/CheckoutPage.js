@@ -10,6 +10,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import { useCart } from "@utils/helper/ApiConfig/CartContext";
 import { PanelServices } from "@utils/services/PanelServices";
 import { OrderServices } from "@utils/services/OrderServices";
+import { PaymentServices } from "@utils/services/PaymentServices";
 import { LanguageContext } from "@ui/literals/LanguageProvider";
 import {isEmpty} from "@utils/helper/Helper";
 import Literal from "@ui/literals";
@@ -17,6 +18,10 @@ import AddressSelectorDialog from "./AddressSelectorDialog";
 import OrderSummary from "./OrderSummary";
 import CheckoutItemTile from "./CheckoutItemTile";
 import BaseRadioGroup from "@ui/components/UI/fields/BaseRadioGroup";
+import Razorpay from "razorpay";
+import properties from "@utils/Config/Properties.json";
+import { AuthContext } from '@utils/helper/ApiConfig/AuthProvider';
+import CompanyLogo from '@assets/Logo.png';
 
 const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
   const navigate = useNavigate();
@@ -25,7 +30,9 @@ const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
   const { emptyCart } = useCart();
   const { getGridData } = PanelServices();
   const { getOrdersByStatus, updateOrderStatus, updateOrderAddress } = OrderServices();
+  const { savePaymentInfo } = PaymentServices();
   const { lang } = useContext(LanguageContext);
+  const { user } = useContext(AuthContext);
 
   const [searchParams] = useSearchParams();
   const [orderId, setOrderId] = useState(searchParams.get("orderId"));
@@ -79,6 +86,7 @@ const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
         }
         setOrder(draft);
         setOrderItems(draft.items);
+        setShipType(draft?.shipType);
         setOrderId(draft.id);
         setSelectedAddress(draft.address);
       } catch (error) {
@@ -106,26 +114,80 @@ const CheckoutPage = ({ isMobile, showSnackBar, setLoading, loading }) => {
     return acc;
   }, 0);
 
+
   const handlePlaceOrder = async () => {
     if (!orderId || !selectedAddress) {
       showSnackBar("Missing order ID or address", "error");
       return;
     }
-
+  
     try {
       setLoading(true);
-      await updateOrderStatus(orderId, "PLACED", selectedAddress);
-      showSnackBar("Order placed successfully!", "success");
-      emptyCart();
-      navigate(`/order/confirmation?orderId=${orderId}`);
+      
+      // ⬇️ Call your existing backend method, now returns Razorpay order if status is PLACED
+      const razorpayOrder = await updateOrderStatus(orderId, "PENDING", selectedAddress?.id, shipType);
+      // const demo = {
+      //   razorpay_payment_id: "pay_QwtzkWrtcEe0ej",
+      //   razorpay_order_id: "order_QwtzFSBzhNCoPv",
+      //   razorpay_signature: "2dc42dbf62f6cc9ac0af192cae9350a7935b91bac420ba290472a47c308ce080"
+      // };
+      
+      // let res = await savePaymentInfo(demo); // stringifying the actual object
+      
+      // if (res?.msg?.includes("verified")) {
+      //   const placedRes = await updateOrderStatus(orderId, "PLACED", null, null, res?.data);
+      // }
+      
+      if (razorpayOrder && razorpayOrder.id) {
+        // 🔁 Initialize Razorpay payment
+        const razorpayOptions = {
+          key: properties.VITE_RAZORPAY_KEY_ID,
+          amount: razorpayOrder.amount,
+          currency: razorpayOrder.currency,
+          name: properties.BrandName,
+          description: orderId+" Payment",
+          image: <CompanyLogo/>,
+          order_id: razorpayOrder.id,
+          handler: async function (response) {
+            try {
+              let res = await savePaymentInfo(response);
+
+              if(res?.msg?.includes("verified")){
+                const placedRes = await updateOrderStatus(orderId, "PLACED", null, null, res?.data);
+              }
+
+              showSnackBar("Payment successful!", "success");
+              emptyCart();
+              navigate(`/order/confirmation?orderId=${orderId}`);
+            } catch (err) {
+              showSnackBar("Payment failed to save", "error");
+            }
+          },
+          prefill: {
+            name: user?.name,
+            email: user?.email,
+            contact: user?.mobile,
+          },
+          theme: {
+            color: `var(--maindark-color)`,
+          },
+        };
+  
+        const rzp = new window.Razorpay(razorpayOptions);
+        rzp.open();
+      } else {
+        showSnackBar("Order placed without Razorpay payment", "info");
+        emptyCart();
+        // navigate(`/order/confirmation?orderId=${orderId}`);
+      }
     } catch (err) {
       console.error("Failed to place order:", err);
       showSnackBar("Failed to place order", "error");
     } finally {
       setLoading(false);
     }
-  };
-
+  };  
+  
   const updateDraft= async (entity, addressId) => {
     try {
       setLoading(true);
