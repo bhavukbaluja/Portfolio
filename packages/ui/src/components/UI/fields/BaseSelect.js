@@ -71,7 +71,7 @@ export default function BaseSelect({
                       border: '0px'
                     },
                     '& label': {
-                      fontFamily: '"Kalam", serif',
+                      fontFamily: '"Merriweather", serif',
                     }
                   }}
                 />
