@@ -22,7 +22,7 @@ const SinglePageLoader = ({ page, isMobile, loading, setLoading, entity }) => {
     const fetchPage = async () => {
       if (!page?.value) {
         // Fallback: show local text if page not found
-        if (page?.label?.toLowerCase() === "contactus") {
+        if (page?.name?.toLowerCase() === "contact us") {
           setPageData(properties.contactUs);
         }
         return;
