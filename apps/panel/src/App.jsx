@@ -62,7 +62,7 @@ function App() {
   const [siteEnabled, setSiteEnabled] = useState(true); // <- new
   const [siteStatusChecked, setSiteStatusChecked] = useState(false); // <- new
   const {isWebsiteEnabled} = PublicServices();
-  const siteName = "dev-panel";
+  const siteName = "panel";
 
   useEffect(() => {
 
