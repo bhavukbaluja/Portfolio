@@ -14,7 +14,7 @@ const ContactUs=({isMobile, loading, setLoading})=>{
 
     const { lang } = useContext(LanguageContext);
     const properties = propertiesData[lang];
-    const [page, setPage] = useState({"name": "contact us"});
+    const [page, setPage] = useState({"label": "contact us"});
     const { getGridData } = PanelServices();
 
     useEffect(() => {
@@ -24,9 +24,9 @@ const ContactUs=({isMobile, loading, setLoading})=>{
             const res = await getGridData(Page_URL + "/allActive");
             const result = convertEntities(res?.data, "", "ACTIVE", "");
 
-            // ✅ Filter for page where name is "contactUs" (case-insensitive)
+            // ✅ Filter for page where label is "contactUs" (case-insensitive)
             const contactUsPage = result?.find(
-                (page) => page?.name?.toLowerCase() === "contact us"
+                (page) => page?.label?.toLowerCase() === "contact us"
               );
               setPage(contactUsPage || null);
               
