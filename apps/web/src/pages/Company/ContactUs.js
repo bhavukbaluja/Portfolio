@@ -50,7 +50,7 @@ const ContactUs=({isMobile, loading, setLoading})=>{
                 <Typography variant="h4" gutterBottom >{Literal[lang].contactUs}</Typography>
         <Box style={{ justifyContent: isMobile ? "center" : "space-between", width: '100%', display: 'flex', flexDirection: isMobile? 'column':'row', alignItems: 'stretch', flexWrap: isMobile ? 'wrap' : 'nowrap', gap: '10px' }}>
                 <div className='footer-contact-details-vertical-contents' style={{ alignItems: "center", flex: 1 }}>
-                    <BrandLogo fontSize="80px" entity="footer"/>
+                    <BrandLogo fontSize="80px" entity="footer" isMobile={isMobile}/>
                     <div>{properties.brandTagLine}</div>
                     {page ? (
                         <SinglePageLoader
