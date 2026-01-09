@@ -54,7 +54,7 @@ function App() {
   const [hideSite, setHideSite] = useState(true); // <- new
   const [siteStatusChecked, setSiteStatusChecked] = useState(false); // <- new
   const {isWebsiteEnabled} = PublicServices();
-  const siteName = "web-poshdori";
+  const siteName = "dev-web-poshdori";
 
   useEffect(() => {
 
