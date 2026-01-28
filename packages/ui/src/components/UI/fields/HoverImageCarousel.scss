@@ -1,0 +1,41 @@
+.hover-image-carousel {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #ccc;
+
+  .carousel-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    z-index: 0;
+
+    &.active {
+      opacity: 1;
+      z-index: 1;
+    }
+  }
+
+  .wishlist-overlay-button {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index: 3;
+    background-color: transparent;
+    border-radius: 50%;
+    // padding: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      // background-color: rgba(0, 0, 0, 0.6);
+    }
+  }
+}

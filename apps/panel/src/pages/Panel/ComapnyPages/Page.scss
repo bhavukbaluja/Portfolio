@@ -1,0 +1,42 @@
+.category-main {
+    padding: 0 1rem  1rem  1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100vh;
+    align-items: center;
+    width: 100%; /* Ensure the container takes full width */
+    position: relative;
+    overflow-y: auto;
+  }
+  
+  .about-us-main-container-pc{
+    min-height: 80vh;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    // padding: 20px 15vw 50px 15vw;
+}
+.title{
+    display: flex;
+    font-size: 30px;
+    justify-content: center;
+    text-align: center;    
+}
+.content{
+    margin-top: 40px;
+    align-self: baseline;
+    font-size: 20px;
+    text-align: justify;
+    line-height: 2;
+}
+.about-us-main-container-mobile{
+    min-height: 80vh;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    // padding: 20px 40px 50px 40px;
+}
+

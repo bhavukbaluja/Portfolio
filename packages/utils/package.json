@@ -1,0 +1,29 @@
+{
+    "name": "@repo/utils",
+    "version": "1.0.0",
+    "private": true,
+    "main": "dist/index.js",
+    "source": "src/index.js",
+    "scripts": {
+      "build": "babel . --out-dir dist --ignore **/*.test.js",
+      "lint": "eslint .",
+      "start": "echo 'Run this from a consuming app'"
+    },
+    "dependencies": {
+      "react": "^19.1.0",
+      "react-dom": "^19.1.0",
+      "@mui/icons-material": "^6.5.0",
+      "@mui/material": "^6.5.0"
+    },
+    "devDependencies": {
+      "@babel/cli": "^7.24.4",
+      "@babel/core": "^7.24.4",
+      "@babel/preset-env": "^7.24.4",
+      "@babel/preset-react": "^7.24.4",
+      "eslint": "^9.24.0"
+    },
+    "babel": {
+      "presets": ["@babel/preset-env", "@babel/preset-react"]
+    }
+  }
+  

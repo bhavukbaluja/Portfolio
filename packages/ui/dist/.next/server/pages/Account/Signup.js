@@ -1,0 +1,598 @@
+(() => {
+  var e = {};
+  e.id = 836, e.ids = [220, 836], e.modules = {
+    361: e => {
+      "use strict";
+
+      e.exports = require("next/dist/compiled/next-server/pages.runtime.prod.js");
+    },
+    2015: e => {
+      "use strict";
+
+      e.exports = require("react");
+    },
+    2053: () => {},
+    2081: (e, t, r) => {
+      "use strict";
+
+      r.d(t, {
+        A: () => u
+      });
+      var o = r(8732),
+        n = r(2015);
+      !function () {
+        var e = Error("Cannot find module 'react-phone-input-2'");
+        throw e.code = "MODULE_NOT_FOUND", e;
+      }(), function () {
+        var e = Error("Cannot find module 'react-phone-input-2/lib/style.css'");
+        throw e.code = "MODULE_NOT_FOUND", e;
+      }();
+      var a = r(3987),
+        i = r.n(a),
+        l = r(1155),
+        s = r(1819),
+        d = r(9029);
+      !function () {
+        var e = Error("Cannot find module '@base-ui-components/react/field'");
+        throw e.code = "MODULE_NOT_FOUND", e;
+      }();
+      let u = ({
+        formData: e,
+        setFormData: t,
+        errors: r,
+        setErrors: a,
+        required: u,
+        label: c,
+        description: m,
+        name: p
+      }) => {
+        let {
+          lang: b
+        } = (0, n.useContext)(s.s);
+        return (0, d.Im)(e?.mobile) && t(e => ({
+          ...e,
+          mobile: "+91"
+        })), (0, o.jsx)(Object(function () {
+          var e = Error("Cannot find module '@base-ui-components/react/field'");
+          throw e.code = "MODULE_NOT_FOUND", e;
+        }()).Root, {
+          name: p,
+          className: i().Field,
+          children: (0, o.jsxs)("div", {
+            className: i().mobileContainer,
+            children: [(0, o.jsxs)("label", {
+              className: i().phoneInputLabel,
+              children: [c ? l.A[b][c] || c : l.A[b].mobile, u && (0, o.jsx)("span", {
+                className: i().red_icon,
+                children: "*"
+              })]
+            }), (0, o.jsx)("div", {
+              className: i().mobileInputField,
+              children: (0, o.jsx)(Object(function () {
+                var e = Error("Cannot find module 'react-phone-input-2'");
+                throw e.code = "MODULE_NOT_FOUND", e;
+              }()), {
+                country: "in",
+                value: e?.mobile,
+                focusBlur: !1,
+                onChange: (e, r) => {
+                  let o = "",
+                    n = e.replace(/[^0-9]/g, ""),
+                    i = `+${n}`;
+                  t(e => ({
+                    ...e,
+                    mobile: i
+                  }));
+                  let l = n.slice(r.dialCode.length);
+                  l.trim() ? /^\d{7,15}$/.test(l) || (o = "Invalid mobile number (7-15 digits required).") : u && (o = "This field is required."), a(e => {
+                    let t = {
+                      ...e
+                    };
+                    return t.hasOwnProperty("mobile") && delete t.mobile, o && (t.mobile = o), t;
+                  });
+                },
+                inputProps: {
+                  name: "mobile",
+                  required: u,
+                  id: "mobile",
+                  tabIndex: -1
+                },
+                containerClass: i().phoneInputContainer,
+                inputClass: i().phoneInputField,
+                buttonClass: i().flagDropdown,
+                dropdownClass: i().countryList,
+                autoFormat: !0,
+                disableDropdown: !1,
+                countryCodeEditable: !1,
+                specialLabel: ""
+              })
+            }), (0, o.jsx)(Object(function () {
+              var e = Error("Cannot find module '@base-ui-components/react/field'");
+              throw e.code = "MODULE_NOT_FOUND", e;
+            }()).Description, {
+              className: (0, d.Im)(r.mobile) ? i().Description : i().Error,
+              children: (0, d.Im)(r.mobile) ? l.A[b][m] || m : r.mobile
+            })]
+          })
+        });
+      };
+    },
+    2695: (e, t, r) => {
+      "use strict";
+
+      r.r(t), r.d(t, {
+        default: () => h
+      });
+      var o = r(8732),
+        n = r(2015),
+        a = r.n(n);
+      !function () {
+        var e = Error("Cannot find module 'react-phone-input-2/lib/style.css'");
+        throw e.code = "MODULE_NOT_FOUND", e;
+      }();
+      var i = r(674),
+        l = r(9051);
+      r(2053);
+      var s = r(2081),
+        d = r(1155),
+        u = r(1819),
+        c = r(2650),
+        m = r(9029);
+      !function () {
+        var e = Error("Cannot find module '__barrel_optimize__?names=FormControl!=!@mui/material'");
+        throw e.code = "MODULE_NOT_FOUND", e;
+      }();
+      var p = r(3039),
+        b = r(5411);
+      !function () {
+        var e = Error("Cannot find module 'react-router-dom'");
+        throw e.code = "MODULE_NOT_FOUND", e;
+      }(), r(9997);
+      let h = ({
+        loading: e,
+        setAlertTitle: t,
+        setLoading: r,
+        setAlertMsg: h,
+        setOpenAlert: f,
+        setChildren: O,
+        showSnackBar: g,
+        setDialogOpen: v,
+        action: N,
+        setImageRefreshKey: _
+      }) => {
+        let {
+            lang: x
+          } = a().useContext(u.s),
+          {
+            register: j
+          } = (0, p.G)(),
+          [C, E] = (0, n.useState)("submit"),
+          [D, U] = (0, n.useState)({}),
+          [A] = Object(function () {
+            var e = Error("Cannot find module 'react-router-dom'");
+            throw e.code = "MODULE_NOT_FOUND", e;
+          }())(),
+          [M, T] = (0, n.useState)({
+            fullName: "",
+            email: "",
+            mobile: "",
+            countryCode: ""
+          }),
+          [w, S] = (0, n.useState)("email"),
+          [F, P] = (0, n.useState)(""),
+          y = e => {
+            let {
+              name: t,
+              value: r
+            } = e.target;
+            T(e => ({
+              ...e,
+              [t]: r
+            })), U(e => {
+              let o = {
+                ...e
+              };
+              t in o && delete o[t];
+              let n = (0, m.jr)(t, r);
+              return n && (o[t] = n), {
+                ...o
+              };
+            });
+          },
+          L = async e => {
+            e.preventDefault(), r(!0);
+            let t = {};
+            if ("mobile" !== w ? (delete M.mobile, delete M.countryCode) : delete M.email, Object.keys(M).forEach(e => {
+              if ("countryCode" !== e) {
+                let r = (0, m.jr)(e, M[e]);
+                (0, m.Im)(r) || (t[e] = r);
+              }
+              M[e]?.toString().trim() || (t[e] = "This field is required.");
+            }), U(t), Object.keys(t).length > 0) return void r(!1);
+            q();
+          },
+          I = async e => {
+            r(!0), E("resend"), await q(e), E("submit");
+          },
+          q = async e => {
+            let t = {};
+            t.fullName = M.fullName, t.mobileOrEmail = e || M.email || M.mobile, await j(c.Am, t).then(e => {
+              g(e), P(e);
+            }).catch(e => {}), r(!1);
+          };
+        return (0, o.jsx)(o.Fragment, {
+          children: (0, m.Im)(F) && (0, m.Im)(A.get("mobileOrEmail")) ? (0, o.jsxs)(Object(function () {
+            var e = Error("Cannot find module '__barrel_optimize__?names=FormControl!=!@mui/material'");
+            throw e.code = "MODULE_NOT_FOUND", e;
+          }()), {
+            className: "signup-login",
+            onSubmit: L,
+            children: [(0, o.jsx)(i.A, {
+              id: "fullName-input",
+              label: "Name",
+              name: "fullName",
+              required: !0,
+              placeHolderText: "fullNamePlaceholder",
+              value: M.fullName,
+              onChange: y,
+              errorMsg: D.fullName
+            }), (0, o.jsx)(l.A, {
+              options: [{
+                label: "email",
+                value: "email"
+              }, {
+                label: "mobile",
+                value: "mobile"
+              }],
+              value: w,
+              onChange: S,
+              dress: !0
+            }), "email" === w ? (0, o.jsxs)(o.Fragment, {
+              children: [(0, o.jsx)(i.A, {
+                id: "email-input",
+                label: "Email",
+                name: "email",
+                required: !0,
+                placeHolderText: "Enter your email",
+                value: M.email,
+                onChange: y,
+                errorMsg: D.email
+              }), (0, o.jsxs)("div", {
+                children: [(0, o.jsx)("b", {
+                  children: "Note:"
+                }), " ", d.A[x].receiveOTP.replace("{0}", "Email")]
+              })]
+            }) : (0, o.jsxs)(o.Fragment, {
+              children: [(0, o.jsx)("div", {
+                className: "mobile-container",
+                children: (0, o.jsx)(s.A, {
+                  formData: M,
+                  setFormData: T,
+                  errors: D,
+                  setErrors: U,
+                  required: !0
+                })
+              }), (0, o.jsxs)("div", {
+                children: [(0, o.jsx)("b", {
+                  children: "Note:"
+                }), " ", d.A[x].receiveOTP.replace("{0}", "Mobile no")]
+              })]
+            }), (0, o.jsx)("div", {
+              className: "form-button-container",
+              children: (0, o.jsx)("button", {
+                disabled: e || Object.keys(D).length > 0,
+                type: "submit",
+                className: "form-button",
+                onClick: L,
+                children: e ? d.A[x].registering : d.A[x].register
+              })
+            })]
+          }) : (0, o.jsx)(b.default, {
+            lang: x,
+            setLoading: r,
+            loading: e,
+            value: (0, m.Im)(A.get("mobileOrEmail")) ? "mobile" == w ? M?.mobile : M?.email : A.get("mobileOrEmail"),
+            showSnackBar: g,
+            setAlertMsg: h,
+            setAlertTitle: t,
+            setOpenAlert: f,
+            PreOtp: A.get("otp"),
+            resendOTP: I,
+            loadingParam: C,
+            setDialogOpen: v,
+            action: N,
+            setChildren: O,
+            setImageRefreshKey: _
+          })
+        });
+      };
+    },
+    2918: () => {
+      throw Error("Module parse failed: Unexpected token (66:4)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| \n|   return (\n>     <AuthContext.Provider value={{ \n|       user, \n|       setUser, ");
+    },
+    3873: e => {
+      "use strict";
+
+      e.exports = require("path");
+    },
+    5411: (e, t, r) => {
+      "use strict";
+
+      r.r(t), r.d(t, {
+        default: () => b
+      });
+      var o = r(8732),
+        n = r(2015),
+        a = r(1155),
+        i = r(9029),
+        l = r(3039),
+        s = r(2650),
+        d = r(3987),
+        u = r.n(d);
+      !function () {
+        var e = Error("Cannot find module 'mui-one-time-password-input'");
+        throw e.code = "MODULE_NOT_FOUND", e;
+      }();
+      let c = ({
+        value: e,
+        handleChange: t,
+        id: r,
+        errorMsg: n,
+        required: a
+      }) => (0, o.jsxs)("div", {
+        className: u().mobileContainer,
+        children: [(0, o.jsx)(Object(function () {
+          var e = Error("Cannot find module 'mui-one-time-password-input'");
+          throw e.code = "MODULE_NOT_FOUND", e;
+        }()), {
+          value: e,
+          onChange: t,
+          id: r,
+          required: a,
+          length: 6
+        }), n && (0, o.jsx)("span", {
+          className: (0, i.Im)(n) ? u().Description : u().ErrorForMobile,
+          children: (0, o.jsx)("p", {
+            children: n
+          })
+        })]
+      });
+      var m = r(1370),
+        p = r(2918);
+      !function () {
+        var e = Error("Cannot find module '__barrel_optimize__?names=FormControl!=!@mui/material'");
+        throw e.code = "MODULE_NOT_FOUND", e;
+      }();
+      let b = ({
+        lang: e,
+        loading: t,
+        setLoading: r,
+        value: d,
+        showSnackBar: u,
+        setOpenAlert: b,
+        setAlertMsg: h,
+        PreOtp: f,
+        resendOTP: O,
+        loadingParam: g,
+        setDialogOpen: v,
+        action: N,
+        setChildren: _,
+        setImageRefreshKey: x
+      }) => {
+        let [j, C] = (0, n.useState)(f || ""),
+          [E, D] = (0, n.useState)(""),
+          {
+            validateOtp: U
+          } = (0, l.G)(),
+          {
+            setLogin: A
+          } = (0, n.useContext)(p.AuthContext),
+          M = (0, m.A)();
+        (0, n.useEffect)(() => {
+          d && j && T(d, j);
+        }, [d]);
+        let T = async (t, o) => {
+          let n = (0, i.jr)("otp", o);
+          if (D(n), !(0, i.Im)(n)) return;
+          r(!0);
+          let l = {};
+          l.otp = o, l.mobileOrEmail = t, await U(s.JV, l).then(t => {
+            if ((0, i.Im)(t?.status) || t?.status && t?.status < 300) {
+              if (t?.accessToken && t?.userInfo) {
+                let {
+                  accessToken: e,
+                  userInfo: r
+                } = t;
+                A(JSON.parse(r), e), v(!1);
+              }
+              _([a.A[e].otpChild1, a.A[e].otpChild2, a.A[e].otpChild3, a.A[e].otpChild4]), "signup" == N ? t ? (u(a.A[e].signedUp), v(!1), M("/")) : (b(!0), h(a.A[e].failedToSignUp)) : (N = "login", t ? (u(a.A[e].loggedIn), v(!1), M("/")) : (b(!0), h(a.A[e].failedToLogIn)));
+            }
+            x(Date.now());
+          }).catch(e => {}), r(!1);
+        };
+        return (0, o.jsx)(o.Fragment, {
+          children: (0, o.jsxs)(Object(function () {
+            var e = Error("Cannot find module '__barrel_optimize__?names=FormControl!=!@mui/material'");
+            throw e.code = "MODULE_NOT_FOUND", e;
+          }()), {
+            className: "signup-login",
+            sx: {
+              justifyContent: "space-between",
+              gap: "100px",
+              marginTop: "50px"
+            },
+            children: [(0, o.jsxs)("div", {
+              className: "verify-login",
+              children: [(0, o.jsx)("div", {
+                children: a.A[e].enterOTP.replace("{value}", (0, i.CT)(d))
+              }), (0, o.jsx)("div", {
+                children: (0, o.jsx)(c, {
+                  id: "otp-input",
+                  label: "otp",
+                  name: "otp",
+                  required: !0,
+                  placeHolderText: "otpPlaceholder",
+                  value: j,
+                  handleChange: e => {
+                    let t, r;
+                    e?.target ? (t = e?.target?.name, r = e?.target?.value) : r = e, C(r), (0, i.Im)(t) && (t = "otp"), D((0, i.jr)(t, r));
+                  },
+                  errorMsg: E
+                })
+              })]
+            }), (0, o.jsxs)("div", {
+              className: "form-button-container",
+              children: [(0, o.jsx)("button", {
+                disabled: t && "resend" == g,
+                type: "submit",
+                className: "form-button",
+                onClick: () => O(d),
+                children: t && "resend" == g ? a.A[e].resendingOTP : a.A[e].resendOTP
+              }), (0, o.jsx)("button", {
+                disabled: t && "submit" == g,
+                type: "submit",
+                className: "form-button",
+                onClick: () => T(d, j),
+                children: t && "submit" == g ? a.A[e].submittingOTP : a.A[e].submitOTP
+              })]
+            })]
+          })
+        });
+      };
+    },
+    8354: (e, t, r) => {
+      "use strict";
+
+      r.r(t), r.d(t, {
+        config: () => h,
+        default: () => c,
+        getServerSideProps: () => b,
+        getStaticPaths: () => p,
+        getStaticProps: () => m,
+        reportWebVitals: () => f,
+        routeModule: () => x,
+        unstable_getServerProps: () => N,
+        unstable_getServerSideProps: () => _,
+        unstable_getStaticParams: () => v,
+        unstable_getStaticPaths: () => g,
+        unstable_getStaticProps: () => O
+      });
+      var o = r(2636),
+        n = r(4850),
+        a = r(3410),
+        i = r(2150),
+        l = r.n(i),
+        s = r(7326),
+        d = r.n(s),
+        u = r(2695);
+      let c = (0, a.M)(u, "default"),
+        m = (0, a.M)(u, "getStaticProps"),
+        p = (0, a.M)(u, "getStaticPaths"),
+        b = (0, a.M)(u, "getServerSideProps"),
+        h = (0, a.M)(u, "config"),
+        f = (0, a.M)(u, "reportWebVitals"),
+        O = (0, a.M)(u, "unstable_getStaticProps"),
+        g = (0, a.M)(u, "unstable_getStaticPaths"),
+        v = (0, a.M)(u, "unstable_getStaticParams"),
+        N = (0, a.M)(u, "unstable_getServerProps"),
+        _ = (0, a.M)(u, "unstable_getServerSideProps"),
+        x = new o.PagesRouteModule({
+          definition: {
+            kind: n.A.PAGES,
+            page: "/Account/Signup",
+            pathname: "/Account/Signup",
+            bundlePath: "",
+            filename: ""
+          },
+          components: {
+            App: d(),
+            Document: l()
+          },
+          userland: u
+        });
+    },
+    8732: e => {
+      "use strict";
+
+      e.exports = require("react/jsx-runtime");
+    },
+    9051: (e, t, r) => {
+      "use strict";
+
+      r.d(t, {
+        A: () => d
+      });
+      var o = r(8732),
+        n = r(2015);
+      !function () {
+        var e = Error("Cannot find module '@base-ui-components/react/radio'");
+        throw e.code = "MODULE_NOT_FOUND", e;
+      }(), function () {
+        var e = Error("Cannot find module '@base-ui-components/react/radio-group'");
+        throw e.code = "MODULE_NOT_FOUND", e;
+      }();
+      var a = r(3987),
+        i = r.n(a),
+        l = r(1155),
+        s = r(1819);
+      function d({
+        options: e = [],
+        defaultValue: t,
+        value: r,
+        onChange: a,
+        title: d,
+        className: u = "",
+        dress: c,
+        sx: m
+      }) {
+        let {
+          lang: p
+        } = n.useContext(s.s);
+        return (0, o.jsxs)(o.Fragment, {
+          children: [d && (0, o.jsx)("div", {
+            className: i().Label,
+            id: "radio-group-label",
+            children: l.A[p][d] || d
+          }), (0, o.jsx)(Object(function () {
+            var e = Error("Cannot find module '@base-ui-components/react/radio-group'");
+            throw e.code = "MODULE_NOT_FOUND", e;
+          }()), {
+            "aria-labelledby": "radio-group-label",
+            defaultValue: t,
+            value: r,
+            onValueChange: a,
+            className: `${i().RadioGroup} ${u}`,
+            sx: m,
+            children: e.map(({
+              label: e,
+              value: t
+            }) => {
+              let r = c || !1;
+              return (0, o.jsxs)("label", {
+                className: i().Item,
+                children: [(0, o.jsx)(Object(function () {
+                  var e = Error("Cannot find module '@base-ui-components/react/radio'");
+                  throw e.code = "MODULE_NOT_FOUND", e;
+                }()).Root, {
+                  value: t,
+                  className: r ? i().DressRadio : i().Radio,
+                  children: (0, o.jsx)(Object(function () {
+                    var e = Error("Cannot find module '@base-ui-components/react/radio'");
+                    throw e.code = "MODULE_NOT_FOUND", e;
+                  }()).Indicator, {
+                    className: r ? i().Indicator : i().RadioIndicator
+                  })
+                }), l.A[p][e] || e]
+              }, t);
+            })
+          })]
+        });
+      }
+    }
+  };
+  var t = require("../../webpack-runtime.js");
+  t.C(e);
+  var r = e => t(t.s = e),
+    o = t.X(0, [150, 775, 997], () => r(8354));
+  module.exports = o;
+})();

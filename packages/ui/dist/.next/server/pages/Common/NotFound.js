@@ -1,0 +1,333 @@
+(() => {
+  var e = {};
+  e.id = 43, e.ids = [43, 220], e.modules = {
+    361: e => {
+      "use strict";
+
+      e.exports = require("next/dist/compiled/next-server/pages.runtime.prod.js");
+    },
+    1155: (e, t, r) => {
+      "use strict";
+
+      r.d(t, {
+        A: () => a
+      });
+      let a = {
+        en: {
+          login: "Log In",
+          signup: "Sign Up",
+          forgotPassword: "Forgot Password?",
+          welcome: "Welcome, User!",
+          logout: "Log Out",
+          requiredField: "This field is required.",
+          invalidEmail: "Please enter a valid email address.",
+          name: "Name",
+          fullNamePlaceholder: "Enter your Name",
+          firstName: "First Name",
+          lastName: "Last Name",
+          mobileOrEmail: "Email Id or Mobile no.",
+          firstNamePlaceHolder: "Enter your First Name",
+          lastNamePlaceHolder: "Enter your Last Name",
+          email: "Email",
+          emailPlaceHolder: "Enter your Email",
+          mobile: "Mobile No.",
+          mobilePlaceHolder: "Enter you Mobile no.",
+          receiveOTP: "You will receive an OTP on this {0}.",
+          pleaseWait: "Please Wait...",
+          fetchingDataFailedTitle: "Unable to fetch the requested data.",
+          failureMessage: "We faced an error while processing your request.",
+          technicalGlitch: "This may be due to temporary glitch. Try again after some time.",
+          contactSupport: 'Contact Support at <a href="{supportEmail}" style="text-decoration:none; target="_blank" rel="noopener noreferrer" color: #27c0e0;">{supportEmail}</a>.',
+          register: "Register",
+          registering: "Registering....",
+          submitOTP: "Verify OTP",
+          submittingOTP: "Verifying OTP....",
+          otp: "OTP",
+          otpPlaceholder: "Enter the OTP",
+          enterOTP: "Kindly Enter the OTP you have received on ({value}).",
+          signedUp: "You have Signed Up Successfully!",
+          failedToSignUp: "You have failed to sign up.",
+          loggedIn: "You have Logged In Successfully!",
+          failedToLogIn: "You have failed to log in.",
+          resendOTP: "Resend OTP",
+          resendingOTP: "Resending OTP....",
+          password: "Password",
+          logingin: "Logging In",
+          passwordPlaceHolder: "Enter your Password",
+          otpChild1: "OTP may be incorrect",
+          otpChild2: "OTP may be expired.",
+          otpChild3: "There might be network issue.",
+          otpChild4: "Server may be down",
+          passwordRequirementMsg: "To safeguard your account, create a password with a minimum of eight (8) characters, including",
+          passwordRequireMent: "Password Requirements",
+          upperLowerCase: "Upper & Lower Case",
+          subHeadingIns: "For strong password, your password should comply to following points",
+          minimum8Char: "Minimum 8 characters (mandatory)",
+          atLeastOneNumericals: "Atleast one numerals (mandatory)",
+          numericals: "Numerals",
+          specialChar: "Special Characters",
+          oneUpperCase: "Atleast one upper case character (mandatory)",
+          oneLowerCase: "Atleast one lower case character (mandatory)",
+          partnerCompanyName: "Partner's Company Name",
+          atLeastOneSpecialChar: "Atleast one special character (mandatory)",
+          skip: "Skip",
+          confirmPassword: "Confirm Password",
+          setPassword: "Set Password",
+          accountInstruction: "To access account and manage orders",
+          aboutUs: "About Us",
+          contactUs: "Contact Us",
+          profile: "Profile",
+          orders: "Orders",
+          wishlist: "Wishlist",
+          loginSignup: "Log In/Sign Up",
+          welcome: "Welcome",
+          profileImgUpdated: "Profile Image Updated Successfully",
+          save: "Save",
+          cancel: "Cancel",
+          adjustImage: "Adjust Image",
+          dragSqrToChangeImgSizePos: "Drag the square to change the size and position.",
+          preview: "Preview",
+          imageCropped: "Cropped Image Saved Successfully!",
+          alternateMobile: "Alternate Mobile No.",
+          male: "Male",
+          female: "Female",
+          others: "Others",
+          genderLabel: "Kindly select your gender:",
+          dob: "Date of Birth",
+          update: "Update",
+          changePassword: "Change Password",
+          updatePassword: "Update Password",
+          updateProfile: "Update Profile",
+          oldPassword: "Old Password",
+          confirmPasswordNotMatchPassword: "Confirm Password did not match with Password.",
+          passReqNotFulfil: "Password requirement not fulfilled.",
+          passwordUpdated: "Password Updated Successfully!",
+          profileUpdated: "Profile Updated Successfully!",
+          pageNotFound: "Page Not Found",
+          brokenLinkMsg1: "The link you clicked may be broken or the page may be removed.",
+          brokenLinkMsg2: "Visit the Home page or contact us about the problem.",
+          backToHome: "Back to Home Page"
+        },
+        hi: {
+          login: "लॉग इन करें",
+          signup: "साइन अप करें",
+          forgotPassword: "पासवर्ड भूल गए?",
+          welcome: "स्वागत है, उपयोगकर्ता!",
+          logout: "लॉग आउट",
+          requiredField: "यह फ़ील्ड आवश्यक है।",
+          invalidEmail: "कृपया एक मान्य ईमेल पता दर्ज करें।"
+        }
+      };
+    },
+    1370: (e, t, r) => {
+      "use strict";
+
+      r.d(t, {
+        A: () => a
+      }), function () {
+        var e = Error("Cannot find module 'react-router-dom'");
+        throw e.code = "MODULE_NOT_FOUND", e;
+      }();
+      let a = () => {
+        let e = Object(function () {
+            var e = Error("Cannot find module 'react-router-dom'");
+            throw e.code = "MODULE_NOT_FOUND", e;
+          }())(),
+          t = Object(function () {
+            var e = Error("Cannot find module 'react-router-dom'");
+            throw e.code = "MODULE_NOT_FOUND", e;
+          }())();
+        return (r, a, o = !1) => {
+          let s = t.pathname.split("/").filter(Boolean),
+            n = s[s.length - 1];
+          (o || n === a || "signup" === n || "login" === n) && e(r);
+        };
+      };
+    },
+    1819: (e, t, r) => {
+      "use strict";
+
+      r.d(t, {
+        s: () => a
+      }), r(8732);
+      let a = (0, r(2015).createContext)();
+    },
+    2015: e => {
+      "use strict";
+
+      e.exports = require("react");
+    },
+    3269: () => {},
+    3410: (e, t) => {
+      "use strict";
+
+      Object.defineProperty(t, "M", {
+        enumerable: !0,
+        get: function () {
+          return function e(t, r) {
+            return r in t ? t[r] : "then" in t && "function" == typeof t.then ? t.then(t => e(t, r)) : "function" == typeof t && "default" === r ? t : void 0;
+          };
+        }
+      });
+    },
+    3873: e => {
+      "use strict";
+
+      e.exports = require("path");
+    },
+    4850: (e, t) => {
+      "use strict";
+
+      Object.defineProperty(t, "A", {
+        enumerable: !0,
+        get: function () {
+          return r;
+        }
+      });
+      var r = function (e) {
+        return e.PAGES = "PAGES", e.PAGES_API = "PAGES_API", e.APP_PAGE = "APP_PAGE", e.APP_ROUTE = "APP_ROUTE", e.IMAGE = "IMAGE", e;
+      }({});
+    },
+    7037: (e, t, r) => {
+      "use strict";
+
+      r.r(t), r.d(t, {
+        config: () => y,
+        default: () => A,
+        getServerSideProps: () => S,
+        getStaticPaths: () => w,
+        getStaticProps: () => b,
+        reportWebVitals: () => M,
+        routeModule: () => U,
+        unstable_getServerProps: () => T,
+        unstable_getServerSideProps: () => E,
+        unstable_getStaticParams: () => C,
+        unstable_getStaticPaths: () => v,
+        unstable_getStaticProps: () => O
+      });
+      var a = {};
+      r.r(a), r.d(a, {
+        default: () => h
+      });
+      var o = r(2636),
+        s = r(4850),
+        n = r(3410),
+        i = r(2150),
+        l = r.n(i),
+        d = r(7326),
+        u = r.n(d),
+        c = r(8732),
+        p = r(2015),
+        m = r(1155),
+        g = r(1819);
+      let P = {
+        src: "/_next/static/media/NotFoundImage2.f2f36b67.png",
+        height: 463,
+        width: 539,
+        blurDataURL: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAHCAMAAAACh/xsAAAAWlBMVEVMaXFSRU2rWEkpPE81RVTMZU5mUlpFSFUsN0YqPlG9X05YUlaVYlfRsYyVdWfBoIQqP0qPf3DVZEy9XUvSZU2XeGvRq4ksQ1XTto+RV0/fc1nxxJg3TmPStpIdSABYAAAAGnRSTlMAMXOPVB0RJENljVOEZ9M2MK6GtML6WbiCpjK096IAAAAJcEhZcwAACxMAAAsTAQCanBgAAAA9SURBVHicBcEHAoAgDACxY5Qy3RP1/980gaCTmkXAuJRcFbT4GONeyH0IHM+F7TO0r6FjXcW/CcVu+T79D0ClAlj9HzfpAAAAAElFTkSuQmCC",
+        blurWidth: 8,
+        blurHeight: 7
+      };
+      r(3269);
+      var f = r(1370);
+      let h = () => {
+          let e = (0, f.A)(),
+            {
+              lang: t
+            } = (0, p.useContext)(g.s);
+          return (0, c.jsxs)("div", {
+            className: "notFound",
+            children: [(0, c.jsx)("img", {
+              src: P,
+              style: {
+                height: "60vh"
+              }
+            }), (0, c.jsx)("p", {
+              children: m.A[t].brokenLinkMsg1
+            }), (0, c.jsx)("p", {
+              children: m.A[t].brokenLinkMsg2
+            }), (0, c.jsx)("button", {
+              type: "button",
+              className: "form-button",
+              onClick: () => e("/", "", !0),
+              children: m.A[t].backToHome
+            })]
+          });
+        },
+        A = (0, n.M)(a, "default"),
+        b = (0, n.M)(a, "getStaticProps"),
+        w = (0, n.M)(a, "getStaticPaths"),
+        S = (0, n.M)(a, "getServerSideProps"),
+        y = (0, n.M)(a, "config"),
+        M = (0, n.M)(a, "reportWebVitals"),
+        O = (0, n.M)(a, "unstable_getStaticProps"),
+        v = (0, n.M)(a, "unstable_getStaticPaths"),
+        C = (0, n.M)(a, "unstable_getStaticParams"),
+        T = (0, n.M)(a, "unstable_getServerProps"),
+        E = (0, n.M)(a, "unstable_getServerSideProps"),
+        U = new o.PagesRouteModule({
+          definition: {
+            kind: s.A.PAGES,
+            page: "/Common/NotFound",
+            pathname: "/Common/NotFound",
+            bundlePath: "",
+            filename: ""
+          },
+          components: {
+            App: u(),
+            Document: l()
+          },
+          userland: a
+        });
+    },
+    7326: (e, t, r) => {
+      "use strict";
+
+      Object.defineProperty(t, "__esModule", {
+        value: !0
+      }), Object.defineProperty(t, "default", {
+        enumerable: !0,
+        get: function () {
+          return l;
+        }
+      });
+      let a = r(8485),
+        o = r(8732),
+        s = a._(r(2015)),
+        n = r(7108);
+      async function i(e) {
+        let {
+          Component: t,
+          ctx: r
+        } = e;
+        return {
+          pageProps: await (0, n.loadGetInitialProps)(t, r)
+        };
+      }
+      class l extends s.default.Component {
+        render() {
+          let {
+            Component: e,
+            pageProps: t
+          } = this.props;
+          return (0, o.jsx)(e, {
+            ...t
+          });
+        }
+      }
+      l.origGetInitialProps = i, l.getInitialProps = i, ("function" == typeof t.default || "object" == typeof t.default && null !== t.default) && void 0 === t.default.__esModule && (Object.defineProperty(t.default, "__esModule", {
+        value: !0
+      }), Object.assign(t.default, t), e.exports = t.default);
+    },
+    8732: e => {
+      "use strict";
+
+      e.exports = require("react/jsx-runtime");
+    }
+  };
+  var t = require("../../webpack-runtime.js");
+  t.C(e);
+  var r = e => t(t.s = e),
+    a = t.X(0, [150], () => r(7037));
+  module.exports = a;
+})();

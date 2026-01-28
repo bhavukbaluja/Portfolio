@@ -1,0 +1,30 @@
+.base-grid-layout {
+    display: grid;
+    gap: 16px;
+    width: 100%;
+  }
+  
+  .base-grid-tile {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  // Desktop (default maxCols 3), Mobile (default 1)
+  .base-grid-3-1 {
+    grid-template-columns: repeat(3, 1fr);
+  
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  }
+  
+  .base-grid-5-2 {
+    grid-template-columns: repeat(5, 1fr);
+  
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  /* Add more combinations as needed */
+  

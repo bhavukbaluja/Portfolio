@@ -1,0 +1,43 @@
+
+
+> @repo/ui@1.0.0 build
+> babel . --out-dir dist --ignore **/*.test.js
+
+[1G[0K[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/dist/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/node_modules/typescript/lib/_tsc.js as it exceeds the max of 500KB.
+[BABEL] Note: The code generator has deoptimised the styling of /Users/bhavukbaluja/Documents/E-Com-Website/UI/packages/ui/node_modules/typescript/lib/typescript.js as it exceeds the max of 500KB.
+Successfully compiled 1639 files with Babel (427732ms).
+[1G[0K⠙[1G[0K

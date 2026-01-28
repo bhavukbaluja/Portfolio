@@ -1,0 +1,105 @@
+(() => {
+  var e = {};
+  e.id = 890, e.ids = [220, 890], e.modules = {
+    361: e => {
+      "use strict";
+
+      e.exports = require("next/dist/compiled/next-server/pages.runtime.prod.js");
+    },
+    2015: e => {
+      "use strict";
+
+      e.exports = require("react");
+    },
+    2918: () => {
+      throw Error("Module parse failed: Unexpected token (66:4)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| \n|   return (\n>     <AuthContext.Provider value={{ \n|       user, \n|       setUser, ");
+    },
+    3873: e => {
+      "use strict";
+
+      e.exports = require("path");
+    },
+    7677: (e, t, r) => {
+      "use strict";
+
+      r.r(t), r.d(t, {
+        config: () => M,
+        default: () => b,
+        getServerSideProps: () => v,
+        getStaticPaths: () => m,
+        getStaticProps: () => h,
+        reportWebVitals: () => f,
+        routeModule: () => j,
+        unstable_getServerProps: () => q,
+        unstable_getServerSideProps: () => w,
+        unstable_getStaticParams: () => A,
+        unstable_getStaticPaths: () => _,
+        unstable_getStaticProps: () => x
+      });
+      var s = {};
+      r.r(s), r.d(s, {
+        default: () => P
+      });
+      var a = r(2636),
+        o = r(4850),
+        n = r(3410),
+        u = r(2150),
+        i = r.n(u),
+        l = r(7326),
+        p = r.n(l),
+        c = r(2015),
+        d = r(2918),
+        g = r(1370),
+        S = r(9029);
+      let P = ({
+          setLoading: e
+        }) => {
+          let {
+              user: t,
+              logout: r
+            } = (0, c.useContext)(d.AuthContext),
+            s = (0, g.A)();
+          return (0, c.useEffect)(() => {
+            (async () => {
+              e(!0), null === t || (0, S.Im)(t) || (await r()), s("/", "/logout", !0), e(!1);
+            })();
+          }, []), null;
+        },
+        b = (0, n.M)(s, "default"),
+        h = (0, n.M)(s, "getStaticProps"),
+        m = (0, n.M)(s, "getStaticPaths"),
+        v = (0, n.M)(s, "getServerSideProps"),
+        M = (0, n.M)(s, "config"),
+        f = (0, n.M)(s, "reportWebVitals"),
+        x = (0, n.M)(s, "unstable_getStaticProps"),
+        _ = (0, n.M)(s, "unstable_getStaticPaths"),
+        A = (0, n.M)(s, "unstable_getStaticParams"),
+        q = (0, n.M)(s, "unstable_getServerProps"),
+        w = (0, n.M)(s, "unstable_getServerSideProps"),
+        j = new a.PagesRouteModule({
+          definition: {
+            kind: o.A.PAGES,
+            page: "/Account/LogOut",
+            pathname: "/Account/LogOut",
+            bundlePath: "",
+            filename: ""
+          },
+          components: {
+            App: p(),
+            Document: i()
+          },
+          userland: s
+        });
+    },
+    8732: e => {
+      "use strict";
+
+      e.exports = require("react/jsx-runtime");
+    }
+  };
+  var t = require("../../webpack-runtime.js");
+  t.C(e);
+  var r = e => t(t.s = e),
+    s = t.X(0, [150, 775], () => r(7677));
+  module.exports = s;
+})();

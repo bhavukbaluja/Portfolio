@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f34ad273-111c-450b-80ed-b98404323278" name="Changes" comment="update" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="REMOTE">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="origin/dev" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
+    <branch-grouping />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="32HLpMBkVg2JO4RU7pBroBsIE5L" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/bhavukbaluja/Coding/E-Com-Website/UI/packages/ui/src/pages/Company",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "vcs.Git"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/packages/ui/src/pages/Company" />
+      <recent name="$PROJECT_DIR$/packages/ui/assets" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-30f59d01ecdd-26cb7f24e5b0-intellij.indexing.shared.core-IU-253.29346.138" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration>$USER_HOME$/.subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="f34ad273-111c-450b-80ed-b98404323278" name="Changes" comment="" />
+      <created>1757072733248</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757072733248</updated>
+    </task>
+    <task id="LOCAL-00044" summary="updated: reverted faulty things">
+      <option name="closed" value="true" />
+      <created>1761835831848</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1761835831848</updated>
+    </task>
+    <task id="LOCAL-00045" summary="updated: siteNames for dev">
+      <option name="closed" value="true" />
+      <created>1762087211236</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1762087211236</updated>
+    </task>
+    <task id="LOCAL-00046" summary="updated: social media links in footer, added contact us page,">
+      <option name="closed" value="true" />
+      <created>1762102500053</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1762102500053</updated>
+    </task>
+    <task id="LOCAL-00047" summary="updated: Properties.json">
+      <option name="closed" value="true" />
+      <created>1762102985249</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1762102985249</updated>
+    </task>
+    <task id="LOCAL-00048" summary="updated: Properties.json">
+      <option name="closed" value="true" />
+      <created>1762103034474</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1762103034477</updated>
+    </task>
+    <task id="LOCAL-00049" summary="fixed: a bug">
+      <option name="closed" value="true" />
+      <created>1762103416009</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1762103416009</updated>
+    </task>
+    <task id="LOCAL-00050" summary="updated: Properties.json">
+      <option name="closed" value="true" />
+      <created>1762103626043</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1762103626061</updated>
+    </task>
+    <task id="LOCAL-00051" summary="updated: updated logo">
+      <option name="closed" value="true" />
+      <created>1762103980012</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1762103980012</updated>
+    </task>
+    <task id="LOCAL-00052" summary="updated: updated logo">
+      <option name="closed" value="true" />
+      <created>1762104043673</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1762104043673</updated>
+    </task>
+    <task id="LOCAL-00053" summary="fixed: the issue of bug not able to create/update/delete page, menus in page editor was coming behind dialog. &#10;fixed: on clicking any link in footer page was not going up for new link.">
+      <option name="closed" value="true" />
+      <created>1762270763804</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1762270763805</updated>
+    </task>
+    <task id="LOCAL-00054" summary="fixed: on clicking any link in footer page was not going up for new link.">
+      <option name="closed" value="true" />
+      <created>1762270775324</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1762270775324</updated>
+    </task>
+    <task id="LOCAL-00055" summary="fixed: on clicking any link in footer page was not going up for new link.">
+      <option name="closed" value="true" />
+      <created>1762270885211</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1762270885212</updated>
+    </task>
+    <task id="LOCAL-00056" summary="fixed: sitename">
+      <option name="closed" value="true" />
+      <created>1762271096738</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1762271096740</updated>
+    </task>
+    <task id="LOCAL-00057" summary="fixed: sitename">
+      <option name="closed" value="true" />
+      <created>1762271242377</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1762271242385</updated>
+    </task>
+    <task id="LOCAL-00058" summary="updated: logo for header for mobile">
+      <option name="closed" value="true" />
+      <created>1762441464314</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1762441464314</updated>
+    </task>
+    <task id="LOCAL-00059" summary="updated: logo for header">
+      <option name="closed" value="true" />
+      <created>1762442367074</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1762442367074</updated>
+    </task>
+    <task id="LOCAL-00060" summary="update">
+      <option name="closed" value="true" />
+      <created>1762443997068</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1762443997068</updated>
+    </task>
+    <task id="LOCAL-00061" summary="update">
+      <option name="closed" value="true" />
+      <created>1766070898722</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1766070898722</updated>
+    </task>
+    <task id="LOCAL-00062" summary="update app names">
+      <option name="closed" value="true" />
+      <created>1766071307141</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1766071307142</updated>
+    </task>
+    <task id="LOCAL-00063" summary="update app names">
+      <option name="closed" value="true" />
+      <created>1766071371951</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1766071371952</updated>
+    </task>
+    <task id="LOCAL-00064" summary="update app names">
+      <option name="closed" value="true" />
+      <created>1766837991595</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1766837991595</updated>
+    </task>
+    <task id="LOCAL-00065" summary="hide maintenance site, and only display contactus">
+      <option name="closed" value="true" />
+      <created>1766840421283</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1766840421286</updated>
+    </task>
+    <task id="LOCAL-00066" summary="added few more hindi texts, updated a bug of not showing msg in deleting page">
+      <option name="closed" value="true" />
+      <created>1767363852376</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1767363852378</updated>
+    </task>
+    <task id="LOCAL-00067" summary="updated app name">
+      <option name="closed" value="true" />
+      <created>1767365165400</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1767365165400</updated>
+    </task>
+    <task id="LOCAL-00068" summary="updated brand logo">
+      <option name="closed" value="true" />
+      <created>1767629628923</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1767629628923</updated>
+    </task>
+    <task id="LOCAL-00069" summary="updated app name">
+      <option name="closed" value="true" />
+      <created>1767954315133</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1767954315135</updated>
+    </task>
+    <task id="LOCAL-00070" summary="updated app name, details for uzoid/generic">
+      <option name="closed" value="true" />
+      <created>1767955078969</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1767955078972</updated>
+    </task>
+    <task id="LOCAL-00071" summary="updated app name, details for uzoid/generic">
+      <option name="closed" value="true" />
+      <created>1767963400669</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1767963400670</updated>
+    </task>
+    <task id="LOCAL-00072" summary="added functionality of fetching data based on statuses in category, users, product, updated few functionality of user login, updated refresh access token, token handling different for web and panel, updated BaseAddButton, for it updated all files, where it is used">
+      <option name="closed" value="true" />
+      <created>1769005060140</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1769005060140</updated>
+    </task>
+    <task id="LOCAL-00073" summary="added statuses in url's">
+      <option name="closed" value="true" />
+      <created>1769007899630</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1769007899634</updated>
+    </task>
+    <task id="LOCAL-00074" summary="updated literals">
+      <option name="closed" value="true" />
+      <created>1769008507467</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1769008507468</updated>
+    </task>
+    <task id="LOCAL-00075" summary="updated appname">
+      <option name="closed" value="true" />
+      <created>1769009374189</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1769009374190</updated>
+    </task>
+    <task id="LOCAL-00076" summary="updated brand details">
+      <option name="closed" value="true" />
+      <created>1769011513410</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1769011513411</updated>
+    </task>
+    <task id="LOCAL-00077" summary="updated brand details">
+      <option name="closed" value="true" />
+      <created>1769011615072</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1769011615072</updated>
+    </task>
+    <task id="LOCAL-00078" summary="updated brand details">
+      <option name="closed" value="true" />
+      <created>1769012414123</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1769012414124</updated>
+    </task>
+    <task id="LOCAL-00079" summary="fixed a bug, and added more options for no. of items per page">
+      <option name="closed" value="true" />
+      <created>1769256117454</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1769256117456</updated>
+    </task>
+    <task id="LOCAL-00080" summary="added dark mode functionality, added more Indian languages support, fixed a few bugs">
+      <option name="closed" value="true" />
+      <created>1769359182391</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1769359182392</updated>
+    </task>
+    <task id="LOCAL-00081" summary="added dark mode functionality, added more Indian languages support, fixed a few bugs">
+      <option name="closed" value="true" />
+      <created>1769366173436</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1769366173436</updated>
+    </task>
+    <task id="LOCAL-00082" summary="updated properties in other languages">
+      <option name="closed" value="true" />
+      <created>1769450194311</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1769450194312</updated>
+    </task>
+    <task id="LOCAL-00083" summary="fixed bugs">
+      <option name="closed" value="true" />
+      <created>1769451918821</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1769451918821</updated>
+    </task>
+    <task id="LOCAL-00084" summary="removed mobile option from sign up and login">
+      <option name="closed" value="true" />
+      <created>1769605307879</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1769605307881</updated>
+    </task>
+    <task id="LOCAL-00085" summary="fixed color issue">
+      <option name="closed" value="true" />
+      <created>1769605728274</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1769605728277</updated>
+    </task>
+    <task id="LOCAL-00086" summary="update">
+      <option name="closed" value="true" />
+      <created>1769612511646</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1769612511647</updated>
+    </task>
+    <task id="LOCAL-00087" summary="update">
+      <option name="closed" value="true" />
+      <created>1769612550954</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1769612550954</updated>
+    </task>
+    <task id="LOCAL-00088" summary="update">
+      <option name="closed" value="true" />
+      <created>1769613546332</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1769613546332</updated>
+    </task>
+    <task id="LOCAL-00089" summary="update">
+      <option name="closed" value="true" />
+      <created>1769613652633</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1769613652633</updated>
+    </task>
+    <task id="LOCAL-00090" summary="update">
+      <option name="closed" value="true" />
+      <created>1769613682019</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1769613682019</updated>
+    </task>
+    <task id="LOCAL-00091" summary="update">
+      <option name="closed" value="true" />
+      <created>1769613723184</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1769613723184</updated>
+    </task>
+    <task id="LOCAL-00092" summary="update">
+      <option name="closed" value="true" />
+      <created>1769613780989</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1769613780989</updated>
+    </task>
+    <option name="localTasksCounter" value="93" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="sejal/dev" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="TEXT_FILTER_SETTINGS">
+                <TextFilterSettings>
+                  <option name="REGEX" value="true" />
+                </TextFilterSettings>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="updated: Properties.json" />
+    <MESSAGE value="updated: updated logo" />
+    <MESSAGE value="fixed: the issue of bug not able to create/update/delete page, menus in page editor was coming behind dialog. &#10;fixed: on clicking any link in footer page was not going up for new link." />
+    <MESSAGE value="fixed: on clicking any link in footer page was not going up for new link." />
+    <MESSAGE value="fixed: sitename" />
+    <MESSAGE value="updated: logo for header for mobile" />
+    <MESSAGE value="updated: logo for header" />
+    <MESSAGE value="update app names" />
+    <MESSAGE value="hide maintenance site, and only display contactus" />
+    <MESSAGE value="added few more hindi texts, updated a bug of not showing msg in deleting page" />
+    <MESSAGE value="updated brand logo" />
+    <MESSAGE value="updated app name" />
+    <MESSAGE value="updated app name, details for uzoid/generic" />
+    <MESSAGE value="added functionality of fetching data based on statuses in category, users, product, updated few functionality of user login, updated refresh access token, token handling different for web and panel, updated BaseAddButton, for it updated all files, where it is used" />
+    <MESSAGE value="added statuses in url's" />
+    <MESSAGE value="updated literals" />
+    <MESSAGE value="updated appname" />
+    <MESSAGE value="updated brand details" />
+    <MESSAGE value="fixed a bug, and added more options for no. of items per page" />
+    <MESSAGE value="added dark mode functionality, added more Indian languages support, fixed a few bugs" />
+    <MESSAGE value="updated properties in other languages" />
+    <MESSAGE value="fixed bugs" />
+    <MESSAGE value="removed mobile option from sign up and login" />
+    <MESSAGE value="fixed color issue" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
+  </component>
+  <component name="github-copilot-workspace">
+    <instructionFileLocations>
+      <option value=".github/instructions" />
+    </instructionFileLocations>
+    <promptFileLocations>
+      <option value=".github/prompts" />
+    </promptFileLocations>
+  </component>
+</project>

@@ -1,0 +1,98 @@
+.small-button{
+    min-width: 40px;
+    // min-height: 40px;
+    // padding: 5px 10px;
+    border: 1px solid var(--maindark-color);
+    border-radius: 20px;
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--maindark-color);
+    user-select: none;
+    outline: 0;
+    
+    @media (hover: hover) {
+        &:hover {
+            background-color: var(--maindark-color);
+            color: var(--headerBg-color);
+            border: 1px solid var(--headerBg-color);
+
+        }
+    }
+    
+    &:active {
+        background-color: var(--maindark-color);
+        color: var(--headerBg-color);
+        color: var(--headerBg-color);
+        border: 1px solid var(--headerBg-color);
+    }
+    
+    &:disabled {
+        cursor: not-allowed;
+        color: var(--color-gray-400);
+        border: 0px solid var(--color-gray-100);
+        background-color: var(--color-gray-100);
+    }
+    
+    &:focus-visible {
+        outline: 2px solid var(--color-blue);
+        outline-offset: -1px;
+    }   
+}
+
+
+.small-delete-button{
+    min-width: 40px;
+    // min-height: 40px;
+    // padding: 5px 10px;
+    border: 1px solid var(--danger-color);
+    border-radius: 20px;
+    background-color: transparent;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--danger-color);
+    user-select: none;
+    outline: 0;
+    
+    @media (hover: hover) {
+        &:hover {
+            background-color: var(--danger-color);
+            color: var(--headerBg-color);
+            border: 1px solid var(--headerBg-color);
+
+        }
+    }
+    
+    &:active {
+        background-color: var(--maindark-color);
+        color: var(--headerBg-color);
+        color: var(--headerBg-color);
+        border: 1px solid var(--headerBg-color);
+    }
+    
+    &:disabled {
+        cursor: not-allowed;
+        color: var(--color-gray-400);
+        border: 0px solid var(--color-gray-100);
+        background-color: var(--color-gray-100);
+    }
+    
+    &:focus-visible {
+        outline: 2px solid var(--color-blue);
+        outline-offset: -1px;
+    }   
+}
+
+.BaseShowImageBoldOnHover{
+    width: 100%;
+    object-fit: cover;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    height: -webkit-fill-available;
+    cursor: pointer;
+    transition: transform 0.3s ease; // Smooth zoom effect
+
+    &:hover{
+        transform: scale(1.03); // Zoom slightly
+    }
+}

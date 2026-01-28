@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap');
+/* body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+} */
+
+/* code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+} */
+:root {
+  --bs-body-font-family: "Merriweather", cursive !important;
+  /* background-color: var(--bg-color) !important;   */
+}
+
+body {
+  font-family: "Merriweather", cursive !important;
+  background-color: var(--bg-color) !important;
+}
+
+.Merriweather-light {
+  font-family: "Merriweather", serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.Merriweather-regular {
+  font-family: "Merriweather", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.Merriweather-bold {
+  font-family: "Merriweather", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+body, input, textarea, button {
+  font-family: "Merriweather", cursive !important;
+}
+
+/* Apply Merriweather font to all MUI typography elements */
+.MuiAutocomplete-root,
+.MuiOutlinedInput-root,
+.MuiInputBase-root,
+.MuiAutocomplete-input,
+.MuiAutocomplete-inputRoot,
+.MuiListItemText-primary,
+.MuiAutocomplete-popper,
+.MuiAutocomplete-listbox,
+.MuiAutocomplete-paper,
+.MuiPopover-root,
+.MuiTypography-root {
+  font-family: "Merriweather", cursive !important;
+}
+
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Background color of the scrollbar track */
+::-webkit-scrollbar-track {
+  background: var(--color-gray-100);
+}
+
+/* Color of the scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background: var(--maindark-color); /* Change this to your desired color */
+  border-radius: 10px;
+}
+
+/* On hover */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--maindarker-color); /* Darker shade */
+}
+
+body, html {
+  overflow-x: hidden; /* ✅ Prevents horizontal scroll but allows vertical */
+  overflow-y: auto;   /* ✅ Enables vertical scroll */
+}
+

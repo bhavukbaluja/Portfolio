@@ -1,0 +1,17 @@
+{
+  "/_error": "pages/_error.js",
+  "/_app": "pages/_app.js",
+  "/Account/LogOut": "pages/Account/LogOut.js",
+  "/Account/Login": "pages/Account/Login.js",
+  "/Account/Orders": "pages/Account/Orders.js",
+  "/Account/Profile": "pages/Account/Profile.js",
+  "/Account/SetPassword": "pages/Account/SetPassword.js",
+  "/Account/Signup": "pages/Account/Signup.js",
+  "/Account/VerifyOTP": "pages/Account/VerifyOTP.js",
+  "/Account/Login_Signup": "pages/Account/Login_Signup.js",
+  "/Account/VerifyPage": "pages/Account/VerifyPage.js",
+  "/Account/Wishlist": "pages/Account/Wishlist.js",
+  "/Common/NotFound": "pages/Common/NotFound.js",
+  "/": "pages/index.js",
+  "/_document": "pages/_document.js"
+}

@@ -1,0 +1,57 @@
+"use strict";
+
+function _typeof(o) {
+  "@babel/helpers - typeof";
+
+  return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) {
+    return typeof o;
+  } : function (o) {
+    return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o;
+  }, _typeof(o);
+}
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = CustomTooltip;
+var _material = require("@mui/material");
+var _react = _interopRequireWildcard(require("react"));
+var _literals = _interopRequireDefault(require("../../../literals"));
+var _LanguageProvider = require("../../../literals/LanguageProvider");
+function _interopRequireDefault(e) {
+  return e && e.__esModule ? e : {
+    "default": e
+  };
+}
+function _getRequireWildcardCache(e) {
+  if ("function" != typeof WeakMap) return null;
+  var r = new WeakMap(),
+    t = new WeakMap();
+  return (_getRequireWildcardCache = function _getRequireWildcardCache(e) {
+    return e ? t : r;
+  })(e);
+}
+function _interopRequireWildcard(e, r) {
+  if (!r && e && e.__esModule) return e;
+  if (null === e || "object" != _typeof(e) && "function" != typeof e) return {
+    "default": e
+  };
+  var t = _getRequireWildcardCache(r);
+  if (t && t.has(e)) return t.get(e);
+  var n = {
+      __proto__: null
+    },
+    a = Object.defineProperty && Object.getOwnPropertyDescriptor;
+  for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) {
+    var i = a ? Object.getOwnPropertyDescriptor(e, u) : null;
+    i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u];
+  }
+  return n["default"] = e, t && t.set(e, n), n;
+}
+function CustomTooltip(props) {
+  var _useContext = (0, _react.useContext)(_LanguageProvider.LanguageContext),
+    lang = _useContext.lang;
+  return /*#__PURE__*/_react["default"].createElement(_material.Tooltip, {
+    title: props !== null && props !== void 0 && props.title ? _literals["default"][lang][props === null || props === void 0 ? void 0 : props.title] ? _literals["default"][lang][props === null || props === void 0 ? void 0 : props.title] : props === null || props === void 0 ? void 0 : props.title : "",
+    arrow: (props === null || props === void 0 ? void 0 : props.arrow) || true
+  }, /*#__PURE__*/_react["default"].createElement(_material.Stack, null, props.children));
+}

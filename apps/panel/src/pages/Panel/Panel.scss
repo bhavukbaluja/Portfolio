@@ -1,0 +1,19 @@
+.header-comp{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+}
+
+.panel-main {
+    padding: 0 1rem  1rem  1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 100vh;
+    align-items: center;
+    width: 100%; /* Ensure the container takes full width */
+    position: relative;
+    overflow-y: auto;
+  }
+  

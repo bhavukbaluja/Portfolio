@@ -1,0 +1,32 @@
+.custom-alert-action{
+  justify-content: center !important;
+}
+.custom-alert-warning-icon{
+  color: #e53935;
+  font-size: 16px;
+  margin: 10px 10px 0 0;
+}
+.custom-alert-warning {
+  color: #666;
+  font-size: 16px;
+  margin: 0px 10px -2px 0px;
+}
+
+.custom-alert-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+.custom-alert-content{
+  margin-top: 10px;
+  min-height: 80px;
+}
+
+.custom-alert-content-bullets{
+  padding-left: 8px;
+  margin-top:10px;
+}

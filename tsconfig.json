@@ -1,0 +1,29 @@
+{
+    "compilerOptions": {
+      "baseUrl": ".",
+      "paths": {
+        "@repo/ui/*": ["packages/ui/src/*"],
+        "@ui/*": ["packages/ui/src/*"],
+        "@assets/*": ["packages/ui/assets/*"],
+        "@utils/*": ["packages/utils/src/*"]
+      },
+      "moduleResolution": "node",
+      "target": "ES6",
+      "module": "ESNext",
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "noEmit": true,
+      "resolveJsonModule": true,
+      "jsx": "react-jsx"
+    },
+    "include": [
+      "packages/**/*"
+, "apps/web/src/pages/Account/VerifyPage.js"    ],
+    "exclude": [
+      "node_modules",
+      "dist",
+      "build"
+    ]
+  }
+  

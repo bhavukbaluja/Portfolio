@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "allowJs": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "paths": {
+      "@ui/*": ["src/*"]
+    }
+  },
+  "include": [
+    "src/**/*"
+, "../../apps/web/src/pages/Account/VerifyPage.js"  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
+}

@@ -1,0 +1,115 @@
+.search-form {
+  position: relative;
+  width: 45px;
+  height: 40px;
+  background: var(--headerBg-color);
+  border: 1px solid var(--maindarker-color);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: all 0.8s ease;
+  padding: 0;
+
+  &.hover,
+  &.active,
+  &:hover {
+    width: 300px;
+
+    .input-field {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .searchbar-icon {
+      right: -6px;
+      background-color: var(--maindark-color);
+      color: var(--headerBg-color);
+    }
+  }
+}
+
+/* Expansion alignment */
+.expand-center {
+  margin: 0 auto;
+}
+
+.expand-left {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.expand-right {
+  margin-left: auto;
+  margin-right: 0;
+  text-align: left;
+}
+
+.input-field {
+  flex: 1;                     // 👈 take all available space
+  width: 100%;                  // 👈 responsive width
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  padding: 0 70px 0 15px;       // 👈 leave room for search + clear icons
+  color: var(--secondarytext-color);
+  border-radius: 20px;
+  transition: opacity 0.4s ease;
+  opacity: 0;
+  pointer-events: none;
+
+  &::placeholder {
+    color: var(--secondarytext-color);
+    opacity: 0.6;
+    text-align: left;           // 👈 keeps placeholder aligned same as typed text
+  }
+}
+
+.searchbar-icon {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  right: -5px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--maindark-color);
+  background-color: var(--headerBg-color);
+  transition: all 0.8s ease;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.search-form:active .searchbar-icon,
+.search-form:focus-visible .searchbar-icon {
+  background-color: var(--maindarker-color);
+}
+
+.searchbar-clear-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 35px;                  // 👈 fixed spacing before search icon
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: var(--secondarytext-color);
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+.searchbar-clear-icon-hidden {
+  opacity: 0;
+  pointer-events: none;
+}

@@ -1,0 +1,42 @@
+.login-page-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    position: fixed;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 90vh;
+    min-height: 600px;
+    z-index: 550;
+    // height: auto;
+    max-width: 90vw;
+    min-width: 350px;
+    width: 600px;
+    width: auto;
+    margin-top: -2rem;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    outline: 1px solid var(--color-gray-200);
+    background-color: var(--color-gray-50);
+    color: var(--color-gray-900);
+    transition: all 150ms;
+  
+    @media (prefers-color-scheme: dark) {
+      outline: 1px solid var(--color-gray-300);
+    }
+  
+    &[data-starting-style],
+    &[data-ending-style] {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0.9);
+    }
+}
+
+.login-page{
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--Bg-color);
+}

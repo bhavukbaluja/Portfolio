@@ -1,0 +1,133 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+QLD+Hand:wght@400..700&display=swap');
+
+.middle-main-container{
+    padding: 10px 15px;
+    width: 100%;
+    min-height: 75vh;
+    height: 'auto';
+    // border: 1px black;
+}
+.middle-main-container2{
+    padding: 10px 0px;
+    width: 100%;
+    min-height: 75vh;
+    height: 'auto';
+    // border: 1px black;
+}
+
+.brandSpecialities-main-container{
+    width: 100%;
+    height: auto;
+    min-height: 80px;
+    // max-height: 20vh;
+    padding: 10px 7px 10px 7px;
+    display: flex;
+    flex-wrap: wrap;  
+    background-color: var(--Bg-color);  
+    // box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3); 
+}
+  
+.brandSpecialities {
+    display: flex;
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-size: 20px;
+}
+.brandSpecialities li{
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 100;
+    align-items: center;
+}
+
+.specialities-icons{
+    width: 55px;
+    height: 37px;
+    border-radius: 10%;
+    flex: 1;
+    object-fit: cover;
+
+}
+
+.BaseImageWrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2/3;
+    // height: 380px; // 🔒 Fixed height (adjust as needed)
+    overflow: hidden;
+    border: 1px solid #ccc;
+  
+    .hover-image-carousel {
+      width: 100%;
+      height: 100%; // Fill full height
+    }
+  
+    .carousel-image {
+      width: 100%;
+      height: 100% !important; // Force fill
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+      z-index: 0;
+  
+      &.active {
+        opacity: 1;
+        z-index: 1;
+      }
+    }
+  
+    &:hover .BaseShowImageBoldOnHover {
+      transform: scale(1.03);
+    }
+  
+    &:hover .ImageOverlayText span {
+      transform: scale(1.2);
+      font-weight: 600;
+    }
+  }
+  
+  .ImageOverlayText {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30%; // bottom 30% of the image
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent); // dark to transparent
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    cursor: pointer;
+    span{
+        color: white;
+        position: absolute;
+        bottom: 10px;
+        text-align: center;
+        display: flex;
+        align-items: flex-end; // align text at the bottom
+        justify-content: center;
+        padding: 8px;
+        // font-style: italic;
+        font-family: "Edu QLD Hand", cursive;
+        font-optical-sizing: auto;
+        font-weight: 400;
+        // font-style:oblique;
+        // font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-size: 1.5rem;
+
+        transition: transform 0.3s ease; // Smooth zoom effect
+
+        &:hover{
+            transform: scale(1.2); // Zoom slightly
+            font-weight: 600;
+        }
+    }
+  }
+  

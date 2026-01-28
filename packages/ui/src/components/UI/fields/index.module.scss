@@ -1,0 +1,77 @@
+.Button {
+  color: var(--primarytext-color);
+  padding: 6px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  min-width: 150px;
+  outline: none;
+  border: none; 
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Ensures icon stays at the right */
+  font-size: 16px;
+  background-color: transparent;
+  transition: background 0.2s ease-in-out;
+}
+
+.ButtonIcon {
+  margin-left: 8px;
+}
+
+.Button:focus, 
+.Button:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.Positioner {
+  z-index: 1000;
+  max-height: 600px; /* Ensures menu doesn't exceed height */
+  overflow-y: auto;
+  margin-top: 4px; /* Adds spacing between button and menu */
+}
+
+.Popup {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 6px; /* Increased padding for better spacing */
+  border-radius: 8px;
+  width: 220px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.Popup:focus, 
+.Popup:hover {
+  outline: none;
+}
+
+.Item {
+  padding: 10px 12px; /* Increased padding for better click area */
+  cursor: pointer;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s ease-in-out;
+}
+
+.Item:focus,
+.Item:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+.Separator {
+  border-top: 1px solid #ddd;
+  margin: 8px 0;
+}
+
+.ArrowFill {
+  fill: #ddd;
+}
+
+.Selected {
+  background-color: #ddd;
+  color: var(--primarytext-color);
+  font-weight: 600;
+}

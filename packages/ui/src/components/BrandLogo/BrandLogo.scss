@@ -1,0 +1,18 @@
+.brand-name {
+    height: 75px;
+    color: var(--primarytext-color) !important;
+    // font-size: 64px;
+    text-decoration: none !important;
+    display: inline-block;
+    white-space: nowrap; /* Prevents text from breaking */
+}    
+
+.logo {
+  display: flex;
+  align-items: center;
+  .brand-logo {
+    width: 68px;
+    height: 68px;
+    object-fit: cover;
+  }
+}

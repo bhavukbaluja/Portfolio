@@ -1,0 +1,39 @@
+/* Targeting all direct children inside MenuControlsContainer */
+.css-175njd3-MenuControlsContainer-root > * {
+    flex: 0 0 auto !important;
+    width: auto !important;
+    display: inline-flex !important;
+  }
+  .css-175njd3-MenuControlsContainer-root svg {
+    font-size: 28px !important; /* or whatever size you prefer */
+  }
+  .css-175njd3-MenuControlsContainer-root button {
+    padding: 10px !important; /* default is often 4px */
+  }
+     
+  .custom-upload input[type="file"] {
+    display: none !important;
+  }
+//   .MuiTiptap-ControlledBubbleMenu-root > div {
+//     display: flex !important;
+//     flex-direction: row !important;
+//     align-items: center;
+//   }
+//   .MuiTiptap-ControlledBubbleMenu-root button {
+//     min-width: 32px;
+//     height: 32px;
+//     font-size: 16px;
+//   }
+    
+/* Target the MUI Popover or Popper component's root element */
+.MuiPopover-root, .MuiPopper-root {
+  z-index: 9999 !important; /* Use a value higher than any conflicting element */
+}
+
+/* For specific mui-tiptap classes, you might need to inspect the element in dev tools to find the exact class applied to the popover content */
+.MuiTiptap-MenuButtonAddTable-menu { /* This class name is an example, inspect your app to find the correct one */
+    z-index: 9999 !important;
+}
+
+  
+  

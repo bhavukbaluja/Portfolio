@@ -1,0 +1,7 @@
+
+
+> @repo/utils@1.0.0 build
+> babel . --out-dir dist --ignore **/*.test.js
+
+[1G[0KSuccessfully compiled 462 files with Babel (11921ms).
+[1G[0K⠙[1G[0K

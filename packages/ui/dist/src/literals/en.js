@@ -1,0 +1,80 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports["default"] = void 0;
+var _en;
+function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
+function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
+function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
+function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
+var en = (_en = {
+  login: "Log In",
+  signup: "Sign Up",
+  forgotPassword: "Forgot Password?",
+  welcome: "Welcome, User!",
+  logout: "Log Out",
+  requiredField: "This field is required.",
+  invalidEmail: "Please enter a valid email address.",
+  name: "Name",
+  fullNamePlaceholder: "Enter your Name",
+  firstName: "First Name",
+  lastName: "Last Name",
+  mobileOrEmail: "Email Id or Mobile no.",
+  firstNamePlaceHolder: "Enter your First Name",
+  lastNamePlaceHolder: "Enter your Last Name",
+  email: "Email",
+  emailPlaceHolder: "Enter your Email",
+  mobile: "Mobile No.",
+  mobilePlaceHolder: "Enter you Mobile no.",
+  receiveOTP: "You will receive an OTP on this {0}.",
+  pleaseWait: "Please Wait...",
+  fetchingDataFailedTitle: "Unable to fetch the requested data.",
+  failureMessage: "We faced an error while processing your request.",
+  technicalGlitch: "This may be due to temporary glitch. Try again after some time.",
+  contactSupport: "Contact Support at <a href=\"{supportEmail}\" style=\"text-decoration:none; target=\"_blank\" rel=\"noopener noreferrer\" color: #27c0e0;\">{supportEmail}</a>.",
+  register: "Register",
+  registering: "Registering....",
+  submitOTP: "Verify OTP",
+  submittingOTP: "Verifying OTP....",
+  otp: "OTP",
+  otpPlaceholder: "Enter the OTP",
+  enterOTP: "Kindly Enter the OTP you have received on ({value}).",
+  signedUp: "You have Signed Up Successfully!",
+  failedToSignUp: "You have failed to sign up.",
+  loggedIn: "You have Logged In Successfully!",
+  failedToLogIn: "You have failed to log in.",
+  resendOTP: "Resend OTP",
+  resendingOTP: "Resending OTP....",
+  password: "Password",
+  logingin: "Logging In",
+  passwordPlaceHolder: "Enter your Password",
+  otpChild1: "OTP may be incorrect",
+  otpChild2: "OTP may be expired.",
+  otpChild3: "There might be network issue.",
+  otpChild4: "Server may be down",
+  passwordRequirementMsg: "To safeguard your account, create a password with a minimum of eight (8) characters, including",
+  passwordRequireMent: "Password Requirements",
+  upperLowerCase: "Upper & Lower Case",
+  subHeadingIns: "For strong password, your password should comply to following points",
+  minimum8Char: "Minimum 8 characters (mandatory)",
+  atLeastOneNumericals: "Atleast one numerals (mandatory)",
+  numericals: "Numerals",
+  specialChar: "Special Characters",
+  oneUpperCase: "Atleast one upper case character (mandatory)",
+  oneLowerCase: "Atleast one lower case character (mandatory)",
+  partnerCompanyName: "Partner's Company Name",
+  atLeastOneSpecialChar: "Atleast one special character (mandatory)",
+  skip: "Skip",
+  confirmPassword: "Confirm Password",
+  setPassword: "Set Password",
+  accountInstruction: "To access account and manage orders",
+  aboutUs: "About Us",
+  contactUs: "Contact Us",
+  profile: "Profile",
+  orders: "Orders",
+  wishlist: "Wishlist",
+  loginSignup: "Log In/Sign Up"
+}, _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "welcome", "Welcome"), "profileImgUpdated", "Profile Image Updated Successfully"), "save", "Save"), "cancel", "Cancel"), "adjustImage", "Adjust Image"), "dragSqrToChangeImgSizePos", "Drag the square to change the size and position."), "preview", "Preview"), "imageCropped", "Cropped Image Saved Successfully!"), "alternateMobile", "Alternate Mobile No."), "male", "Male"), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "female", "Female"), "others", "Others"), "genderLabel", "Kindly select your gender:"), "dob", "Date of Birth"), "update", "Update"), "changePassword", "Change Password"), "updatePassword", "Update Password"), "updateProfile", "Update Profile"), "oldPassword", "Old Password"), "confirmPasswordNotMatchPassword", "Confirm Password did not match with Password."), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "passReqNotFulfil", "Password requirement not fulfilled."), "passwordUpdated", "Password Updated Successfully!"), "profileUpdated", "Profile Updated Successfully!"), "pageNotFound", "Page Not Found"), "brokenLinkMsg1", "The link you clicked may be broken or the page may be removed."), "brokenLinkMsg2", "Visit the Home page or contact us about the problem."), "backToHome", "Back to Home Page"), "dashboard", "Dashboard"), "pages", "Pages"), "inventory", "Inventory"), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "customOrders", "Custom Orders"), "team", "Team"), "customers", "Customers"), "settings", "Settings"), "messages", "Messages"), "pendingOrders", "Pending Orders"), "completedOrders", "Completed Orders"), "offers", "Offers"), "id", "Id"), "name", "Name"), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "brand", "Brand"), "category", "Category"), "price", "Price"), "status", "Status"), "createdDate", "Creation Date"), "updatedDate", "Last Updated on"), "action", "Action"), "productName", "Product Name"), "size", "Size"), "color", "Color"), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "sku", "SKU"), "stockQuantity", "Quantity"), "products", "Products"), "description", "Description"), "parent", "Parent"), "namePlaceholder", "Enter the Name"), "descriptionPlaceholder", "Enter the Description"), "categoryPlaceholder", "Select a Category"), "categoryLevel", "Category Level "), "at", "At"), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "modifiedOn", "Modified on"), "today", "Today"), "edit", "Edit"), "delete", "Delete"), "activated", "{entity} is Activated."), "deactivated", "{entity} is Deactivated."), "yes", "Yes"), "no", "No"), "confirm", "Confirm"), "deleteMsg", "Are you Sure. You want to delete <b>{0}</b> {1}?"), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "childrenOf", "Children of "), "page", "Page"), "add", "Add"), "deactivateFirst", "Deactivate the {entity} first."), "activeCantAction", "Active {entity} can't be {action}."), "entityIsActive", "<b>{0}</b> {entity} is Active."), "searchPlaceHolder", "Search for {entity}..."), "copy", "Copy"), "deleted", "Deleted"), "edited", "Edited"), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "product", "Product"), "title", "Title"), "titlePlaceholder", "Enter the Title"), "image", "Image"), "material", "Material"), "materialPlaceholder", "Enter the Material"), "colorPlaceholder", "Enter the Color"), "sku", "SKU Code"), "skuPlaceholder", "Enter a unique SKU Code"), "quantity", "Quantity"), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "type", "Type"), "productName", "Product Name"), "selectProductPlaceholder", "Select the product"), "sizeChart", "Size Chart"), "enterMeasure", "Enter your {0} measure"), "chest", "Chest"), "hips", "Hips"), "neck", "Neck"), "sleeve", "Sleeve"), "arm", "Arm"), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "topLength", "Top Leangth"), "shoulder", "Shoulder"), "inseam", "Inseam"), "bottomLength", "Bottom Length"), "thigh", "Thigh"), "waist", "Waist"), "topBody", "Top Body"), "bottomBody", "Bottom Body"), "rank", "Rank"), "sale", "Sale"), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "rental", "Rental"), "selectRankPlaceholder", "Select the Rank"), "mrp", "MRP"), "salePrice", "Sale Price"), "discount", "Discount"), "selectSizePlaceholder", "Select Size"), "mrpPlaceholder", "Enter the MRP(₹)"), "salePricePlaceholder", "Enter Sale Price(₹)"), "discountPlaceholder", "Enter the discount(%)"), "quantityPlaceholder", "Enter the quantity"), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "saleOrRentPrice", "Sale/Rental Price"), "security", "Security Deposit"), "securityPlaceholder", "Refundable = Deposit - (Rent Price - Discount %)"), "size_Quant_Price", "Size - Quantity - Sale Price"), "view", "View"), "webSettings", "Web Settings"), "siteUnderMaintenance", "Site Under Maintenance"), "weWillGetbackShortly", "We’ll be back shortly. Please check again later."), "reload", "Reload"), "enableWebsite", "Click to enable or Disable the Website."), _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_en, "website", "Website"), "switchOnOffWebsite", "Switch On/Off Website"), "webConfigs", "Website Configurations"), "webTrendingBar", "Website Trending Bar"), "websiteId", "Website Id"), "path", "Path"), "pathPlaceholder", "Enter the path to be opened"));
+var _default = exports["default"] = en;

@@ -1,0 +1,91 @@
+.user-activation-page-header{
+    width: 100%;
+    position: relative;
+}
+.user-activation-divider{
+    border-color: var(--blue) !important;
+}
+.password-req-list{
+    // display: list-item;
+    list-style-type: disclosure-closed;
+    padding-left: 15px;
+    text-align: start;
+}
+.password-req-list-li{
+    text-indent: 10px;  /* Adds extra space after bullet */
+  }
+.password-req-header{
+    width: 100%;
+    display: flex;
+    // justify-content: center;
+    margin: 5px 0px 5px 0px;
+    padding: 0px;
+    // align-items: center;
+    text-align: center;
+    .border{
+        border: 1px solid !important;
+        border-color: #cecece !important;
+    }
+    .vertical-flex{
+        flex-direction: column;
+        line-height: 1.2;
+    }
+    .blue-color-text{
+        color: var(--blue);
+    }
+}
+
+.password-comp-div{
+    width: 100% !important;
+}
+
+.user-activation-form{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.user-activation-form-box{
+    border: 1px solid;
+    border-color: #cecece;
+    border-radius: 5px;
+    height: auto;
+    width: 40vw;
+    padding: 20px;
+    .header{
+        margin: 0px 0px 20px 20px;
+        font-weight:500;
+    }
+    .submit-button{
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end; 
+    }
+}
+
+.grid-view-backdrop{
+    height: "100vh";
+    width: '100vw';
+    overflow-Y: 'auto'; 
+}
+
+.password-validation-box {
+    background-color: #fff3cd;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ffeeba;
+    position: relative;
+}
+
+.password-validation-box::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #fff3cd;
+}
+  
+

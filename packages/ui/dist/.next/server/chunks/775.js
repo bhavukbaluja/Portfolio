@@ -1,0 +1,546 @@
+exports.id = 775, exports.ids = [775], exports.modules = {
+  1155: (e, r, t) => {
+    "use strict";
+
+    t.d(r, {
+      A: () => a
+    });
+    let a = {
+      en: {
+        login: "Log In",
+        signup: "Sign Up",
+        forgotPassword: "Forgot Password?",
+        welcome: "Welcome, User!",
+        logout: "Log Out",
+        requiredField: "This field is required.",
+        invalidEmail: "Please enter a valid email address.",
+        name: "Name",
+        fullNamePlaceholder: "Enter your Name",
+        firstName: "First Name",
+        lastName: "Last Name",
+        mobileOrEmail: "Email Id or Mobile no.",
+        firstNamePlaceHolder: "Enter your First Name",
+        lastNamePlaceHolder: "Enter your Last Name",
+        email: "Email",
+        emailPlaceHolder: "Enter your Email",
+        mobile: "Mobile No.",
+        mobilePlaceHolder: "Enter you Mobile no.",
+        receiveOTP: "You will receive an OTP on this {0}.",
+        pleaseWait: "Please Wait...",
+        fetchingDataFailedTitle: "Unable to fetch the requested data.",
+        failureMessage: "We faced an error while processing your request.",
+        technicalGlitch: "This may be due to temporary glitch. Try again after some time.",
+        contactSupport: 'Contact Support at <a href="{supportEmail}" style="text-decoration:none; target="_blank" rel="noopener noreferrer" color: #27c0e0;">{supportEmail}</a>.',
+        register: "Register",
+        registering: "Registering....",
+        submitOTP: "Verify OTP",
+        submittingOTP: "Verifying OTP....",
+        otp: "OTP",
+        otpPlaceholder: "Enter the OTP",
+        enterOTP: "Kindly Enter the OTP you have received on ({value}).",
+        signedUp: "You have Signed Up Successfully!",
+        failedToSignUp: "You have failed to sign up.",
+        loggedIn: "You have Logged In Successfully!",
+        failedToLogIn: "You have failed to log in.",
+        resendOTP: "Resend OTP",
+        resendingOTP: "Resending OTP....",
+        password: "Password",
+        logingin: "Logging In",
+        passwordPlaceHolder: "Enter your Password",
+        otpChild1: "OTP may be incorrect",
+        otpChild2: "OTP may be expired.",
+        otpChild3: "There might be network issue.",
+        otpChild4: "Server may be down",
+        passwordRequirementMsg: "To safeguard your account, create a password with a minimum of eight (8) characters, including",
+        passwordRequireMent: "Password Requirements",
+        upperLowerCase: "Upper & Lower Case",
+        subHeadingIns: "For strong password, your password should comply to following points",
+        minimum8Char: "Minimum 8 characters (mandatory)",
+        atLeastOneNumericals: "Atleast one numerals (mandatory)",
+        numericals: "Numerals",
+        specialChar: "Special Characters",
+        oneUpperCase: "Atleast one upper case character (mandatory)",
+        oneLowerCase: "Atleast one lower case character (mandatory)",
+        partnerCompanyName: "Partner's Company Name",
+        atLeastOneSpecialChar: "Atleast one special character (mandatory)",
+        skip: "Skip",
+        confirmPassword: "Confirm Password",
+        setPassword: "Set Password",
+        accountInstruction: "To access account and manage orders",
+        aboutUs: "About Us",
+        contactUs: "Contact Us",
+        profile: "Profile",
+        orders: "Orders",
+        wishlist: "Wishlist",
+        loginSignup: "Log In/Sign Up",
+        welcome: "Welcome",
+        profileImgUpdated: "Profile Image Updated Successfully",
+        save: "Save",
+        cancel: "Cancel",
+        adjustImage: "Adjust Image",
+        dragSqrToChangeImgSizePos: "Drag the square to change the size and position.",
+        preview: "Preview",
+        imageCropped: "Cropped Image Saved Successfully!",
+        alternateMobile: "Alternate Mobile No.",
+        male: "Male",
+        female: "Female",
+        others: "Others",
+        genderLabel: "Kindly select your gender:",
+        dob: "Date of Birth",
+        update: "Update",
+        changePassword: "Change Password",
+        updatePassword: "Update Password",
+        updateProfile: "Update Profile",
+        oldPassword: "Old Password",
+        confirmPasswordNotMatchPassword: "Confirm Password did not match with Password.",
+        passReqNotFulfil: "Password requirement not fulfilled.",
+        passwordUpdated: "Password Updated Successfully!",
+        profileUpdated: "Profile Updated Successfully!",
+        pageNotFound: "Page Not Found",
+        brokenLinkMsg1: "The link you clicked may be broken or the page may be removed.",
+        brokenLinkMsg2: "Visit the Home page or contact us about the problem.",
+        backToHome: "Back to Home Page"
+      },
+      hi: {
+        login: "लॉग इन करें",
+        signup: "साइन अप करें",
+        forgotPassword: "पासवर्ड भूल गए?",
+        welcome: "स्वागत है, उपयोगकर्ता!",
+        logout: "लॉग आउट",
+        requiredField: "यह फ़ील्ड आवश्यक है।",
+        invalidEmail: "कृपया एक मान्य ईमेल पता दर्ज करें।"
+      }
+    };
+  },
+  1370: (e, r, t) => {
+    "use strict";
+
+    t.d(r, {
+      A: () => a
+    }), function () {
+      var e = Error("Cannot find module 'react-router-dom'");
+      throw e.code = "MODULE_NOT_FOUND", e;
+    }();
+    let a = () => {
+      let e = Object(function () {
+          var e = Error("Cannot find module 'react-router-dom'");
+          throw e.code = "MODULE_NOT_FOUND", e;
+        }())(),
+        r = Object(function () {
+          var e = Error("Cannot find module 'react-router-dom'");
+          throw e.code = "MODULE_NOT_FOUND", e;
+        }())();
+      return (t, a, o = !1) => {
+        let s = r.pathname.split("/").filter(Boolean),
+          n = s[s.length - 1];
+        (o || n === a || "signup" === n || "login" === n) && e(t);
+      };
+    };
+  },
+  2650: (e, r, t) => {
+    "use strict";
+
+    t.d(r, {
+      Am: () => o,
+      Ge: () => m,
+      JV: () => n,
+      Lo: () => c,
+      Mh: () => s,
+      TP: () => a,
+      X9: () => i,
+      XK: () => d,
+      dF: () => p,
+      gH: () => l,
+      yF: () => u
+    });
+    let a = {
+        API_URL: "http://localhost:8080",
+        IMAGE_URL: "assets/images/automation/"
+      },
+      o = "/api/auth/register",
+      s = "/api/auth/login",
+      n = "/api/auth/validateOtp",
+      i = "/api/auth/refresh",
+      l = "/api/user/userInfo",
+      u = "/api/user/updatePassword",
+      d = "/api/user/updateProfile",
+      c = "/api/user/profileImage",
+      m = "/api/user/uploadProfileImage",
+      p = "/api/user/cropimage/";
+  },
+  3410: (e, r) => {
+    "use strict";
+
+    Object.defineProperty(r, "M", {
+      enumerable: !0,
+      get: function () {
+        return function e(r, t) {
+          return t in r ? r[t] : "then" in r && "function" == typeof r.then ? r.then(r => e(r, t)) : "function" == typeof r && "default" === t ? r : void 0;
+        };
+      }
+    });
+  },
+  3422: (e, r, t) => {
+    "use strict";
+
+    t.d(r, {
+      J: () => s
+    }), function () {
+      var e = Error("Cannot find module 'axios'");
+      throw e.code = "MODULE_NOT_FOUND", e;
+    }();
+    var a = t(7452),
+      o = t(2650);
+    let s = async () => {
+      try {
+        let e = (await Object(function () {
+          var e = Error("Cannot find module 'axios'");
+          throw e.code = "MODULE_NOT_FOUND", e;
+        }())(o.TP.API_URL + o.X9, {}, {
+          withCredentials: !0
+        })).data.accessToken;
+        if (e) return (0, a.O5)(e), e;
+      } catch (e) {
+        console.error("Error refreshing token:", e), (0, a.rY)();
+      }
+      return null;
+    };
+  },
+  4233: (e, r, t) => {
+    "use strict";
+
+    t.d(r, {
+      w: () => d
+    });
+    var a = t(3422),
+      o = t(2650);
+    !function () {
+      var e = Error("Cannot find module 'axios'");
+      throw e.code = "MODULE_NOT_FOUND", e;
+    }();
+    let s = Object(function () {
+      var e = Error("Cannot find module 'axios'");
+      throw e.code = "MODULE_NOT_FOUND", e;
+    }())({
+      baseURL: o.TP.API_URL,
+      withCredentials: !0
+    });
+    s.interceptors.request.use(async e => {
+      let r = localStorage.getItem("accessToken");
+      return r && (e.headers.Authorization = `Bearer ${r}`), e;
+    }, e => Promise.reject(e)), s.interceptors.response.use(e => e, async e => {
+      if (e.response?.status === 401) try {
+        let r = await (0, a.J)();
+        return e.config.headers.Authorization = `Bearer ${r}`, Object(function () {
+          var e = Error("Cannot find module 'axios'");
+          throw e.code = "MODULE_NOT_FOUND", e;
+        }())(e.config);
+      } catch (e) {
+        return Promise.reject(e);
+      }
+      return Promise.reject(e);
+    });
+    var n = t(9029);
+    t(1155);
+    var i = t(2015),
+      l = t(6024);
+    !function () {
+      var e = Error("Cannot find module 'axios'");
+      throw e.code = "MODULE_NOT_FOUND", e;
+    }();
+    let u = () => {
+        let {
+            showError: e
+          } = (0, l.useError)(),
+          r = (0, i.useCallback)((r, t) => {
+            let a = r?.response,
+              o = "Something went wrong!",
+              s = {},
+              i = "Alert";
+            if (a?.status === 401) (0, n.kY)(), window.location.reload();else {
+              if (!t && a?.status >= 200 && a?.status < 300) return a;
+              !t && !(0, n.Im)(a) && !(0, n.Im)(a?.status) && a?.status >= 400 ? (i = a?.statusText || i, e(i, o = a?.data?.message || a?.data?.error || a?.data || o, a?.data?.errors || {})) : (i = a?.statusText || i, e(i, o = r?.message || o, r?.details || {}));
+            }
+            return Promise.reject(r);
+          }, [e]),
+          t = (0, i.useCallback)(async (e, t, a = {}, o) => {
+            try {
+              return await s.get(e, {
+                params: t,
+                headers: a?.headers ?? {}
+              });
+            } catch (e) {
+              return r(e, o?.hideErrorDialog);
+            }
+          }, [r]),
+          a = (0, i.useCallback)(async (e, t, a = {}, o) => {
+            try {
+              return await s.post(e, t, {
+                ...a
+              });
+            } catch (e) {
+              return r(e, o?.hideErrorDialog);
+            }
+          }, [r]);
+        return {
+          GET: t,
+          POST: a,
+          PUT: (0, i.useCallback)(async (e, t, a = {}, o) => {
+            try {
+              return await s.put(e, t, {
+                ...a
+              });
+            } catch (e) {
+              return r(e, o?.hideErrorDialog);
+            }
+          }, [r]),
+          DELETE: (0, i.useCallback)(async (e, t = {}, a) => {
+            try {
+              return await s.delete(e, {
+                ...t
+              });
+            } catch (e) {
+              return r(e, a?.hideErrorDialog);
+            }
+          }, [r])
+        };
+      },
+      d = () => {
+        let {
+          GET: e,
+          POST: r,
+          PUT: t,
+          DELETE: a
+        } = u();
+        return {
+          CallApi: async (o, s, i, l, u) => {
+            try {
+              let d = await {
+                GET: e,
+                POST: r,
+                PUT: t,
+                DELETE: a
+              }[s](o, i, l, u);
+              if ((0, n.Im)(d) || (0, n.Im)(d?.status) || d?.status !== 200) throw d;
+              if (d?.status == 200) return d?.data;
+              return;
+            } catch (a) {
+              let e = a?.status,
+                r = a?.response?.data,
+                t = a?.data;
+              if (u?.resdataOnly === !0) return r ?? t;
+              throw {
+                status: !(0, n.Im)(e) && e,
+                data: r || ((0, n.Im)(t) ? "error" : t)
+              };
+            }
+          }
+        };
+      };
+  },
+  4850: (e, r) => {
+    "use strict";
+
+    Object.defineProperty(r, "A", {
+      enumerable: !0,
+      get: function () {
+        return t;
+      }
+    });
+    var t = function (e) {
+      return e.PAGES = "PAGES", e.PAGES_API = "PAGES_API", e.APP_PAGE = "APP_PAGE", e.APP_ROUTE = "APP_ROUTE", e.IMAGE = "IMAGE", e;
+    }({});
+  },
+  6024: () => {
+    throw Error("Module parse failed: Unexpected token (36:8)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n| \n|     return (\n>         <ErrorContext.Provider value={{ showError, closeError }}>\n|             {children}\n| ");
+  },
+  7326: (e, r, t) => {
+    "use strict";
+
+    Object.defineProperty(r, "__esModule", {
+      value: !0
+    }), Object.defineProperty(r, "default", {
+      enumerable: !0,
+      get: function () {
+        return l;
+      }
+    });
+    let a = t(8485),
+      o = t(8732),
+      s = a._(t(2015)),
+      n = t(7108);
+    async function i(e) {
+      let {
+        Component: r,
+        ctx: t
+      } = e;
+      return {
+        pageProps: await (0, n.loadGetInitialProps)(r, t)
+      };
+    }
+    class l extends s.default.Component {
+      render() {
+        let {
+          Component: e,
+          pageProps: r
+        } = this.props;
+        return (0, o.jsx)(e, {
+          ...r
+        });
+      }
+    }
+    l.origGetInitialProps = i, l.getInitialProps = i, ("function" == typeof r.default || "object" == typeof r.default && null !== r.default) && void 0 === r.default.__esModule && (Object.defineProperty(r.default, "__esModule", {
+      value: !0
+    }), Object.assign(r.default, r), e.exports = r.default);
+  },
+  7452: (e, r, t) => {
+    "use strict";
+
+    t.d(r, {
+      O5: () => s,
+      c4: () => n,
+      rY: () => l,
+      xJ: () => u
+    }), function () {
+      var e = Error("Cannot find module 'universal-cookie'");
+      throw e.code = "MODULE_NOT_FOUND", e;
+    }(), t(4233);
+    var a = t(2650);
+    let o = Object(function () {
+        var e = Error("Cannot find module 'universal-cookie'");
+        throw e.code = "MODULE_NOT_FOUND", e;
+      }())(),
+      s = e => {
+        localStorage.setItem("accessToken", e);
+      },
+      n = () => localStorage.getItem("accessToken"),
+      i = e => {
+        localStorage.setItem("userInfo", JSON.stringify(e));
+      },
+      l = () => {
+        localStorage.removeItem("accessToken"), localStorage.removeItem("userInfo"), o.remove("refreshToken", {
+          path: "/"
+        });
+      },
+      u = async e => {
+        try {
+          let r = await e(a.gH, "GET");
+          if (!r?.userInfo) return console.error("Failed to fetch user info, status:", r?.status), null;
+          {
+            let e = r?.userInfo;
+            if (e) return i(e), e;
+            return console.error("User info is missing in the response"), null;
+          }
+        } catch (e) {
+          return console.error("Failed to fetch user info:", e), null;
+        }
+      };
+  },
+  9029: (e, r, t) => {
+    "use strict";
+
+    t.d(r, {
+      CT: () => l,
+      Im: () => s,
+      XA: () => d,
+      kY: () => n,
+      jr: () => i
+    });
+    var a = t(7452),
+      o = t(3422);
+    !function () {
+      var e = Error("Cannot find module 'universal-cookie'");
+      throw e.code = "MODULE_NOT_FOUND", e;
+    }(), function () {
+      var e = Error("Cannot find module 'dayjs'");
+      throw e.code = "MODULE_NOT_FOUND", e;
+    }(), function () {
+      var e = Error("Cannot find module 'dayjs/plugin/customParseFormat'");
+      throw e.code = "MODULE_NOT_FOUND", e;
+    }();
+    let s = e => null == e || "" === e || Array.isArray(e) && 0 === e.length || "object" == typeof e && 0 === Object.keys(e).length,
+      n = () => {
+        let e = Object(function () {
+          var e = Error("Cannot find module 'universal-cookie'");
+          throw e.code = "MODULE_NOT_FOUND", e;
+        }())();
+        e.remove(window.uiTokenName, {
+          path: "/"
+        }), e.remove("saml-user-attributes", {
+          path: "/"
+        }), e.remove("seis", {
+          path: "/"
+        }), e.remove("JSESSIONID", {
+          path: "/"
+        });
+      },
+      i = (e, r) => {
+        let t = "";
+        if (r.trim()) switch (e) {
+          case "otp":
+            6 != r.length && (t = `${e.toUpperCase()} must be 6 digits`);
+            break;
+          case "fullName":
+          case "lastName":
+            r.length < 3 && (t = "Name must be at least 3 characters.");
+            break;
+          case "email":
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(r) || (t = "Invalid email address.");
+            break;
+          case "mobile":
+            /^\+?\d{9,18}$/.test(r) || (t = "Invalid mobile number (must be 7–15 digits, optionally starting with '+').");
+        } else t = "This field is required.";
+        return t;
+      },
+      l = e => {
+        if (!e) return "";
+        if (/^\d+$/.test(e)) {
+          let r = e.length;
+          if (r <= 4) return "*".repeat(r);
+          {
+            if (r <= 6) return `${e.slice(0, 1)}${"*".repeat(r - 2)}`;
+            let t = "*".repeat(r - 4);
+            return `${e.slice(0, 1)}${t}${e.slice(-2)}`;
+          }
+        }
+        {
+          let [r, t] = e.split("@");
+          if (r.length <= 2) return `${r[0]}${"*".repeat(r.length - 1)}@${t}`;
+          let a = "*".repeat(r.length - 3);
+          return `${r.slice(0, 2)}${a}${r.slice(-1)}@${t}`;
+        }
+      },
+      u = async e => {
+        try {
+          let r = (0, a.c4)(),
+            t = await fetch(e, {
+              headers: {
+                Authorization: `Bearer ${r}`
+              }
+            });
+          if (t?.status == 401 && (0, o.J)(), !t.ok) throw Error("Image fetch failed");
+          let s = await t.blob();
+          return URL.createObjectURL(s);
+        } catch (e) {
+          console.error("Failed to fetch profile image:", e);
+        }
+      },
+      d = async (e, r) => {
+        let t = `profileImageBlob_${r}`,
+          a = sessionStorage.getItem(t);
+        if (a) return a;
+        {
+          let a = `${e}?t=${r}`,
+            o = await u(a);
+          return sessionStorage.setItem(t, o), o;
+        }
+      };
+    Object(function () {
+      var e = Error("Cannot find module 'dayjs'");
+      throw e.code = "MODULE_NOT_FOUND", e;
+    }())(Object(function () {
+      var e = Error("Cannot find module 'dayjs/plugin/customParseFormat'");
+      throw e.code = "MODULE_NOT_FOUND", e;
+    }()));
+  }
+};

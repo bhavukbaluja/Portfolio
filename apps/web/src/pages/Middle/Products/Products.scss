@@ -1,0 +1,252 @@
+.products-main-container{
+    padding: 10px 15px;
+    width: 100%;
+    min-height: 77vh;
+    // border: 1px black;
+}
+
+.product {
+    font-size: 14px;
+    margin-top: 8px;
+    text-align: left;
+    line-height: 1.2em;
+  
+    &.mrp {
+      color: var(--secondarytext-color);
+      &.price{
+        text-decoration: line-through;
+      }
+    }
+  
+    &.discount {
+      color: var(--danger-color); // Or red
+      margin-left: 0px;
+      font-size: 20px;
+    }
+  
+    &.salePrice {
+        // font-weight: bold;
+        color: var(--primarytext-color);
+        font-size: 24px;
+    }
+    &.isReadyToDispatch {
+        display: flex;
+        justify-content: center;
+        margin-top: 8px;
+      
+        .dispatch-banner {
+          position: relative;
+        //   background: linear-gradient(55deg, #68d066,  #0a840a);
+          background: linear-gradient(135deg, var(--color-gray-50));
+          border: 1px solid var(--success-color);
+          color: #378d12;
+          font-size: 13px;
+          font-weight: 500;
+          padding: 6px 12px;
+          border-radius: 6px;
+          white-space: nowrap;
+          box-shadow: 0 0 8px rgba(0, 255, 100, 0.4);
+          overflow: hidden;
+          z-index: 0;
+      
+          &::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -30%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+              120deg,
+              rgba(255, 255, 255, 0.0) 30%,
+              rgba(20, 154, 47, 0.5) 50%,
+              rgba(255, 255, 255, 0.0) 70%
+            );
+            transform: rotate(25deg);
+            animation: mirrorSwipe 3s infinite ease-in-out;
+            z-index: 1;
+            pointer-events: none;
+            cursor: none;
+          }
+        }
+      }
+      
+      @keyframes mirrorSwipe {
+        0% {
+          transform: translateX(-100%) rotate(25deg);
+        }
+        50% {
+          transform: translateX(100%) rotate(25deg);
+        }
+        100% {
+          transform: translateX(200%) rotate(25deg);
+        }
+      }
+      
+  }
+  
+  .price-row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 4px;
+  }
+  
+
+  .product-page-main-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    overflow-x: hidden;
+    padding: 24px;
+  
+    &.desktop {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  
+    &.mobile {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .product-image-wrapper {
+      flex: 1;
+      min-width: 300px;
+      max-width: 800px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      // Ensure viewer or image takes full space and maintains ratio
+      .product-image-viewer {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+  
+        img {
+          width: 100%;
+          height: auto;
+          object-fit: contain;
+        }
+      }
+    }
+  
+    .product-details-wrapper {
+      flex: 1;
+      min-width: 300px;
+      max-width: 600px;
+      width: 100%;
+    }
+      .product-details-container {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+        .product-title {
+          font-size: 1.8rem;
+          font-weight: 400;
+          margin-bottom: 8px;
+        }
+  
+        .product-description {
+          font-size: 1rem;
+          color: #666;
+          margin-bottom: 12px;
+        }
+  
+        .product-pricing {
+          font-size: 1.2rem;
+          color: #222;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        }
+          .product-mrp {
+            color: var(--secondarytext-color);
+            font-size: 1.2rem;
+            text-decoration: line-through;
+          }
+
+          .product-discount {
+            color: var(--danger-color); // Or red
+            margin-left: 0px;
+            font-size: 20px;
+          }
+          .product-price {
+            color: var(--primarytext-color);
+            margin-left: 15px;
+            font-size: 2rem;
+          }
+          .product-price-note{
+            color: var(--secondarytext-color);
+            font-size: 0.8rem;
+          }
+        
+  
+        .product-stock {
+          font-size: 1rem;
+          color: #444;
+        }
+      
+    
+  }
+  
+  // Optional: If you're not toggling .desktop/.mobile in JS, use media query
+  @media screen and (max-width: 768px) {
+    .product-page-main-container {
+      flex-direction: column;
+      align-items: center;
+  
+      .product-image-wrapper,
+      .product-details-wrapper {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  }
+.size-chart-main-wrapper{
+  // padding: 0 1rem  1rem  1rem;
+  display: flex;
+  flex-direction: row;
+  // flex: 1;
+  height: 89%;
+  align-items: center;
+  width: 100%; /* Ensure the container takes full width */
+  position: relative;
+  overflow-y: auto;
+  flex-wrap: wrap;
+
+  &.desktop {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  &.mobile {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+  .size-chart-wrapper {
+    flex: 2.1;
+    width: 100%;
+    // min-width: 300px;
+    // max-width: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .size-chart-image-wrapper{
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    width: 100%;
+  }
+  

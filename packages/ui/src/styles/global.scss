@@ -1,0 +1,96 @@
+// // :global{
+//     .form-control:focus{
+//       z-index: 3;
+//       position: relative;
+//       box-shadow: none !important;
+//       outline: 2px solid var(--color-blue) !important;
+//       outline-offset: -1px !important;
+//     }
+  
+//     .react-tel-input{
+//       // width: 30vw !important;
+//       width: 100%;
+//       flex-grow: 1;
+//       // min-width: 250px !important;
+//       display: flex;
+//       position: relative !important; // ✅ Helps with absolute dropdown positioning
+//     }
+  
+//   /* ✅ Ensure the flag and country code are properly spaced */
+//     .react-tel-input .selected-flag{
+//       position: absolute !important; 
+//       z-index: 10 !important;
+//       display: flex !important;
+//       align-items: center !important;
+//       justify-content: space-around !important;
+//       padding: 0px 10px !important;
+//       width: auto !important;
+//       min-width: 100px !important;
+//       border-radius: 15px;
+//       background: #f5f5f5;
+//       gap: 5px; /* ✅ Adds spacing between flag and code */
+//     }
+  
+//     .react-tel-input .selected-flag .flag{
+//       display: inline-block;
+//       // margin-right: 40px !important; /* ✅ Ensures space between flag and country code */
+//     }
+  
+//   /* ✅ Country Code (inside flag dropdown) */
+//     .react-tel-input .selected-flag .country-code{
+//       font-size: 14px;
+//       font-weight: bold;
+//       color: #333;
+//       margin-left: 50px; /* ✅ Ensures gap between flag and code */
+//       white-space: nowrap; /* ✅ Prevents breaking into a new line */
+//     }
+  
+//     /* ✅ Ensure input field has enough left padding to avoid overlap */
+//     .react-tel-input .form-control{
+//       width: 100% !important;
+//       height: 50px !important;
+//       font-size: 16px !important;
+//       padding-left: 110px !important; /* ✅ Adjusts to prevent overlap */
+//       background: inherit !important;
+//     }
+  
+  
+//     /* ✅ Country List: Flag Left, Country Code Right */
+//     .react-tel-input .country-list{
+//       display: flex;
+//       flex-direction: column;
+//       align-items: flex-start;
+//       padding: 10px !important;
+//       border-radius: 10px !important;
+//       height: 350px !important;
+//       max-height: 700px !important;
+//       width: 300px !important;
+//       background: white;
+//       z-index: 10 !important;
+//       bottom: -60px;
+//     }
+  
+//     /* ✅ Ensure Country Name (Left) & Country Code (Right) */
+//     .react-tel-input .country-list .country{
+//       display: flex;
+//       justify-content: space-between; /* Separate country name and code */
+//       padding: 5px 10px;
+//       width: 100%;
+//       align-items: center;
+//     }
+  
+//     /* ✅ Ensure Country Code Visibility in List */
+//     .react-tel-input .country-list .country .dial-code{
+//       margin-left: auto;
+//       font-weight: bold;
+//       color: #333;
+//     }
+  
+//     .react-tel-input .country-list::-webkit-scrollbar-track,
+//     .react-tel-input .country-list .country.highlight,
+//     .react-tel-input .country-list .country:hover{
+//       border-radius: 10px;
+//       background-color: #f0f0f0 !important; /* Optional: Highlight effect */
+//     }
+// //   }
+  
