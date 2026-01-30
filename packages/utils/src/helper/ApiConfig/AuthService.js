@@ -9,7 +9,7 @@ import { getAppName } from "../Helper";
  * Refresh the access token using the refresh token (stored in HTTP-only cookie)
  * @returns {Promise<string|null>} New access token
  */
-export const refreshAccessToken = async () => {
+export const refreshAccessToken = async () => {debugger;
   try {
     const response = await axios.post(
       URL_CONFIG.API_URL + RefreshAccessToken_URL, 
@@ -41,6 +41,30 @@ export const refreshAccessToken = async () => {
     }
   }
   return null;
+};
+
+export const logoutUser = async () => {
+  try {
+    let url = Logout_URL;
+    await apiRequest( "POST", url, {}, { } // ensures cookie (refreshToken) is sent 
+    );
+
+    // Clear local storage / context details
+    // removeAuthDetails();
+
+    // Redirect to login
+    // navigateTo("/login", "", true);
+
+    // return true;
+  } catch (error) {
+    console.error("Error during logout:", error);
+
+    // Always clear local auth, even if API failed
+    // removeAuthDetails();
+    // navigateTo("/login", "", true);
+
+    // return false;
+  }
 };
 
 /**
