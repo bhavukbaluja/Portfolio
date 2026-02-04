@@ -1,20 +1,20 @@
+/* 1. The Fixed Frame */
 .dashboard-layout {
-    display: flex;
-    flex-direction: row;
-    height: 100vh;
-    width: 100%;
-    // background-color: #f8f9fa; /* example */
-  }
-  
-  .dashboard-content {
-    // padding-top: 1rem;
-    display: flex;
-    // justify-content: center;
-    flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    flex: 1;
-    overflow: auto;
-    align-items: center;
-  }
-  
+  display: flex;
+  flex-direction: row;
+  height: 100vh;       /* ✅ FIX: Force strict height */
+  width: 100%;
+  overflow: hidden;    /* ✅ FIX: Prevent double scrollbars on window */
+}
+
+/* 2. The Scrolling Area */
+.dashboard-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  height: 100%;        /* ✅ FIX: Fill the parent height exactly */
+  overflow-y: auto;    /* ✅ FIX: This generates the scrollbar */
+  overflow-x: hidden;
+  position: relative;  /* Needed for AOS calculation */
+  scroll-behavior: smooth;
+}

@@ -4,3 +4,68 @@
     min-height: 75vh;
     // border: 1px black;
 }
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* Optional: Offset for fixed header/sidebar so content isn't hidden behind it */
+section {
+    scroll-margin-top: 20px; 
+    padding: 10px;
+    min-height: 100vh;
+}
+
+.section-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.heading {
+    // align-items: 'center';
+    font-size: 40px;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+.spinning-text {
+    animation: spin 10s linear infinite;
+    transform-origin: center; /* Ensures it spins around the middle */
+}
+
+.resume-title{
+    text-align: center;
+}
+
+.vertical-divider {
+  /* Default Mobile View: Top Border (Horizontal Line) */
+  border-top: 1px solid rgba(0, 0, 0, 0.12); /* Matches MUI Divider default color */
+  padding-top: 30px;
+  margin-top: 30px;
+
+  /* Dark Mode Support for Mobile */
+  @media (prefers-color-scheme: dark) {
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  /* Desktop View (Large Screens): Left Border (Vertical Line) */
+  @media (min-width: 992px) {
+    border-top: none;       /* Remove horizontal line */
+    padding-top: 0;
+    margin-top: 0;
+    
+    border-left: 1px solid rgba(0, 0, 0, 0.12); /* Add vertical line */
+    padding-left: 30px;     /* Add space between line and text */
+
+    /* Dark Mode Support for Desktop */
+    @media (prefers-color-scheme: dark) {
+      border-left: 1px solid rgba(255, 255, 255, 0.12);
+    }
+  }
+}
+

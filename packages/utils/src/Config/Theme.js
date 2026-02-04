@@ -1,12 +1,16 @@
 const theme = {
-  // These act as your Default / Light Mode colors
-  colors: {
+    // ----------------------------------------
+    // LIGHT MODE (Your updated pink/wine palette)
+    // ----------------------------------------
+    colors: {
       trendingHeaderBg: "#000000",
       trendingHeaderText: "#ffffff",
-      headerBg: "#ffffff",
+      headerBg: "#d5a6bd",        // Dusty Pink
       footerBg: "#ffffff",
-      bg: "#FFF1F1",
+      bg: "#ffffff",
       bgForDialog: "#ffffff",
+      
+      // Semantic Colors (Standard)
       primary: "#1976D2",
       primarylight: "#1E90FF",
       secondary: "#FFC107",
@@ -17,6 +21,8 @@ const theme = {
       warning: "#FFA000",
       info: "#0288D1",
       infolight: "#58c4fe",
+      
+      // Neutrals
       light: "#F8F9FA",
       dark: "#212529",
       primarytext: "#333333",
@@ -24,20 +30,29 @@ const theme = {
       background: "#eeeeee",
       background2: "#F5F5F5",
       favorite: "#f44336",
-      mainlighter: "#b6dcff",
-      mainlight: "#6fa8dc",
-      maindark: "#206baf",
-      maindarker: "#013f77",
-  },
-  // NEW: Dark Mode Overrides (Keys must match 'colors' exactly)
-  darkColors: {
-      trendingHeaderBg: "#ffffff",     // Inverted
-      trendingHeaderText: "#000000",   // Inverted
-      headerBg: "#1e1e1e",             // Dark background
-      footerBg: "#1e1e1e",
-      bg: "#2C1A1A",                   // Darker version of #FFF1F1
-      bgForDialog: "#2d2d2d",
-      primary: "#90CAF9",              // Lighter blue for dark mode visibility
+      
+      // Brand Colors (Pink/Wine Scale)
+      mainlighter: "#ead1dc",     // Very Light Pink
+      mainlight: "#ead1dc",       // (Duplicate as requested)
+      maindark: "#a64d79",        // Deep Magenta
+      maindarker: "#741b47",      // Dark Wine
+    },
+  
+    // ----------------------------------------
+    // DARK MODE (Updated to match Pink/Wine Theme)
+    // ----------------------------------------
+    darkColors: {
+      trendingHeaderBg: "#ffffff",
+      trendingHeaderText: "#000000",
+      
+      // Backgrounds: shifted from "Gray" to "Dark Plum/Black" for cohesion
+      headerBg: "#1F1116",        // Very dark wine (almost black)
+      footerBg: "#1F1116",
+      bg: "#000000",              // Deepest warm black
+      bgForDialog: "#2A1B22",     // Slightly lighter plum for cards/dialogs
+      
+      // Semantic Colors (Lightened for visibility on dark)
+      primary: "#90CAF9",
       primarylight: "#64B5F6",
       secondary: "#FFD54F",
       success: "#81C784",
@@ -47,20 +62,29 @@ const theme = {
       warning: "#FFB74D",
       info: "#4FC3F7",
       infolight: "#81D4FA",
-      light: "#212529",                // Inverted
-      dark: "#F8F9FA",                 // Inverted
-      primarytext: "#E0E0E0",          // Light text for dark bg
-      secondarytext: "#B0B0B0",
-      background: "#121212",           // Standard dark mode bg
-      background2: "#1E1E1E",
+      
+      // Neutrals
+      light: "#1e1e1e",
+      dark: "#F8F9FA",
+      primarytext: "#EAD1DC",     // Using your light pink for main text
+      secondarytext: "#BCAAA4",   // Warm Gray
+      background: "#0F080A",      // Darkest background
+      background2: "#1A1013",     // Secondary background
       favorite: "#E57373",
-      mainlighter: "#0d2b4a",          // Darker version of mainlighter
-      mainlight: "#206baf",
-      maindark: "#6fa8dc",
-      maindarker: "#b6dcff",
-  },
-  // ... your existing light/dark objects for gray scales ...
-  light: {
+      
+      // Brand Colors (Inverted logic for Dark Mode)
+      // "Lighter" vars usually become the dark background shades in dark mode
+      // "Darker" vars usually become the bright pop text in dark mode
+      mainlighter: "#2D121D",     // Dark Plum (Background elements)
+      mainlight: "#4A152D",       // Medium Wine
+      maindark: "#D5A6BD",        // Dusty Pink (High visibility accent)
+      maindarker: "#F4D9E6",      // Almost White Pink (Text/Icons)
+    },
+  
+    // ----------------------------------------
+    // GRAY SCALES (OKLCH)
+    // ----------------------------------------
+    light: {
       "--color-blue": "oklch(45% 50% 264)",
       "--color-red": "oklch(50% 55% 31)",
       "--color-gray-50": "oklch(98.42% 0.0034 247.86)",
@@ -74,22 +98,24 @@ const theme = {
       "--color-gray-800": "oklch(12% 5% 264 / 85%)",
       "--color-gray-900": "oklch(12% 5% 264 / 90%)",
       "--color-gray-950": "oklch(12% 5% 264 / 95%)",
-  },
-  dark: {
+    },
+    dark: {
       "--color-blue": "oklch(69% 50% 264)",
       "--color-red": "oklch(80% 55% 31)",
-      "--color-gray-50": "oklch(17% 1% 264)",
-      "--color-gray-100": "oklch(28% 3% 264 / 65%)",
-      "--color-gray-200": "oklch(31% 3% 264 / 80%)",
-      "--color-gray-300": "oklch(35% 3% 264 / 80%)",
-      "--color-gray-400": "oklch(47% 3.5% 264 / 80%)",
-      "--color-gray-500": "oklch(64% 4% 264 / 80%)",
-      "--color-gray-600": "oklch(82% 4% 264 / 80%)",
-      "--color-gray-700": "oklch(92% 4.5% 264 / 80%)",
-      "--color-gray-800": "oklch(93% 3.5% 264 / 85%)",
-      "--color-gray-900": "oklch(95% 2% 264 / 90%)",
-      "--color-gray-950": "oklch(94% 1.5% 264 / 95%)",
-  },
-};
-
-export default theme;
+      // Updated gray scale to have a very subtle warm/purple tint 
+      // to match the pink theme (hue changed from 264->300 slightly)
+      "--color-gray-50": "oklch(17% 1% 300)", 
+      "--color-gray-100": "oklch(28% 3% 300 / 65%)",
+      "--color-gray-200": "oklch(31% 3% 300 / 80%)",
+      "--color-gray-300": "oklch(35% 3% 300 / 80%)",
+      "--color-gray-400": "oklch(47% 3.5% 300 / 80%)",
+      "--color-gray-500": "oklch(64% 4% 300 / 80%)",
+      "--color-gray-600": "oklch(82% 4% 300 / 80%)",
+      "--color-gray-700": "oklch(92% 4.5% 300 / 80%)",
+      "--color-gray-800": "oklch(93% 3.5% 300 / 85%)",
+      "--color-gray-900": "oklch(95% 2% 300 / 90%)",
+      "--color-gray-950": "oklch(94% 1.5% 300 / 95%)",
+    },
+  };
+  
+  export default theme;

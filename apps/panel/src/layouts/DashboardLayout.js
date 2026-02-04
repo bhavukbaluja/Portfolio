@@ -13,7 +13,6 @@ const DashboardLayout = forwardRef(({ children, ...props }, ref) => {
       <div className="dashboard-layout">
         <SideBarHeader ref={ref} {...props} />
         <div className="dashboard-content">
-          <BreadCrumb isMobile={props?.isMobile} setLoading={props?.setLoading}/>
           <Outlet />
         </div>
       </div>

@@ -21,7 +21,7 @@ export const updateProfile_URL = "/api/user/updateProfile";
 export const saveCartDataInDb = "/api/user/cart";
 
 
-export const WhatsApp_URL = "https://wa.me/9191775566756";
+export const WhatsApp_URL = "https://wa.me/918700431291";
 export const GoogleMaps_URL = "https://maps.app.goo.gl/";
 export const Instagram_URL ="https://www.instagram.com/";
 export const Facebook_URL ="https://www.facebook.com/";

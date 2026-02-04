@@ -12,7 +12,7 @@
   align-items: center;
   flex-direction: column;
   background-color: var(--headerBg-color);
-  border-right: 1px solid #e5e7eb; /* tailwind's border-r */
+  border-right: 1px solid var(--color-gray-200); /* tailwind's border-r */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* tailwind's shadow-sm */
   overflow-y: auto;
   overflow-x: hidden;
@@ -82,10 +82,19 @@
   padding: 0 0.75rem;
 }
 
+.sidebar-user-group {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  width: 100%;  
+  margin: 7px;
+}
+
 /* Sidebar Footer */
 .sidebar-footer {
-  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--color-gray-300);
   display: flex;
+  width: 100%;
   padding: 0.75rem;
 }
 
@@ -99,26 +108,46 @@
 /* Sidebar User */
 .sidebar-user {
   display: flex;
-  justify-content: space-between;
+  padding-top: 10px;
+  justify-content: center;
   align-items: center;
+  flex-direction: column;
   overflow: hidden;
+  gap: 10px;
+  
+  /* 1. Set explicit max-height/opacity for the open state so transition works */
+  opacity: 1;
+  max-height: 500px; /* Arbitrary large number to fit content */
   transition: all 0.3s ease;
+
   &.expanded {
-    width: 13rem; /* w-52 */
-    margin-left: 0.75rem;
+    width: 100%;
+    opacity: 1;
   }
+
   &.collapsed {
+    /* 2. REMOVE visibility: hidden */
+    
+    /* 3. Collapse all dimensions to 0 */
     width: 0;
+    height: 0;      /* Collapses vertical space */
+    padding: 0;     /* Critical: Padding adds space even if height is 0 */
+    margin: 0;      /* Removes gap */
+    opacity: 0;     /* Fades out content */
   }
 }
 
 /* Sidebar User Info */
 .sidebar-user-info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
   line-height: 1;
 }
 
 .sidebar-user-name {
   font-weight: 600;
+  margin: 0px;
 }
 
 .sidebar-user-email {

@@ -5,16 +5,20 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { IconButton, useTheme } from "@mui/material";
 import { LanguageContext } from "@ui/literals/LanguageProvider";
 import { WhatsApp_URL } from "@utils/Config/URLs.js";
-
+import useNavigateTo from '@utils/helper/ApiConfig/useNavigateTo.js';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 import { ColorModeContext } from '@utils/Config/ThemeProvider';
+import Literal from "@ui/literals";
+import ArrowForwardOutlinedIcon from '@mui/icons-material/ArrowForwardOutlined';
+import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
 
-export default function FloatingButtons() {
+export default function FloatingButtons({isMobile, handleDrawerToggle}) {
   const [showScroll, setShowScroll] = useState(false);
   const theme = useTheme();
   const { lang } = useContext(LanguageContext);
   const properties = propertiesData[lang];
+  const NavigateTo = useNavigateTo();
 
   const colorMode = useContext(ColorModeContext);
 
@@ -27,12 +31,34 @@ export default function FloatingButtons() {
   const scrollToTop = () =>
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-  const openWhatsApp = () => {
-    window.open(WhatsApp_URL, "_blank");
+  const navigateToContact = () => {
+    NavigateTo("#contact", "", true);
   };
 
   return (
     <>
+      {isMobile && (
+        <IconButton onClick={handleDrawerToggle}
+          sx={{
+            position: "fixed",
+            top: 20,
+            right: 20,
+            bgcolor: `var(--color-gray-50)`,
+            color: "var(--color-gray-900)",
+            "&:hover": {
+              bgcolor: `var(--color-gray-700)`,
+              color: "var(--color-gray-50)",
+            },
+            zIndex: 1200,
+            border: '1px solid var(--color-gray-400)',
+            boxShadow: '0 5px 20px var(--color-gray-400)',
+            p: 1,
+          }}
+        >
+          <MenuOutlinedIcon sx={{ fontSize: "40px" }}/>
+        </IconButton>
+      )}
+
       {/* Scroll-to-top button */}
       {showScroll && (
         <IconButton
@@ -58,8 +84,9 @@ export default function FloatingButtons() {
       <IconButton onClick={colorMode.toggleColorMode}
         sx={{
           position: "fixed",
-          bottom: 90,
-          right: 27.5,
+          bottom: isMobile? '' : 90,
+          top: isMobile? 20 : '',
+          right: isMobile? 100 : 20,
           bgcolor: `var(--color-gray-50)`,
           color: "var(--color-gray-900)",
           "&:hover": {
@@ -67,31 +94,35 @@ export default function FloatingButtons() {
             color: "var(--color-gray-50)",
           },
           zIndex: 1200,
-          boxShadow: 3,
+          border: '1px solid var(--color-gray-400)',
+          boxShadow: '0 5px 20px var(--color-gray-400)',
           p: 1,
         }}
       >
-        {theme.palette.mode === 'dark' ? <DarkModeOutlinedIcon sx={{ fontSize: "30px" }}/> : <LightModeOutlinedIcon sx={{ fontSize: "30px" }}/>}
+        {theme.palette.mode === 'dark' ? <DarkModeOutlinedIcon sx={{ fontSize: "40px" }}/> : <LightModeOutlinedIcon sx={{ fontSize: "40px" }}/>}
       </IconButton>
 
       {/* WhatsApp button */}
       <IconButton
-        onClick={openWhatsApp}
+        onClick={navigateToContact}
+        // className="px-10 py-2.5 border rounded-full bg-gradient-to-r from-[#b820e6] to-[#da7d20] text-white flex items-center gap-2 dark:border-transparent"
         sx={{
           position: "fixed",
           bottom: 20,
           right: 20,
-          bgcolor: "#25D366",
+          background: "linear-gradient(135deg , #b820e6, #da7d20)",
           color: "var(--color-gray-50)",
           "&:hover": {
             bgcolor: "#1EBE5D",
           },
+          borderRadius: '30px',
           zIndex: 1200,
-          boxShadow: 3,
+          boxShadow: '0 7px 12px var(--color-gray-400)',
+          fontSize: '20px',
           p: 1.5, // larger area for XL icon
         }}
       >
-        <WhatsAppIcon fontSize="large" /> {/* XL size */}
+        {Literal[lang].contactMe} <ArrowForwardOutlinedIcon/>
       </IconButton>
     </>
   );

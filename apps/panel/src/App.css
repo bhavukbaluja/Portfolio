@@ -59,3 +59,17 @@
   display: flex;
   flex-direction: row;
 }
+
+/* Add this to index.scss or App.scss */
+
+p, li, .description, .about-text, span {
+  text-align: justify;
+  text-justify: inter-word; /* Improves spacing between words */
+}
+
+/* Optional: Ensure specific containers also justify */
+.section-title p {
+  text-align: center; /* Usually titles look better centered */
+}
+
+/* Vertical Divider Logic */

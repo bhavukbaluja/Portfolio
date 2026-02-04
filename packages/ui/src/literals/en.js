@@ -154,7 +154,6 @@ const en = {
     skuPlaceholder: "Enter a unique SKU Code",
     quantity: "Quantity",
     type: "Type",
-    productName: "Product Name",
     selectProductPlaceholder: "Select the product",
     sizeChart: "Size Chart",
     enterMeasure: "Enter your {0} measure",
@@ -674,12 +673,62 @@ const en = {
     contact: "Contact",
     contactMe: "Contact Me",
     birthday: "Birthday",
-    city: "City",
     age: "Age",
     degree: "Degree",
     freelance: "Freelance",
     available: "Available",
+    education: "Education",
+    projects: "Projects",
+    languages: "Languages",
+    // --- Sidebar / User Widget ---
+    accountInstruction1: "Manage your details",
+
+    // --- About Section ---
+    aboutDesc: "Learn more about me",
+
+    // --- Resume Section ---
+    resumeDesc: "A timeline of my professional experience and education:",
+    summary: "Summary",
+    professionalExperience: "Professional Experience",
+
+    // --- Services Section ---
+    servicesDesc: "Technical solutions and services I provide:",
     
+    // --- Skills Section ---
+    skillsDesc: "My technical proficiency and toolset:",
+
+    // --- Portfolio Section ---
+    portfolioDesc: "A showcase of my recent projects and work:",
+    app: "App",
+    web: "Web",
+    branding: "Branding",
+    books: "Books",
+    // Add any specific categories found in your Properties.json here
+    
+    // --- Contact Section ---
+    contactDesc: "Feel free to reach out for collaborations or opportunities",
+    callUs: "Call Us",
+    emailUs: "Email Us",
+    yourName: "Your Name",
+    yourEmail: "Your Email",
+    subject: "Subject",
+    message: "Message",
+    sendMessage: "Send Message",
+    messageSent: "Your message has been sent. Thank you!",
+    dobShort: "DOB",
+    intellij: "IntelliJ IDEA",
+    vscode: "VS Code",
+    eclipse: "Eclipse",
+    git: "Git",
+    aws: "AWS",
+    github: "GitHub",
+    mysql: "MySQL",
+    mongodb: "MongoDB",
+    docker: "Docker",
+    jenkins: "Jenkins",
+    jira: "Jira",
+    postman: "Postman",
+    toolsTitle: "Tools and Technologies I use"
   };
   
   export default en;

@@ -56,7 +56,7 @@ const ContactDetailsTile = ({
         transition: "0.2s",
         backgroundColor: "var(--color-gray-50)", // Adapts via CSS vars
         "&:hover": {
-          boxShadow: url ? "0 0 8px var(--color-gray-500)" : "none",
+          boxShadow:  "0 0 8px var(--color-gray-500)" ,
         },
       }}
       onClick={handleClick}
@@ -131,7 +131,7 @@ const ContactDetailsTile = ({
             ))
           ) : (
             <Typography variant="body1" color="text.secondary">
-              {properties[body]}
+              {properties[body] || body}
             </Typography>
           )}
         </Box>

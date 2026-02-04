@@ -1419,6 +1419,37 @@ export const getAppName = () => {
   return "web"; // default
 };
 
+export const calculateAge=(dob)=> {
+  const birthDate = new Date(dob);
+  const today = new Date();
+
+  let age = today.getFullYear() - birthDate.getFullYear();
+  const monthDifference = today.getMonth() - birthDate.getMonth();
+
+  // If the birth month hasn't happened yet, OR 
+  // if we are in the birth month but the day hasn't happened yet:
+  if (
+    monthDifference < 0 || 
+    (monthDifference === 0 && today.getDate() < birthDate.getDate())
+  ) {
+    age--;
+  }
+
+  return age;
+}
+
+export function formatDate(dateString) {
+  const date = new Date(dateString);
+  
+  // 'en-GB' uses day-month-year order. 
+  // We specify 'long' for the month to get the full name (e.g., "May")
+  return date.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  });
+}
+
 
 
 

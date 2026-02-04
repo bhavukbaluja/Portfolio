@@ -50,10 +50,13 @@
     justify-content: center;
     align-items: center;
     border-radius: 40%;
-    background-color: var(--mainlight-color);
+    background-color: var(--maindark-color);
     line-height: 30px; /* Centers the icon */
     padding: 5px;
-    // cursor: pointer;
+    cursor: pointer;
+    &:hover {
+        background-color: var(--maindarker-color);
+      }
 }
 
 .free-delivery {

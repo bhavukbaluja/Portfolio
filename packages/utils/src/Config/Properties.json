@@ -1,24 +1,171 @@
 {
   "en": {
-    "BrandName": "Uzoid",
-    "brandTagLine": "Most Customisable Clothing brand",
-    "contactUs": "Abcd",
-    "contactUs_Comments": "Create a page named 'Contact Us' and add whatever content wanted",
-    "contactNo": "(+91) 011-88663322",
-    "whatsAppNo": "(+91) 9988776655",
-    "email": "example@gmail.com",
-    "workingHours1": "10:00-18:00",
-    "workingHours2": "Mon-Sat",
-    "address1": "15/20, Block-A, Patparganj",
-    "address2": "Industrial Area, Delhi-110045, India",
+    "user": {
+      "firstName": "Bhavuk",
+      "lastName": "Baluja",
+      "mobile": "+91 8700431291",
+      "email": "bhavuk.baluja@gmail.com",
+      "city": "Delhi, India",
+      "dob": "2001-07-05", 
+      "address": "Delhi, India",
+      "website": "github.com/bhavukbaluja",
+      "linkedin": "linkedin.com/in/bhavuk-baluja-59a303156"
+    },
+    "education": "B Tech in Computer Science",
+    "designation": "Full-Stack Developer",
+    "languages": "Java, React Js, Spring Boot, HTML, CSS, JavaScript, Next Js, Ext Js, PHP, SQL, C++",
+    "projects": "Built more than 5 projects",    
+    "aboutMe1": "I am a Full Stack Developer with more than 3 years of experience, including over 2 years in product-based application development and around 1.5 years of hands-on freelancing in creating websites and web applications.",
+    "aboutMe2": "Expertise in Java, Spring Boot, ReactJS, and REST APIs, ensuring scalable, high-performance, and maintainable applications. With a strong focus on clean code, performance, and scalability, I am currently available for freelance projects and collaborations to deliver efficient and impactful software solutions.",
+
+    "resume": {
+      "summary": {
+        "description": "Full Stack Developer with over 2 years of experience building scalable web applications. Specialized in backend and frontend development using Java, Spring Boot, ReactJS, and REST APIs. Proven track record in collaborating with cross-functional teams to deliver reliable, high-performance solutions."
+      },
+      "education": [
+        {
+          "degree": "B.Tech in CSE (Open Source & Standards)",
+          "years": "2018 - 2022",
+          "institution": "University of Petroleum and Energy Studies (UPES), Dehradun",
+          "description": [
+            "Specialized in Open Source technologies with a focus on Software Engineering standards.",
+            "Mastered core concepts including Object-Oriented Programming (OOP), DBMS, and Operating Systems.",
+            "Developed multiple academic projects involving Full Stack Web Development and Android Applications."
+          ]
+        },
+        {
+          "degree": "Senior Secondary (Class XII - Science)",
+          "years": "2018",
+          "institution": "Kendriya Vidyalaya, Delhi",
+          "description": [
+            "Completed Science stream with Computer Science as a core major subject.",
+            "Built a strong early foundation in programming logic using C++.",
+            "Gained hands-on experience in Database Management using MySQL."
+          ]
+        }
+      ],
+      "experience": [
+        {
+          "title": "Software Engineer",
+          "years": "Nov 2022 – Oct 2024",
+          "company": "Adeptia India Pvt. Ltd.",
+          "tasks": [
+            "Developed and enhanced product features using Java, Spring Boot, Hibernate, ReactJS, and ExtJS.",
+            "Built and maintained REST APIs for scalable applications.",
+            "Collaborated with QA teams using JUnit and Jest to ensure code quality.",
+            "Worked closely with R&D and support teams for feature improvements and live issue resolution."
+          ]
+        },
+        {
+          "title": "Product Associate – Live Operations",
+          "years": "Mar 2022 – Aug 2022",
+          "company": "MX Player",
+          "tasks": [
+            "Managed Live OPS and QA tasks for the Games section of the MX Player app.",
+            "Worked on CMS-based content management systems.",
+            "Created and tracked issues using Jira to ensure smooth delivery."
+          ]
+        }
+      ]
+    },
+
+    "services": [
+      { 
+        "icon": "bi-laptop", 
+        "title": "Full Stack Development", 
+        "desc": "Building scalable web applications using Java, Spring Boot, and ReactJS." 
+      },
+      { 
+        "icon": "bi-server", 
+        "title": "Backend Engineering", 
+        "desc": "Designing robust REST APIs and managing databases with SQL and Hibernate." 
+      },
+      { 
+        "icon": "bi-code-slash", 
+        "title": "Frontend Development", 
+        "desc": "Creating responsive user interfaces with ReactJS, ExtJS, and Bootstrap." 
+      },
+      { 
+        "icon": "bi-tools", 
+        "title": "DevOps & Tools", 
+        "desc": "Experience with Docker, Kubernetes, Jenkins, AWS Hosting, and Jira." 
+      }
+    ],
+
+    "skills": [
+      { "name": "Java & Spring Boot", "val": "90%" },
+      { "name": "React JS & Ext JS", "val": "85%" },
+      { "name": "REST APIs", "val": "90%" },
+      { "name": "SQL & Hibernate", "val": "80%" },
+      { "name": "Docker & Kubernetes", "val": "70%" },
+      { "name": "Jenkins & AWS", "val": "75%" },
+      { "name": "PHP", "val": "70%" },
+      { "name": "Jira & Debugging", "val": "85%" }
+    ],
+
+    "portfolio": [
+      { 
+        "id": 1, 
+        "category": "app", 
+        "img": "/assets/img/portfolio/biometric.jpg", 
+        "title": "Biometrics Auth System", 
+        "desc": "2-Factor Authentication System with IRIS Authentication.", 
+        "link": "#" 
+      },
+      { 
+        "id": 2, 
+        "category": "app", 
+        "img": "/assets/img/portfolio/attendance.jpg", 
+        "title": "Attendance System", 
+        "desc": "Android app using Face Recognition and GPS.", 
+        "link": "#" 
+      },
+      { 
+        "id": 3, 
+        "category": "web", 
+        "img": "/assets/img/portfolio/banking.jpg", 
+        "title": "Banking System", 
+        "desc": "Software developed using C++.", 
+        "link": "#" 
+      },
+      { 
+        "id": 4, 
+        "category": "web", 
+        "img": "/assets/img/portfolio/php-projects.jpg", 
+        "title": "PHP Web Suite", 
+        "desc": "Loan calculator, Railway ticketing, and Event Management websites.", 
+        "link": "#" 
+      },
+      { 
+        "id": 5, 
+        "category": "app", 
+        "img": "/assets/img/portfolio/lostfound.jpg", 
+        "title": "Lost and Found App", 
+        "desc": "Android application for reporting lost items.", 
+        "link": "#" 
+      }
+    ],
+
+    "BrandName": "Bhavuk Baluja",
+    "brandTagLine": "Software Engineer",
+    "contactUs": "Get in Touch",
+    "contactUs_Comments": "",
+    "contactNo": "+91 8750569447",
+    "whatsAppNo": "+91 8700431291",
+    "workingHours1": "09:00 - 18:00",
+    "workingHours2": "Mon - Fri",
+    "address1": "Delhi",
+    "address2": "India",
     "VITE_RAZORPAY_KEY_ID": "rzp_test_qpi1caKXZ3hBnF",
-    "instagram": "@abc",
-    "facebook": "Abc",
-    "youtube": "@abc",
-    "x": "@abc",
-    "threads": "@abc",
-    "pinterest": ""
-  },
+    "instagram": "",
+    "facebook": "",
+    "youtube": "",
+    "x": "",
+    "threads": "",
+    "pinterest": "",
+    "linkedin": "https://linkedin.com/in/bhavuk-baluja-59a303156",
+    "github": "https://github.com/bhavukbaluja"
+},
 
   "hi": {
     "BrandName": "उज़ोइड",

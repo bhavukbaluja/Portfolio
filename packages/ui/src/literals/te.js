@@ -154,7 +154,6 @@ const te = {
     skuPlaceholder: "ప్రత్యేకమైన SKU కోడ్‌ని నమోదు చేయండి",
     quantity: "పరిమాణం",
     type: "రకం",
-    productName: "ఉత్పత్తి పేరు",
     selectProductPlaceholder: "ఉత్పత్తిని ఎంచుకోండి",
     sizeChart: "సైజ్ చార్ట్",
     enterMeasure: "మీ {0} కొలతను నమోదు చేయండి",
