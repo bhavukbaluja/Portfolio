@@ -3,7 +3,12 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
-  // ✅ 1. Tell esbuild to handle JSX in .js files during build/serve
+  // ✅ 1. ADD THIS LINE: Set the base path for GitHub Pages
+  // Replace 'YOUR_REPO_NAME' with your actual repository name (e.g., '/portfolio/')
+  // If you are deploying to a custom domain (e.g., bhavuk.com), leave this as '/'
+  base: '/portfolio/',
+
+  // ✅ 2. Tell esbuild to handle JSX in .js files during build/serve
   esbuild: {
     loader: "jsx",
     include: /src\/.*\.jsx?$/,
@@ -18,7 +23,7 @@ export default defineConfig({
           ['@babel/plugin-transform-react-jsx', { runtime: 'automatic' }],
         ],
       },
-      include: /\.(mdx|js|jsx|ts|tsx)$/, // Adjusted regex pattern is often safer
+      include: /\.(mdx|js|jsx|ts|tsx)$/, 
     }),
   ],
   root: '.',
@@ -37,7 +42,7 @@ export default defineConfig({
   },
   optimizeDeps: {
     include: ['date-fns-tz'],
-    // ✅ 2. Tell esbuild to handle JSX in .js files during dependency optimization
+    // ✅ 3. Tell esbuild to handle JSX in .js files during dependency optimization
     esbuildOptions: {
       loader: {
         '.js': 'jsx',
