@@ -6,48 +6,41 @@ import { ErrorProvider } from '@utils/helper/ApiConfig/ErrorContext.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 import React, { useEffect, useRef, useState } from 'react';
-import { Navigate, Route, BrowserRouter as Router, Routes, useLocation } from 'react-router-dom';
+// ✅ FIXED: Changed BrowserRouter to HashRouter
+import { Navigate, Route, HashRouter as Router, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import ScrollToTop from '@ui/pages/Common/ScrollToTop.js';
 import { ThemeProvider } from "@utils/Config/ThemeProvider.js";
 import DashboardLayout from "./layouts/DashboardLayout.js";
 import Home from "./pages/Middle/Home.js";
 import AOS from 'aos';
-import 'aos/dist/aos.css'; // You must import the CSS too!
+import 'aos/dist/aos.css'; 
 import FloatingButtons from "@ui/components/FloatingButtons.js";
 
 function App() {
   const [isMobile, setIsMobile] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [loading, setLoading] = useState(false);
-  const siteName = "portfolio";
 
   useEffect(() => {
-
-    // Run once on mount to get initial window size
     const checkIsMobile = () => {
       const width = window.innerWidth;
       const userAgent = navigator.userAgent.toLowerCase();
-    
       const isTablet = /ipad|tablet|playbook|silk/.test(userAgent);
       const isMobileDevice = /android|iphone|ipod|blackberry|iemobile|opera mini/.test(userAgent);
-    
       setIsMobile(isMobileDevice || isTablet || width <= 1024);
     };
-    
-
-    checkIsMobile(); // Set initial value on client
+    checkIsMobile(); 
     window.addEventListener("resize", checkIsMobile);
-
     return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
-
 
   return (
     <ThemeProvider>
     <LanguageProvider>
       <ErrorProvider>
           <SnackbarProvider maxSnack={3}>
+              {/* ✅ Router is now HashRouter */}
               <Router>
                 <MainContent isMobile={isMobile} selectedItem={selectedItem} setSelectedItem={setSelectedItem} loading={loading} setLoading={setLoading}/>
               </Router>
@@ -67,7 +60,8 @@ function MainContent({ isMobile, selectedItem, setSelectedItem, loading, setLoad
 
   useEffect(() => {
     if (location?.pathname) {
-      const firstPart = "/" + location.pathname.split("/")[1]; // "/orders"
+      // In HashRouter, pathname will be just "/" or "/about", avoiding the "/Portfolio" prefix issue
+      const firstPart = "/" + location.pathname.split("/")[1]; 
       setSelectedItem(firstPart);
     }
   }, [location]); 
@@ -77,21 +71,16 @@ function MainContent({ isMobile, selectedItem, setSelectedItem, loading, setLoad
   };
 
   useEffect(() => {
-    // Initialize AOS
     AOS.init({
       duration: 1000,
       easing: 'ease-in-out',
       once: true,
       mirror: false,
-      // ✅ Tell AOS to attach the scroll listener to your specific class
       scrollContainer: '.dashboard-content' 
     });
-  
-    // ✅ Force a recalculation after a short delay to ensure layout is ready
     const timer = setTimeout(() => {
       AOS.refresh();
     }, 500);
-  
     return () => clearTimeout(timer);
   }, []);
 
@@ -130,19 +119,19 @@ function MainContent({ isMobile, selectedItem, setSelectedItem, loading, setLoad
                 />
               }
             >
-              {/* <Route path="/" element={<HomePage isMobile={isMobile} />} /> */}
-                                        {/* OR */}
-            {/* <Route path="/" element={<Navigate to="" replace />} /> */}
             <Route path="/" element={<Home isMobile={isMobile}/>} />
             <Route path="" element={<Home isMobile={isMobile}/>} />
+            
+            {/* Catch-all for sub-routes */}
             <Route path="*" element={<NotFound />} />
-            </Route>
+        </Route>
 
-        {/* Not Found */}
+        {/* Catch-all for root level */}
         <Route path="*" element={<NotFound />} />
       </Routes>
       <FloatingButtons handleDrawerToggle={handleDrawerToggle} isMobile={isMobile}/>
     </div>
   );
 }
+
 export default App;
