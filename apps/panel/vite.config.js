@@ -4,9 +4,9 @@ import path from 'path';
 
 export default defineConfig({
   // ✅ 1. ADD THIS LINE: Set the base path for GitHub Pages
-  // Replace 'YOUR_REPO_NAME' with your actual repository name (e.g., '/portfolio/')
+  // Replace 'YOUR_REPO_NAME' with your actual repository name (e.g., '/Portfolio/')
   // If you are deploying to a custom domain (e.g., bhavuk.com), leave this as '/'
-  base: '/portfolio/',
+  base: '/Portfolio/',
 
   // ✅ 2. Tell esbuild to handle JSX in .js files during build/serve
   esbuild: {
