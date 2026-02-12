@@ -70,25 +70,65 @@
     },
 
     "services": [
-      { 
-        "icon": "bi-laptop", 
-        "title": "Full Stack Development", 
-        "desc": "Building scalable web applications using Java, Spring Boot, and ReactJS." 
+      {
+        "title": "Full-Stack Web Development",
+        "desc": "End-to-end web application development including frontend, backend, database, and deployment. Ideal for startups, business platforms, and SaaS products.",
+        "price": "₹2,000 – ₹6,000 / hr",
+        "icon": "LayersOutlined"
       },
-      { 
-        "icon": "bi-server", 
-        "title": "Backend Engineering", 
-        "desc": "Designing robust REST APIs and managing databases with SQL and Hibernate." 
+      {
+        "title": "E-Commerce Development",
+        "desc": "Complete e-commerce solutions including product management, payments, order systems, and admin dashboards (Shopify, WooCommerce, Custom).",
+        "price": "₹1,500 – ₹6,000 / hr",
+        "icon": "StorefrontOutlined"
       },
-      { 
-        "icon": "bi-code-slash", 
-        "title": "Frontend Development", 
-        "desc": "Creating responsive user interfaces with ReactJS, ExtJS, and Bootstrap." 
+      {
+        "title": "Website Development",
+        "desc": "Responsive and modern websites for businesses, portfolios, and brands. Clean design, fast loading, and mobile-friendly layouts.",
+        "price": "₹1,200 – ₹4,000 / hr",
+        "icon": "WebOutlined"
       },
-      { 
-        "icon": "bi-tools", 
-        "title": "DevOps & Tools", 
-        "desc": "Experience with Docker, Kubernetes, Jenkins, AWS Hosting, and Jira." 
+      {
+        "title": "Frontend Development",
+        "desc": "Pixel-perfect user interfaces using modern technologies like React & Next.js. Focused on performance, responsiveness, and smooth user experience.",
+        "price": "₹1,000 – ₹3,500 / hr",
+        "icon": "MonitorOutlined"
+      },
+      {
+        "title": "Website & Application Maintenance",
+        "desc": "Ongoing support including bug fixes, updates, security patches, and performance improvements. Monthly plans available.",
+        "price": "₹800 – ₹3,000 / hr",
+        "icon": "BuildOutlined"
+      },
+      {
+        "title": "Bug Fixing & Issue Rectification",
+        "desc": "Identification, debugging, and fixing of UI/UX bugs, functional errors, API issues, and performance bottlenecks.",
+        "price": "₹1,000 – ₹4,000 / hr",
+        "icon": "BugReportOutlined"
+      },
+      {
+        "title": "Backend Development",
+        "desc": "Secure and scalable server-side development including APIs, authentication, and business logic (Node.js, Python, PHP).",
+        "price": "₹1,500 – ₹5,000 / hr",
+        "icon": "StorageOutlined"
+      },
+      {
+        "title": "API Development & Integration",
+        "desc": "Custom API development and third-party API integrations such as payment gateways, CRM tools, and external services.",
+        "price": "₹1,500 – ₹5,500 / hr",
+        "icon": "ApiOutlined"
+      },
+      {
+        "title": "Deployment & Hosting Setup",
+        "desc": "Deploying websites and applications on cloud servers (AWS, Vercel, DigitalOcean) with domain setup, SSL, and CI/CD pipelines.",
+        "price": "₹1,500 – ₹6,500 / hr",
+        "icon": "CloudUploadOutlined"
+      },
+      {
+        "title": "Database Design & Management",
+        "desc": "Database architecture, optimization, and maintenance (MySQL, PostgreSQL, MongoDB) to ensure fast and reliable data handling.",
+        "price": "₹1,200 – ₹4,000 / hr",
+        "icon": "DatasetOutlined"
       }
     ],
 
@@ -104,45 +144,21 @@
     ],
 
     "portfolio": [
-      { 
-        "id": 1, 
-        "category": "app", 
-        "img": "/assets/img/portfolio/biometric.jpg", 
-        "title": "Biometrics Auth System", 
-        "desc": "2-Factor Authentication System with IRIS Authentication.", 
-        "link": "#" 
-      },
-      { 
-        "id": 2, 
-        "category": "app", 
-        "img": "/assets/img/portfolio/attendance.jpg", 
-        "title": "Attendance System", 
-        "desc": "Android app using Face Recognition and GPS.", 
-        "link": "#" 
-      },
-      { 
-        "id": 3, 
-        "category": "web", 
-        "img": "/assets/img/portfolio/banking.jpg", 
-        "title": "Banking System", 
-        "desc": "Software developed using C++.", 
-        "link": "#" 
-      },
-      { 
-        "id": 4, 
-        "category": "web", 
-        "img": "/assets/img/portfolio/php-projects.jpg", 
-        "title": "PHP Web Suite", 
-        "desc": "Loan calculator, Railway ticketing, and Event Management websites.", 
-        "link": "#" 
-      },
-      { 
-        "id": 5, 
-        "category": "app", 
-        "img": "/assets/img/portfolio/lostfound.jpg", 
-        "title": "Lost and Found App", 
-        "desc": "Android application for reporting lost items.", 
-        "link": "#" 
+      {
+        "id": 1,
+        "category": "app",
+        "title": "Example Project",
+        "shortDesc": "Short description for the tile.",
+        "fullDesc": "Longer description that appears inside the modal...",
+        "img": "assets/img/portfolio/vscode.png",
+        "gallery": [
+          "assets/img/portfolio/1.jpg",
+          "assets/img/portfolio/detail-1.jpg"
+        ],
+        "video": "https://www.youtube.com/embed/pR0NScYJvfQ?si=BBKT7O7Z0WxQS9qn",
+        "techStack": ["React", "Node.js", "MUI"],
+        "link": "https://live-demo.com",
+        "repo": "https://github.com/user/repo"
       }
     ],
 

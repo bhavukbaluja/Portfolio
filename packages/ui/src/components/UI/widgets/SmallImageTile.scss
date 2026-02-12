@@ -1,0 +1,159 @@
+/* =========================================
+   Small Image Tile / Service Item Styles
+   ========================================= */
+
+   .service-item {
+    background-color: var(--color-gray-50);
+    /* Initial subtle shadow */
+    box-shadow: 0px 5px 20px 0px var(--color-gray-300, rgba(0,0,0,0.1)); 
+    height: 100%;
+    padding: 30px 30px;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    border-radius: 12px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    
+    /* BORDER LOGIC */
+    border: 1px solid var(--color-gray-100);
+    border-bottom: 4px solid transparent; 
+  
+    /* FLEXBOX: Alignment & Sticky Footer */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    /* ✅ STACKING CONTEXT: Default z-index */
+    z-index: 1; 
+}
+  
+/* --- ICON CONTAINER --- */
+.service-item .icon {
+    margin: 0 auto 20px auto;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: ease-in-out 0.3s;
+    position: relative;
+    flex-shrink: 0; 
+}
+  
+/* --- THE BLOB SHAPE (Background) --- */
+.service-item .icon .blob-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: ease-in-out 0.3s;
+    z-index: 1; 
+}
+  
+.service-item .icon .blob-svg path {
+    transition: fill 0.3s ease-in-out;
+    fill: var(--color-gray-100); 
+}
+  
+/* --- THE ICON CONTENT (Foreground) --- */
+.service-item .icon .icon-content {
+    z-index: 2; 
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+  
+.service-item .icon .tile-icon {
+    font-size: 36px;
+    transition: color 0.3s ease-in-out;
+    line-height: 0;
+    color: var(--theme-color); 
+}
+  
+.service-item .icon .tile-image {
+    width: 45px; 
+    height: 45px;
+    object-fit: contain;
+    transition: 0.3s;
+}
+  
+/* --- TYPOGRAPHY --- */
+.service-item h3 {
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--primarytext-color);
+    transition: 0.3s;
+    margin: 0 0 15px 0;
+    
+    /* Fixed height for alignment */
+    min-height: 3.5rem; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.service-item p.description {
+    line-height: 24px;
+    font-size: 14px;
+    margin-bottom: 25px; 
+    color: var(--secondarytext-color);
+}
+  
+/* --- PRICE TAG STYLING --- */
+.price-tag {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: var(--color-gray-100); 
+    color: var(--secondarytext-color);
+    border-radius: 50px; 
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+    margin-top: auto; 
+}
+  
+/* =========================================
+    HOVER EFFECTS
+    ========================================= */
+  
+.service-item:hover {
+    transform: translateY(-5px);
+    
+    /* ✅ KEY FIX: High z-index ensures shadow renders OVER adjacent items */
+    z-index: 10; 
+    
+    /* Borders */
+    border-color: transparent; 
+    border-bottom: 4px solid var(--theme-color);
+    
+    /* Standard Pop Shadow */
+    // box-shadow: 0 50px 90px -10px var(--color-gray-500, rgba(0,0,0,0.1));
+}
+  
+.service-item:hover .icon .blob-svg path {
+    fill: var(--theme-color); 
+}
+  
+.service-item:hover .icon .tile-icon {
+    color: #ffffff !important; 
+}
+  
+.service-item:hover .icon .tile-image {
+    filter: brightness(0) invert(1); 
+}
+  
+.service-item:hover h3 {
+    color: var(--theme-color);
+}
+
+.service-item:hover .price-tag {
+    background-color: var(--theme-color);
+    color: #fff;
+    border-color: var(--theme-color);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}

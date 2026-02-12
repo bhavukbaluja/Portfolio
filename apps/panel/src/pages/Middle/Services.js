@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import propertiesData from "@utils/Config/Properties.json";
 import { LanguageContext } from '@ui/literals/LanguageProvider';
 import Literal from "@ui/literals";
+import SmallImageTileWithColor from "@ui/components/UI/widgets/SmallImageTileWithColor"; // Check path!
 
 const Services = () => {
   const { lang } = useContext(LanguageContext);
@@ -20,22 +21,21 @@ const Services = () => {
 
       <div className="row gy-4">
         {services.map((service, index) => (
+          // ✅ FIX: You MUST wrap the tile in a col-div for the grid to work
           <div 
             key={index} 
-            className="col-lg-4 col-md-6 service-item d-flex" 
+            className="col-lg-4 col-md-6" 
             data-aos="fade-up" 
             data-aos-delay={(index + 1) * 100}
           >
-            <div className="icon flex-shrink-0">
-              <i className={`bi ${service.icon}`}></i>
-            </div>
-            <div>
-              <h4 className="title">
-                {/* ✅ FIX: Change <a> to <span> and remove href="#" */}
-                <span className="stretched-link" style={{cursor: 'pointer'}}>{service.title}</span>
-              </h4>
-              <p className="description">{service.desc}</p>
-            </div>
+            <SmallImageTileWithColor
+                title={service.title}
+                description={service.desc}
+                price={service.price}
+                icon={service.icon}
+                index={index}
+                url={service.url} // Pass URL if you have it in JSON
+            />
           </div>
         ))}
       </div>

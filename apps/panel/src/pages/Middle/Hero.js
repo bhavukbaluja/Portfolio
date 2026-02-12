@@ -5,6 +5,7 @@ import useMediaQuery from '@mui/material/useMediaQuery'; // ✅ Import media que
 import propertiesData from "@utils/Config/Properties.json";
 import { LanguageContext } from '@ui/literals/LanguageProvider';
 import HeroImg from "@assets/Hero.png";
+import Literal from "@ui/literals";
 
 const Hero = ({isMobile}) => {
   const el = useRef(null);
@@ -22,7 +23,13 @@ const Hero = ({isMobile}) => {
 
   useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: ['Full-Stack Developer', 'Backend Developer', 'Front-End Developer', 'Freelancer'],
+      strings: [
+        'Full-Stack Developer', 
+        'E-Commerce Specialist', 
+        'Frontend Developer', 
+        'Backend Engineer', 
+        'Freelancer'
+      ],
       typeSpeed: 100,
       backSpeed: 50,
       backDelay: 2000,
@@ -88,7 +95,7 @@ const Hero = ({isMobile}) => {
             marginTop: '10px'
           }}
         >
-            I'm <span ref={el} className="typed"></span>
+            {Literal[lang].iM} <span ref={el} className="typed"></span>
         </p>
       </div>
     </div>

@@ -42,7 +42,8 @@ export default function FloatingButtons({isMobile, handleDrawerToggle}) {
           sx={{
             position: "fixed",
             top: 20,
-            right: 20,
+            right: isMobile? '' : 20,
+            left: isMobile? 20 : '',
             bgcolor: `var(--color-gray-50)`,
             color: "var(--color-gray-900)",
             "&:hover": {
@@ -86,7 +87,8 @@ export default function FloatingButtons({isMobile, handleDrawerToggle}) {
           position: "fixed",
           bottom: isMobile? '' : 90,
           top: isMobile? 20 : '',
-          right: isMobile? 100 : 20,
+          right: isMobile? '' : 20,
+          left: isMobile? 100 : '',
           bgcolor: `var(--color-gray-50)`,
           color: "var(--color-gray-900)",
           "&:hover": {

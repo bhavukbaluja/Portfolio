@@ -680,32 +680,18 @@ const en = {
     education: "Education",
     projects: "Projects",
     languages: "Languages",
-    // --- Sidebar / User Widget ---
     accountInstruction1: "Manage your details",
-
-    // --- About Section ---
     aboutDesc: "Learn more about me",
-
-    // --- Resume Section ---
     resumeDesc: "A timeline of my professional experience and education:",
     summary: "Summary",
     professionalExperience: "Professional Experience",
-
-    // --- Services Section ---
     servicesDesc: "Technical solutions and services I provide:",
-    
-    // --- Skills Section ---
     skillsDesc: "My technical proficiency and toolset:",
-
-    // --- Portfolio Section ---
     portfolioDesc: "A showcase of my recent projects and work:",
     app: "App",
     web: "Web",
     branding: "Branding",
     books: "Books",
-    // Add any specific categories found in your Properties.json here
-    
-    // --- Contact Section ---
     contactDesc: "Feel free to reach out for collaborations or opportunities",
     callUs: "Call Us",
     emailUs: "Email Us",
@@ -728,7 +714,11 @@ const en = {
     jenkins: "Jenkins",
     jira: "Jira",
     postman: "Postman",
-    toolsTitle: "Tools and Technologies I use"
+    toolsTitle: "Tools and Technologies I use",
+    iM: "I'm",
+    viewDetails: "View Details",
+    zoom: "Zoom",
+    
   };
   
   export default en;

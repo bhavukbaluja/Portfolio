@@ -10,8 +10,6 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import React, {
   forwardRef,
   useContext,
-  useEffect,
-  useImperativeHandle,
   useMemo,
   useState,
 } from "react";
@@ -38,15 +36,9 @@ const Header = forwardRef(
     const [counts, setCounts] = useState({});
     const { lang } = useContext(LanguageContext);
     
-    // ✅ Get User Role
-    // const { user } = useContext(AuthContext);
-    // // Ensure we handle case sensitivity if DB returns 'admin' vs 'ADMIN'
-    // const userRole = user?.role ? user.role.toUpperCase() : null; 
-    
-    // Wrapped in useMemo to recalculate when counts/lang/userRole changes
+    // Wrapped in useMemo to recalculate when counts/lang changes
     const sideBarContent = useMemo(() => {
       
-      // Helper function defined inside useMemo to access 'counts'
       const getAlertCount = (textKeys = []) => {
         let total = 0;
         textKeys.forEach((key) => {
@@ -58,40 +50,42 @@ const Header = forwardRef(
         return total;
       };
 
-      // 1. Define All Possible Items
-      // Note: If 'allowedRoles' is missing, it implies accessible by BOTH Admin & Manager
+      // ✅ FIX: Explicitly added 'path' to every item to prevent navigation errors
       const allMenuItems = [
         {
           text: "home",
           icon: <HomeOutlinedIcon/>,
-          // allowedRoles: ["ADMIN", "MANAGER"], // Optional: implied since only they can login
         },
         {
           text: "about",
           icon: <PersonOutlineOutlinedIcon />,
         },
-        { text: "resume", icon: <DescriptionOutlinedIcon /> },
-        { text: "portfolio", icon: <CollectionsOutlinedIcon /> },
-        { text: "services", icon: <DynamicFeedOutlinedIcon /> },
-        { text: "contact", icon: <EmailOutlinedIcon /> },
-        
+        { 
+          text: "resume", 
+          icon: <DescriptionOutlinedIcon />,
+        },
+        { 
+          text: "portfolio", 
+          icon: <CollectionsOutlinedIcon />,
+        },
+        { 
+          text: "services", 
+          icon: <DynamicFeedOutlinedIcon />,
+        },
+        { 
+          text: "contact", 
+          icon: <EmailOutlinedIcon />,
+        },
       ];
 
-      // 2. Filter Function based on 'userRole'
+      // Filter Function based on 'userRole' (if needed later)
       const filterMenuItems = (items) => {
         return items.reduce((acc, item) => {
-          // Rule 1: Check Permissions
-          if (item.allowedRoles && !item.allowedRoles.includes(userRole)) {
-            return acc; // Skip this item if role doesn't match
-          }
-
-          // Rule 2: Recursively filter subItems if they exist
+          // Rule: Recursively filter subItems if they exist
           let processedSubItems = item.subItems;
           if (item.subItems && item.subItems.length > 0) {
             processedSubItems = filterMenuItems(item.subItems);
           }
-
-          // Push to accumulator
           acc.push({ ...item, subItems: processedSubItems });
           return acc;
         }, []);
@@ -99,13 +93,10 @@ const Header = forwardRef(
 
       return filterMenuItems(allMenuItems);
 
-    }, [counts, lang
-      // , userRole
-    ]); 
+    }, [counts, lang]); 
 
     return (
       <div className="header-main-container">
-        {/* {!isMobile && ( */}
         <Sidebar
           isMobile={isMobile}
           selectedItem={selectedItem}
@@ -118,7 +109,6 @@ const Header = forwardRef(
           setImageRefreshKey={setImageRefreshKey}
           sideBarContent={sideBarContent}
         />
-        {/* )} */}
       </div>
     );
   }

@@ -4,7 +4,7 @@ import Hero from './Hero';
 import About from './About';
 import Contact from './Contact';
 import Resume from './Resume';
-import Portfolio from './Portfolio';
+import Portfolio from './Portfolio/Portfolio';
 import Services from './Services';
 import "./Middle.scss";
 import AOS from 'aos';
@@ -12,8 +12,11 @@ import AOS from 'aos';
 const Home = ({isMobile}) => {
   const sectionRefs = useRef({});
   const location = useLocation();
+  
+  // ✅ LOCK REF: Stores whether we are auto-scrolling
+  const isManualScroll = useRef(false);
 
-  // 1. Handle Initial Scroll
+  // 1. Handle Initial Scroll (On Page Load)
   useEffect(() => {
     if (location.hash && location.hash !== '#') {
       const id = location.hash.replace('#', '');
@@ -26,7 +29,23 @@ const Home = ({isMobile}) => {
     }
   }, [location]);
 
-  // 2. Refresh AOS
+  // 2. Setup Manual Scroll Listener (The Lock)
+  useEffect(() => {
+    const handleManualStart = () => {
+        // Lock the observer
+        isManualScroll.current = true;
+        
+        // Unlock after 1 second (enough time for smooth scroll to finish)
+        setTimeout(() => {
+            isManualScroll.current = false;
+        }, 1000);
+    };
+
+    window.addEventListener('manual-scroll-start', handleManualStart);
+    return () => window.removeEventListener('manual-scroll-start', handleManualStart);
+  }, []);
+
+  // 3. Refresh AOS
   useEffect(() => {
     setTimeout(() => { AOS.refresh(); }, 100);
     const scrollContainer = document.querySelector('.dashboard-content');
@@ -37,26 +56,27 @@ const Home = ({isMobile}) => {
     }
   }, []);
 
-  // 3. ✅ CRITICAL: Scroll Spy that Broadcasts Event
+  // 4. ✅ SCROLL SPY (With Lock Logic)
   useEffect(() => {
     const observerOptions = {
       root: document.querySelector('.dashboard-content'),
-      rootMargin: '-20% 0px -60% 0px', // Active when element is near top-center
+      rootMargin: '-30% 0px -50% 0px', // Adjusted for better accuracy
       threshold: 0.1
     };
 
     const observerCallback = (entries) => {
+      // 🔒 IF LOCKED, DO NOTHING
+      if (isManualScroll.current) return;
+
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const id = entry.target.id;
           
-          // Check if we need to update to avoid loop
           if (window.location.hash !== `#${id}`) {
              // A. Update URL silently
              window.history.replaceState(null, null, `#${id}`);
              
-             // B. 🚨 THIS IS THE MISSING PART 🚨
-             // Dispatch event so Sidebar knows to update!
+             // B. Broadcast event
              window.dispatchEvent(new CustomEvent('active-section-update', { detail: `#${id}` }));
           }
         }
@@ -94,7 +114,7 @@ const Home = ({isMobile}) => {
         <Portfolio isMobile={isMobile}/>
       </section>
 
-      <section id="services" className="services section" ref={(el) => setRef(el, 'services')}>
+      <section id="services" ref={(el) => setRef(el, 'services')}>
         <Services isMobile={isMobile}/>
       </section>
 

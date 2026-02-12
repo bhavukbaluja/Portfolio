@@ -2,8 +2,8 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 
 // UI Components
-import { Box, Grid, IconButton, useTheme, Drawer, Fab } from '@mui/material';
-import { ChevronFirst, ChevronLast, Menu as MenuIcon } from "lucide-react"; // Added MenuIcon
+import { Box, Grid, IconButton, useTheme, Drawer } from '@mui/material';
+import { ChevronFirst, ChevronLast } from "lucide-react"; 
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import LanguageOutlinedIcon from '@mui/icons-material/LanguageOutlined';
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
@@ -19,7 +19,6 @@ import Literal from "@ui/literals";
 import { LanguageContext } from "@ui/literals/LanguageProvider";
 import LanguagePopover from '@ui/pages/Common/LanguagePopover';
 import propertiesData from "@utils/Config/Properties.json";
-import useNavigateTo from '@utils/helper/ApiConfig/useNavigateTo.js';
 import { ColorModeContext } from '@utils/Config/ThemeProvider';
 import { Instagram_URL, Facebook_URL, Linkedin_URL } from "@utils/Config/URLs";
 import UserSquareImg from "@assets/UserImageSquare.png";
@@ -37,27 +36,44 @@ const SidebarContext = createContext({
 });
 
 export default function Sidebar({ isMobile, sideBarContent, setSelectedItem, selectedItem, mobileOpen, setMobileOpen, handleDrawerToggle, setImageRefreshKey, imageRefreshKey }) {
-  // Desktop State
   const [expanded, setExpanded] = useState(true);
   
-  // Mobile State
-
   const { lang } = useContext(LanguageContext);
   const user = propertiesData[lang].user;
-  const NavigateTo = useNavigateTo();
   const location = useLocation();
   const [activeHash, setActiveHash] = useState(window.location.hash || '#home'); 
   const [closeTrigger, setCloseTrigger] = useState(0); 
 
-  // --- Logic ---
-
+  // --- 🛠️ HANDLE CLICK LOGIC ---
   const handleClick = (path, isSubItem) => {
     if(!isSubItem){ setCloseTrigger(prev => prev + 1); }
-    const newHash = "#" + (path || "").replace('#', '');
-    setActiveHash(newHash);
-    NavigateTo(newHash, "", true);
 
-    // ✅ Close drawer on mobile after clicking
+    const cleanId = (path || "").toString().replace(/^[#/]+/, '').toLowerCase();
+    const newHash = `#${cleanId}`;
+
+    if (!cleanId) return;
+
+    // 1. 🔒 DISPATCH LOCK EVENT
+    // This tells Home.js to STOP listening to scroll events for a moment
+    window.dispatchEvent(new CustomEvent('manual-scroll-start'));
+
+    // 2. Force Scroll
+    const element = document.getElementById(cleanId);
+    if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // 3. Update URL Safely
+    if (window.history.pushState) {
+        const newUrl = `${window.location.pathname}${newHash}`;
+        window.history.pushState(null, null, newUrl);
+    } else {
+        window.location.hash = newHash;
+    }
+
+    // 4. Update Internal State Immediately
+    setActiveHash(newHash);
+
     if (isMobile) {
       setMobileOpen(false);
     }
@@ -70,68 +86,55 @@ export default function Sidebar({ isMobile, sideBarContent, setSelectedItem, sel
     }
   }, [location]);
 
-  // ✅ Listen for Custom Event
+  // ✅ Listen for Scroll Spy Events (from Home.js)
   useEffect(() => {
     const handleScrollUpdate = (e) => {
+      // Only update if different to prevent loops
       if (e.detail && e.detail !== activeHash) {
         setActiveHash(e.detail);
       }
     };
+    
     window.addEventListener('active-section-update', handleScrollUpdate);
+    
     const interval = setInterval(() => {
-        if(window.location.hash && window.location.hash !== activeHash) {
+        // Double check hash cleanliness
+        if (window.location.hash.includes('#/#')) {
+            const fixedHash = window.location.hash.replace('#/#', '#');
+            window.history.replaceState(null, null, `${window.location.pathname}${fixedHash}`);
+            setActiveHash(fixedHash);
+        } 
+        else if(window.location.hash && window.location.hash !== activeHash) {
             setActiveHash(window.location.hash);
         }
     }, 1000);
+
     return () => {
         window.removeEventListener('active-section-update', handleScrollUpdate);
         clearInterval(interval);
     };
   }, [activeHash]);
 
-  // --- Render Props for Inner Content ---
-  // On mobile, the sidebar is always "expanded" visually when the drawer is open
-  const isExpanded = isMobile ? true : expanded; 
-
   return (
     <>
-      {/* 🟢 MOBILE: Floating Button */}
-      {/* {isMobile && (
-        <Fab 
-          color="primary" 
-          aria-label="open drawer" 
-          onClick={handleDrawerToggle}
-          sx={{
-            position: 'fixed',
-            bottom: 20, // Or top: 20
-            right: 20,  // Or left: 20
-            zIndex: 1300, // Higher than most elements
-            display: mobileOpen ? 'none' : 'flex' // Hide when open
-          }}
-        >
-          <MenuIcon />
-        </Fab>
-      )} */}
-
-      {/* 🟢 MOBILE: Drawer */}
       {isMobile ? (
          <Drawer
             variant="temporary"
             open={mobileOpen}
             onClose={handleDrawerToggle}
-            ModalProps={{ keepMounted: true }} // Better open performance on mobile
+            ModalProps={{ keepMounted: true }} 
             sx={{
               '& .MuiDrawer-paper': { 
-                width: '280px', // Fixed width for mobile drawer
+                width: '280px', 
                 boxSizing: 'border-box',
-                backgroundColor: 'var(--bg-color)', // Match your theme
+                backgroundColor: 'var(--bg-color)', 
                 borderRight: '1px solid var(--divider-color)'
               },
             }}
          >
             <SidebarContent 
-              expanded={true} // Always expanded in drawer
-              setExpanded={() => {}} // No toggle inside drawer
+              expanded={true} 
+              setExpanded={() => {}} 
               isMobile={true}
               closeTrigger={closeTrigger}
               activeHash={activeHash}
@@ -145,7 +148,6 @@ export default function Sidebar({ isMobile, sideBarContent, setSelectedItem, sel
             />
          </Drawer>
       ) : (
-        /* 🔵 DESKTOP: Traditional Sidebar */
         <aside className="sidebar-container">
            <SidebarContent 
               expanded={expanded}
@@ -167,14 +169,8 @@ export default function Sidebar({ isMobile, sideBarContent, setSelectedItem, sel
   )
 }
 
-// ----------------------------------------------------------------------
-// 🔹 REUSABLE INNER CONTENT COMPONENT
-// ----------------------------------------------------------------------
-function SidebarContent({ 
-  expanded, setExpanded, isMobile, closeTrigger, activeHash, 
-  sideBarContent, handleClick, selectedItem, user, lang, 
-  imageRefreshKey, setImageRefreshKey 
-}) {
+// ... (SidebarContent and SidebarItem remain exactly the same as previous step)
+function SidebarContent({ expanded, setExpanded, isMobile, closeTrigger, activeHash, sideBarContent, handleClick, selectedItem, user, lang, imageRefreshKey, setImageRefreshKey }) {
   
   const [anchorEl, setAnchorEl] = useState(null);
   const [languageAnchor, setLanguageAnchor] = useState(null);
@@ -186,7 +182,6 @@ function SidebarContent({
 
   return (
     <nav className="sidebar-nav" style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-        {/* Header (Toggle + Theme/Lang) */}
         <div className="sidebar-header" style={{ justifyContent: expanded ? "space-between" : "center", padding: "10px" }}>
           {expanded && (
               <div style={{display: 'flex', flexDirection: 'row', gap: '10px'}}>
@@ -203,8 +198,6 @@ function SidebarContent({
                 </IconButton>
               </div>
             )}
-          
-          {/* Hide Collapse button on Mobile */}
           {!isMobile && (
             <button onClick={() => setExpanded((curr) => !curr)} className="sidebar-toggle">
               {expanded ? <ChevronFirst /> : <ChevronLast />}
@@ -212,7 +205,6 @@ function SidebarContent({
           )}
         </div>
 
-        {/* User Info */}
         <Box className="sidebar-user-group">
           <div className='sidebar-footer'>
               <div className="sidebar-user-info" style={{alignItems: 'center'}}>
@@ -258,7 +250,6 @@ function SidebarContent({
            </div>
         </Box>
 
-        {/* Navigation List */}
         <SidebarContext.Provider value={{ expanded, closeTrigger, activeHash, isMobile }}>
           <ul className="sidebar-list" style={{ flex: 1, overflowY: 'auto' }}>
             {sideBarContent.map((item)=>(
@@ -279,9 +270,6 @@ function SidebarContent({
   );
 }
 
-// ----------------------------------------------------------------------
-// 🔹 SIDEBAR ITEM COMPONENT (Unchanged logic, just cleanup)
-// ----------------------------------------------------------------------
 function SidebarItem({ icon, text, alert, subItems, path, handleClick }) {
   const { expanded, closeTrigger, activeHash } = useContext(SidebarContext);
   const { lang } = useContext(LanguageContext);

@@ -73,17 +73,17 @@
   min-width: 140px;
   height: 50px;
   border: 1px solid var(--maindarker-color);
+  background-color: var(--color-gray-100);
   border-radius: 0.375rem;
-  background-color: var(--headerBg-color);
   font-size: 1rem;
   font-weight: 500;
-  color: var(--maindark-color);
+  color: var(--maindarker-color);
   user-select: none;
   outline: 0;
   
   @media (hover: hover) {
     &:hover {
-      background-color: var(--color-gray-100);
+      background-color: var(--headerBg-color);
     }
   }
   

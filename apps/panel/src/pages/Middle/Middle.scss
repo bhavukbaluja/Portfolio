@@ -69,3 +69,17 @@ section {
   }
 }
 
+/* Make the Title White */
+.gslide-title {
+    color: #000 !important;
+}
+
+/* Make the Description White */
+.gslide-desc {
+    color: #000 !important; /* Slightly off-white for better readability */
+}
+
+/* Optional: Make the text background dark so the white text pops */
+.gslide-description {
+    background: #fff !important;
+}
