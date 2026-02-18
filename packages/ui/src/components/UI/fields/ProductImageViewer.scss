@@ -1,308 +1,316 @@
-/* No changes needed to SCSS for this specific fix.
-   Ensure .main-image-container and .fullscreen-image-container
-   both have `overflow: hidden;` and their respective `img` children
-   have `object-fit: contain;` and `transform-origin: 0 0;`. */
+/* =========================================
+   Product Image Viewer Styles
+   ========================================= */
 
    .product-image-viewer {
     display: flex;
     gap: 16px;
     align-items: flex-start;
     position: relative;
-  
-    &.mobile-view {
-      flex-direction: column;
-      align-items: center;
-  
-      .main-image-container {
-        margin-bottom: 10px;
-        width: 100%;
-        max-width: none;
-      }
-    }
-  
-    .thumbnail-list {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      min-width: 80px;
-      max-height: 500px;
-      overflow-y: auto;
-      padding-right: 5px;
-  
-      &::-webkit-scrollbar {
-        width: 6px;
-      }
-      &::-webkit-scrollbar-thumb {
-        background-color: #ccc;
-        border-radius: 3px;
-      }
-  
-      &.horizontal {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        max-width: 100%;
-        min-width: 0;
-        max-height: none;
-        overflow-x: auto;
-        overflow-y: hidden;
-        padding-bottom: 5px;
-        padding-right: 0;
-  
-        &::-webkit-scrollbar {
-          height: 6px;
-          width: auto;
-        }
-      }
-  
-      .thumbnail {
-        width: 80px;
-        aspect-ratio: 2 / 3;
-        border: 2px solid var(--color-gray-300);
-        border-radius: 8px;
-        overflow: hidden;
-        cursor: pointer;
-        transition: border-color 0.2s ease, transform 0.2s ease;
-  
-        &.active {
-          border-color: var(--maindarker-color, #000);
-          // transform: scale(1.05);
-        }
-  
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.2s ease;
-  
-          &:hover {
-            transform: scale(1.1);
-          }
-        }
-      }
-    }
-  
-    .main-image-container {
-      position: relative;
-      flex: 1;
-      aspect-ratio: 2 / 3;
-      max-width: 800px;
-      width: 100%;
-      overflow: hidden; // Key for internal zoom
-      cursor: zoom-in;
-      border: 2px solid var(--color-gray-300);
-      border-radius: 8px;
-      background-color: var(--color-gray-100);
-      align-items: center;
-      justify-content: center;
-      display: flex;
+    width: 100%;
+    // height: 500px; /* Optional constraint */
 
-      .main-image {
+    /* ------------------------------ */
+    /* LAYOUT VARIANTS (Desktop)      */
+    /* ------------------------------ */
+    
+    /* LEFT (Default): Thumbnails | Main */
+    &.layout-left {
+        flex-direction: row;
+        .thumbnail-list {
+            flex-direction: column;
+            width: 80px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+    }
+
+    /* RIGHT: Main | Thumbnails */
+    &.layout-right {
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        .thumbnail-list {
+            flex-direction: column;
+            width: 80px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+    }
+
+    /* TOP: Thumbnails / Main */
+    &.layout-top {
+        flex-direction: column;
+        .thumbnail-list {
+            flex-direction: row;
+            width: 100%;
+            height: 80px;
+            overflow-x: auto;
+            max-height: none;
+        }
+        .thumbnail { width: 60px; height: 60px; }
+    }
+
+    /* BOTTOM: Main / Thumbnails */
+    &.layout-bottom {
+        flex-direction: column-reverse;
+        .thumbnail-list {
+            flex-direction: row;
+            width: 100%;
+            height: 80px;
+            overflow-x: auto;
+            max-height: none;
+        }
+        .thumbnail { width: 60px; height: 60px; }
+    }
+
+    /* LEFT / RIGHT Layouts */
+    // &.layout-left, &.layout-right {
+    //   .thumbnail-list {
+    //       /* 1. Increase the container width */
+    //       min-width: 150px; 
+    //       width: 150px;
+    //       gap: 12px; // Slightly more gap looks better with larger thumbs
+    //   }
+
+    //   .thumbnail {
+    //       /* 2. Increase the thumbnail size */
+    //       width: 100%; // Takes up the full 150px of the container
+    //       height: 100px; // You can adjust height to keep your desired aspect ratio
+    //       aspect-ratio: 3 / 2; // Landscape look
+    //   }
+    // }
+
+    /* TOP / BOTTOM Layouts */
+    &.layout-top, &.layout-bottom {
+        .thumbnail-list {
+            height: 120px; // Increase height for horizontal row
+        }
+
+        .thumbnail {
+            width: 120px;
+            height: 100%;
+        }
+    }
+
+    /* Thumbnail inner image */
+    .thumbnail img {
         width: 100%;
         height: 100%;
-        object-fit: contain; // Keeps the entire image visible, potentially adding white space
-        border-radius: 8px;
-        display: block;
-        transition: transform 0.1s ease-out;
-        transform-origin: 0 0; // Ensures transformations are applied from the top-left corner
-      }
+        object-fit: cover; // Ensures the large thumb fills the space without distortion
     }
-  }
-  
-  .fullscreen-carousel {
+    /* ------------------------------ */
+    /* MOBILE OVERRIDE (Always Bottom)*/
+    /* ------------------------------ */
+    @media (max-width: 768px) {
+        flex-direction: column-reverse !important; // Force Bottom layout
+        align-items: center;
+
+        .main-image-container {
+            width: 100%;
+            max-width: none;
+            margin-bottom: 10px;
+        }
+
+        .thumbnail-list {
+            flex-direction: row !important;
+            width: 100% !important;
+            height: 80px !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            max-height: none !important;
+        }
+
+        .thumbnail {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+        }
+    }
+
+    /* --- THUMBNAIL STYLES --- */
+    .thumbnail-list {
+        display: flex;
+        gap: 10px;
+        flex-shrink: 0;
+        padding: 2px; // Prevent focus outline clipping
+
+        /* Scrollbar Styling */
+        &::-webkit-scrollbar { width: 6px; height: 6px; }
+        &::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 3px; }
+
+        .thumbnail {
+            aspect-ratio: 1 / 1;
+            border: 2px solid var(--color-gray-300);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: border-color 0.2s ease;
+            position: relative;
+            background-color: #000;
+            flex-shrink: 0;
+
+            &.active {
+                border-color: var(--maindarker-color, #000);
+                opacity: 1;
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                display: block;
+                transition: transform 0.2s ease;
+                &:hover { transform: scale(1.1); }
+            }
+
+            .thumb-overlay, .video-thumb-placeholder {
+                position: absolute;
+                top: 0; left: 0; right: 0; bottom: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                background: rgba(0,0,0,0.3);
+                gap: 5px;
+                font-size: 10px;
+                pointer-events: none;
+            }
+            .video-thumb-placeholder { background: #333; }
+        }
+    }
+
+    /* --- MAIN VIEWER CONTAINER --- */
+    .main-image-container {
+        position: relative;
+        flex: 1;
+        aspect-ratio: 16 / 9;
+        max-width: 800px;
+        width: 100%;
+        height: 100%; // Fill flex parent
+        overflow: hidden;
+        cursor: zoom-in;
+        border: 2px solid var(--color-gray-300);
+        border-radius: 8px;
+        background-color: var(--color-gray-100);
+        align-items: center;
+        justify-content: center;
+        display: flex;
+
+        &.no-zoom {
+            cursor: default;
+            background-color: #000;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.1s ease-out;
+            transform-origin: 0 0;
+        }
+
+        .media-iframe, .media-video {
+            width: 100%;
+            height: 100%;
+            display: block;
+            border: none;
+            object-fit: contain;
+        }
+    }
+}
+
+/* =========================================
+   FULLSCREEN OVERLAY (Unchanged)
+   ========================================= */
+.fullscreen-carousel {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background-color: rgba(0, 0, 0, 0.95);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 2000;
     padding: 20px;
     box-sizing: border-box;
-    opacity: 0;
     animation: fadeIn 0.3s ease forwards;
-  
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-  
+
+    @keyframes fadeIn { to { opacity: 1; } }
+
     .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 30px; // Ensure the Material UI icon size is appropriate
-      cursor: pointer;
-      z-index: 1001;
-      transition: transform 0.2s ease;
-  
-      &:hover {
-        transform: scale(1.2);
-      }
+        position: absolute;
+        top: 20px; right: 30px;
+        background: none; border: none;
+        color: white; font-size: 40px;
+        cursor: pointer; z-index: 2002;
+        transition: transform 0.2s ease;
+        line-height: 1;
+        &:hover { transform: scale(1.2); color: var(--theme-color); }
     }
-  
+
     .fullscreen-image-container {
-      position: relative;
-      width: 90%; // Can adjust based on your layout needs
-      height: 70%; // Can adjust based on your layout needs
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-grow: 1;
-      overflow: hidden; // << IMPORTANT for fullscreen zoom
-      cursor: zoom-in; // Indicate zoomable area
-      border-radius: 4px;
-      background-color: #f5f5f5; // Background if image doesn't fill
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); // Apply shadow to the container
-  
-      .fullscreen-image {
-        max-width: 100%;
-        max-height: 100%;
-        width: 100%; // Ensure it initially fills its container
-        height: 100%; // Ensure it initially fills its container
-        object-fit: contain; // Keeps the entire image visible, potentially adding white space
-        border-radius: 4px;
-        display: block;
-        transition: transform 0.1s ease-out; // Smooth transition for zoom and pan
-        transform-origin: 0 0; // Ensure consistent transform origin
-      }
-    }
-  
-    .nav-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255, 255, 255, 0.3);
-      border: none;
-      color: white;
-      font-size: 30px;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      cursor: pointer;
-      z-index: 1001;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  
-      &:hover {
-        background: rgba(255, 255, 255, 0.5);
-        transform: translateY(-50%) scale(1.1);
-      }
-  
-      &.prev {
-        left: 20px;
-      }
-  
-      &.next {
-        right: 20px;
-      }
-    }
-  
-    .fullscreen-thumbnails {
-      display: flex;
-      gap: 10px;
-      margin-top: 20px;
-      overflow-x: auto;
-      max-width: 100%;
-      padding: 10px 0;
-      scrollbar-width: thin;
-      scrollbar-color: #888 transparent;
-      flex-shrink: 0;
-  
-      &::-webkit-scrollbar {
-        height: 6px;
-      }
-  
-      &::-webkit-scrollbar-thumb {
-        background-color: #888;
-        border-radius: 3px;
-      }
-  
-      .thumbnail {
-        width: 60px;
-        aspect-ratio: 2 / 3;
-        border: 2px solid transparent;
-        border-radius: 4px;
+        position: relative;
+        width: 90%; height: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
         overflow: hidden;
-        cursor: pointer;
-        flex-shrink: 0;
+        cursor: zoom-in;
+        border-radius: 4px;
+
+        .fullscreen-image {
+            max-width: 100%; max-height: 100%;
+            width: 100%; height: 100%;
+            object-fit: contain;
+            display: block;
+            transition: transform 0.1s ease-out;
+            transform-origin: 0 0;
+        }
+        .media-iframe, .media-video { width: 100%; height: 100%; object-fit: contain; }
+    }
+
+    .nav-btn {
+        position: absolute;
+        top: 50%; transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        color: white; font-size: 30px;
+        width: 50px; height: 50px;
+        border-radius: 50%;
+        cursor: pointer; z-index: 2001;
         transition: all 0.2s ease;
-  
-        &.active {
-          border-color: white;
-          transform: scale(1.05);
-        }
-  
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.2s ease;
-  
-          &:hover {
-            transform: scale(1.05);
-          }
-        }
-      }
+        display: flex; align-items: center; justify-content: center;
+        &:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-50%) scale(1.1); }
+        &.prev { left: 20px; }
+        &.next { right: 20px; }
     }
-  }
-  
-  @media (max-width: 768px) {
-    .product-image-viewer {
-      .main-image-container {
-        // Internal zoom is disabled for mobile view via JS
-      }
-    }
-  
-    .fullscreen-carousel {
-      padding: 10px;
-      .fullscreen-image-container {
-        height: 60%;
-        width: 95%;
-      }
-  
-      .nav-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 24px;
-      }
-  
-      .fullscreen-thumbnails {
-        gap: 8px;
+
+    .fullscreen-thumbnails {
+        display: flex; gap: 10px; margin-top: 20px;
+        overflow-x: auto; max-width: 100%;
+        padding: 10px 0; height: 80px;
+        flex-shrink: 0;
+
+        &::-webkit-scrollbar { height: 6px; }
+        &::-webkit-scrollbar-thumb { background-color: #888; border-radius: 3px; }
+
         .thumbnail {
-          width: 50px;
+            width: 60px; height: 60px;
+            border: 2px solid transparent; border-radius: 4px;
+            overflow: hidden; cursor: pointer;
+            flex-shrink: 0; position: relative; background-color: #000;
+            transition: all 0.2s ease;
+
+            &.active { border-color: white; transform: scale(1.05); opacity: 1; }
+            img { width: 100%; height: 100%; object-fit: cover; }
+            .thumb-overlay, .video-thumb-placeholder {
+                position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+                display: flex; align-items: center; justify-content: center;
+                color: #fff; font-size: 10px; background: rgba(0,0,0,0.5);
+            }
         }
-      }
     }
-  }
-  
-  @media (max-width: 480px) {
-    .fullscreen-carousel {
-      .fullscreen-image-container {
-        height: 50%;
-      }
-  
-      .nav-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 20px;
-      }
-  
-      .fullscreen-thumbnails {
-        gap: 5px;
-        .thumbnail {
-          width: 40px;
-        }
-      }
-    }
-  }
+}

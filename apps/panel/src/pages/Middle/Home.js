@@ -10,17 +10,15 @@ import "./Middle.scss";
 import AOS from 'aos';
 
 const Home = ({isMobile}) => {
-  const sectionRefs = useRef({});
   const location = useLocation();
-  
-  // ✅ LOCK REF: Stores whether we are auto-scrolling
   const isManualScroll = useRef(false);
 
-  // 1. Handle Initial Scroll (On Page Load)
+  // 1. Handle Initial Scroll (On Page Load with HashRouter)
   useEffect(() => {
-    if (location.hash && location.hash !== '#') {
-      const id = location.hash.replace('#', '');
-      const element = document.getElementById(id);
+    // In HashRouter, the path is in location.pathname (e.g., "/services")
+    const path = location.pathname.replace('/', '');
+    if (path && path !== '') {
+      const element = document.getElementById(path);
       if (element) {
         requestAnimationFrame(() => {
           element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -32,10 +30,7 @@ const Home = ({isMobile}) => {
   // 2. Setup Manual Scroll Listener (The Lock)
   useEffect(() => {
     const handleManualStart = () => {
-        // Lock the observer
         isManualScroll.current = true;
-        
-        // Unlock after 1 second (enough time for smooth scroll to finish)
         setTimeout(() => {
             isManualScroll.current = false;
         }, 1000);
@@ -56,11 +51,11 @@ const Home = ({isMobile}) => {
     }
   }, []);
 
-  // 4. ✅ SCROLL SPY (With Lock Logic)
+  // 4. ✅ BULLETPROOF SCROLL SPY
   useEffect(() => {
     const observerOptions = {
       root: document.querySelector('.dashboard-content'),
-      rootMargin: '-30% 0px -50% 0px', // Adjusted for better accuracy
+      rootMargin: '-20% 0px -40% 0px', // Adjusted to be more forgiving for shorter sections
       threshold: 0.1
     };
 
@@ -68,57 +63,69 @@ const Home = ({isMobile}) => {
       // 🔒 IF LOCKED, DO NOTHING
       if (isManualScroll.current) return;
 
+      let maxRatio = 0;
+      let activeId = null;
+
+      // ✅ FIX: Find the most visible intersecting section
+      // This prevents tall sections (Portfolio) from overpowering short ones (Services)
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          
-          if (window.location.hash !== `#${id}`) {
-             // A. Update URL silently
-             window.history.replaceState(null, null, `#${id}`);
-             
-             // B. Broadcast event
-             window.dispatchEvent(new CustomEvent('active-section-update', { detail: `#${id}` }));
-          }
+        if (entry.isIntersecting && entry.intersectionRatio > maxRatio) {
+          maxRatio = entry.intersectionRatio;
+          activeId = entry.target.id;
         }
       });
+
+      if (activeId) {
+        // The URL gets the HashRouter format (e.g., "#/portfolio")
+        const targetHash = `#${activeId}`;
+        
+        if (window.location.hash !== targetHash) {
+           // A. Update URL silently so page reloads work
+           window.history.replaceState(null, null, targetHash);
+           
+           // B. ✅ FIX: Broadcast ONLY the raw word (e.g., "portfolio") to the sidebar
+           window.dispatchEvent(new CustomEvent('active-section-update', { detail: activeId }));
+        }
+     }
     };
 
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
-    Object.values(sectionRefs.current).forEach((section) => {
-      if (section) observer.observe(section);
+    // ✅ FIX: Explicitly query the DOM IDs. 
+    // This removes the fragile `useRef` object that misses elements during render cycles.
+    const sectionIds = ['home', 'about', 'resume', 'portfolio', 'services', 'contact'];
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
     });
 
     return () => observer.disconnect();
   }, []);
 
-  const setRef = (el, id) => {
-    if (el) sectionRefs.current[id] = el;
-  };
-
   return (
     <div className="home-page-container">
-      <div id="home" ref={(el) => setRef(el, 'home')}>
+      {/* Ref hooks removed from the DOM elements for cleaner, direct ID targeting */}
+      <div id="home">
         <Hero isMobile={isMobile}/>
       </div>
 
-      <section id="about" ref={(el) => setRef(el, 'about')}>
+      <section id="about">
         <About isMobile={isMobile}/>
       </section>
 
-      <section id="resume" ref={(el) => setRef(el, 'resume')}>
+      <section id="resume">
         <Resume isMobile={isMobile}/>
       </section>
 
-      <section id="portfolio" ref={(el) => setRef(el, 'portfolio')}>
+      <section id="portfolio">
         <Portfolio isMobile={isMobile}/>
       </section>
 
-      <section id="services" ref={(el) => setRef(el, 'services')}>
+      <section id="services">
         <Services isMobile={isMobile}/>
       </section>
 
-      <section id="contact" ref={(el) => setRef(el, 'contact')}>
+      <section id="contact">
         <Contact isMobile={isMobile}/>
       </section>
     </div>

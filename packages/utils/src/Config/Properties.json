@@ -8,6 +8,13 @@
       "city": "Delhi, India",
       "dob": "2001-07-05", 
       "address": "Delhi, India",
+      "roles": [
+        "Full-Stack Developer", 
+        "E-Commerce Specialist", 
+        "Frontend Developer", 
+        "Backend Engineer", 
+        "Freelancer"
+      ],
       "website": "github.com/bhavukbaluja",
       "linkedin": "linkedin.com/in/bhavuk-baluja-59a303156"
     },
@@ -146,19 +153,29 @@
     "portfolio": [
       {
         "id": 1,
-        "category": "app",
-        "title": "Example Project",
-        "shortDesc": "Short description for the tile.",
-        "fullDesc": "Longer description that appears inside the modal...",
+        "category": "web",
+        "title": "Enterprise E-Commerce & Retail Management Platform (Poshdori)",
+        "shortDesc": "A high-performance online storefront and comprehensive admin dashboard built to manage and scale a growing fashion retail brand.",
+        "fullDesc": "Built as a complete digital retail solution, this platform provides a seamless, fast shopping experience for customers while equipping business owners with a powerful command center to manage their entire operation. From tracking live inventory and processing orders to monitoring system health and managing staff access, the system handles the complete retail lifecycle.\n\nUnder the hood, the platform is designed for enterprise-level scale, security, and reliability using a Distributed Microservices architecture:\n\n• **Front-End Experience:** Built two distinct React.js applications (Public Store and Admin Panel) deployed via Cloudflare to ensure lightning-fast global access and security.\n• **Robust Backend Core:** Engineered a complex network of Java Spring Boot microservices hosted on a custom-configured Linux server environment.\n• **Scalable Architecture:** Orchestrated the microservices using Netflix Eureka for dynamic service discovery and a Spring Cloud API Gateway for efficient traffic routing.\n• **Asynchronous Processing:** Implemented RabbitMQ for event-driven communication, allowing complex background tasks (like updating inventory or logging audit trails) to happen instantly without slowing down the user experience.\n• **Data Isolation & Security:** Utilized separate MySQL databases for core business logic and dedicated audit logging, paired with strict Role-Based Access Control (RBAC) to protect sensitive data.",
         "img": "assets/img/portfolio/vscode.png",
         "gallery": [
-          "assets/img/portfolio/1.jpg",
-          "assets/img/portfolio/detail-1.jpg"
+          "assets/img/portfolio/poshdori-home.jpg",
+          "assets/img/portfolio/poshdori-admin.jpg",
+          "assets/img/portfolio/poshdori-architecture.jpg"
         ],
-        "video": "https://www.youtube.com/embed/pR0NScYJvfQ?si=BBKT7O7Z0WxQS9qn",
-        "techStack": ["React", "Node.js", "MUI"],
-        "link": "https://live-demo.com",
-        "repo": "https://github.com/user/repo"
+        "video": "https://www.youtube.com/embed/YOUR_VIDEO_ID?rel=0&modestbranding=1",
+        "techStack": [
+          "Java",
+          "Spring Boot",
+          "React.js",
+          "Microservices",
+          "RabbitMQ",
+          "Spring Cloud",
+          "MySQL",
+          "Linux"
+        ],
+        "link": "https://poshdori.com",
+        "repo": ""
       }
     ],
 

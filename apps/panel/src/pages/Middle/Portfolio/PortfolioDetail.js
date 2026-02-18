@@ -3,107 +3,88 @@ import {
   Box, 
   Typography, 
   Chip, 
-  Grid, 
-  Button, 
   Divider 
 } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import ProductImageViewer from '@ui/components/UI/fields/ProductImageViewer'; // ✅ Import your new viewer
 
 const PortfolioDetail = ({ project, isMobile }) => {
   if (!project) return null;
-  isMobile = false;
-  return (
-    <Box sx={{ padding: '10px', display: 'flex', flexDirection: isMobile? 'column': 'row', width: '100%', gap: '20px', alignItems: 'center', justifyContent: 'center' }}>
-      
-      {/* 1. HERO SECTION (Video or Main Image) */}
-      <Box 
-        sx={{ 
-          width: "100%",
-          aspectRatio: project?.video?'16/9': '1',
-          flex: 1,
-          borderRadius: '12px', 
-          overflow: 'hidden', 
-          boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
-          backgroundColor: '#000' // Dark background for media
-        }}
-      >
-        {project.video ? (
-          <iframe 
-            width='100%'
-            height='100%'
-            src={project.video} 
-            title={project.title} 
-            frameBorder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowFullScreen
-            style={{ display: 'block' }}
-          ></iframe>
-        ) : (
-          <img 
-            src={project.img} 
-            alt={project.title} 
-            style={{ width: '100%', maxHeight: '500px', objectFit: 'contain' }} 
-          />
-        )}
-      </Box>
 
-      <div style={{display: 'flex', flex: 1, flexDirection: isMobile? 'column':'row', gap: '20px'}}>
+  // ✅ Helper to parse **bold** text manually
+  const renderDescription = (text) => {
+    if (!text) return null;
+    const parts = text.split(/(\*\*.*?\*\*)/g);
+    return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={index}>{part.slice(2, -2)}</strong>;
+      }
+      return part;
+    });
+  };
+
+  // ✅ PREPARE MEDIA LIST
+  // Combine Video -> Main Image -> Gallery into one array for the viewer
+  // We use Set to remove duplicates if the main image is also in the gallery
+  const mediaItems = [
+    project.video, 
+    project.img, 
+    ...(project.gallery || [])
+  ].filter(item => item && item !== ""); // Remove null/empty strings
+  
+  const uniqueMediaItems = [...new Set(mediaItems)];
+
+  return (
+    <Box sx={{ 
+        padding: '10px', 
+        display: 'flex', 
+        flexDirection: 'column', 
+        width: '100%', 
+        gap: '40px', 
+        justifyContent: 'center' 
+    }}>
+      
+      {/* 1. TOP SECTION: Description (Left) & Info Sidebar (Right) */}
+      <Box sx={{ 
+          display: 'flex', 
+          flexDirection: isMobile ? 'column' : 'row', 
+          gap: '30px',
+          alignItems: 'stretch' 
+      }}>
         
-        {/* 2. LEFT COLUMN: Description & Gallery */}
-        <div style={{flex: 0.6}}>
+        {/* LEFT: Project Overview */}
+        <Box sx={{ flex: 1.5 }}>
           <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, color: 'var(--primarytext-color)' }}>
             Project Overview
           </Typography>
           
           <Typography 
+            component="div"
             variant="body1" 
             sx={{ 
-              fontSize: '1rem', 
+              fontSize: '15px', 
               lineHeight: 1.8, 
-              color: 'var(--secondarytext-color)', 
+              color: 'var(--primarytext-color)', 
               whiteSpace: 'pre-line',
-              mb: 4
+              textAlign: 'justify' 
             }}
           >
-            {project.fullDesc || project.shortDesc}
+            {renderDescription(project.fullDesc || project.shortDesc)}
           </Typography>
+        </Box>
 
-          {/* Gallery Grid */}
-          {project.gallery && project.gallery.length > 0 && (
-            <Box>
-              <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
-                Screenshots & Details
-              </Typography>
-              <Grid container spacing={2}>
-                {project.gallery.map((img, index) => (
-                  <Grid item xs={12} sm={6} key={index}>
-                    <Box 
-                      component="img"
-                      src={img} 
-                      alt={`Gallery ${index}`} 
-                      sx={{ 
-                        width: '100%', 
-                        borderRadius: '8px', 
-                        transition: 'transform 0.3s',
-                        '&:hover': { transform: 'scale(1.02)' }
-                      }} 
-                    />
-                  </Grid>
-                ))}
-              </Grid>
-            </Box>
-          )}
-        </div>
-
-        {/* 3. RIGHT COLUMN: Meta Info (Sidebar) */}
-        <div style={{flex: 0.4}}>
+        {/* RIGHT: Meta Info Sidebar */}
+        <Box sx={{ flex: 0.8, minWidth: isMobile ? '100%' : '300px' }}> 
           <Box 
             sx={{ 
               p: 3, 
               backgroundColor: 'var(--color-gray-50)', 
               borderRadius: '12px', 
-              border: '1px solid var(--color-gray-100)' 
+              border: '1px solid var(--color-gray-100)',
+              height: '470px', 
+              display: 'flex',
+              flexDirection: 'column'
             }}
           >
             <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
@@ -121,7 +102,7 @@ const PortfolioDetail = ({ project, isMobile }) => {
             </Box>
 
             {/* Tech Stack */}
-            <Box sx={{ mb: 3 }}>
+            <Box sx={{ mb: 3, flexGrow: 1 }}>
               <Typography variant="subtitle2" sx={{ color: 'var(--secondarytext-color)', mb: 1 }}>
                 Technologies
               </Typography>
@@ -144,37 +125,47 @@ const PortfolioDetail = ({ project, isMobile }) => {
             </Box>
 
             {/* Action Buttons */}
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 4 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mt: 'auto' }}>
               {project.link && (
                 <button 
-                  // variant="contained" 
-                  href={project.link} 
-                  target="_blank"
+                  onClick={() => window.open(project.link, '_blank')}
                   className='form-button'
-                  // fullWidth
-                  // sx={{ 
-                  //   backgroundColor: 'var(--primarytext-color)', 
-                  //   '&:hover': { backgroundColor: 'var(--theme-color)' } 
-                  // }}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', width: '100%' }}
                 >
-                  <LaunchIcon /> Live Demo
+                  <LaunchIcon fontSize="small" /> Live Demo
                 </button>
               )}
               {project.repo && (
                 <button 
-                  href={project.repo} 
-                  target="_blank"
-                  // fullWidth
+                  onClick={() => window.open(project.repo, '_blank')}
                   className='form-skip-button'
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', width: '100%' }}
                 >
-                  <GitHubIcon /> Source Code
+                  <GitHubIcon fontSize="small" /> Source Code
                 </button>
               )}
             </Box>
           </Box>
-        </div>
+        </Box>
+      </Box>
 
-      </div>
+      {/* 2. BOTTOM SECTION: Interactive Media Viewer */}
+      {uniqueMediaItems.length > 0 && (
+        <Box style={{width: '100%'}}>
+            <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
+                Gallery & Media
+            </Typography>
+            
+            {/* ✅ INTEGRATED VIEWER */}
+            <ProductImageViewer 
+                mediaItems={uniqueMediaItems} 
+                alt={project.title}
+                // Desktop: Thumbnails on Left | Mobile: Thumbnails on Bottom (handled by CSS, but passed logically here)
+                thumbnailPosition={isMobile ? 'bottom' : 'right'} 
+            />
+        </Box>
+      )}
+
     </Box>
   );
 };

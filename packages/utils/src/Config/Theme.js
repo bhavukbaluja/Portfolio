@@ -25,7 +25,7 @@ const theme = {
       // Neutrals
       light: "#F8F9FA",
       dark: "#212529",
-      primarytext: "#333333",
+      primarytext: "#000000",
       secondarytext: "#757575",
       background: "#eeeeee",
       background2: "#F5F5F5",
@@ -66,7 +66,7 @@ const theme = {
       // Neutrals
       light: "#1e1e1e",
       dark: "#F8F9FA",
-      primarytext: "#EAD1DC",     // Using your light pink for main text
+      primarytext: "#f3f6f4",     // Using your light pink for main text
       secondarytext: "#BCAAA4",   // Warm Gray
       background: "#0F080A",      // Darkest background
       background2: "#1A1013",     // Secondary background

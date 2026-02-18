@@ -31,7 +31,7 @@ const Services = () => {
             <SmallImageTileWithColor
                 title={service.title}
                 description={service.desc}
-                price={service.price}
+                // price={service.price}
                 icon={service.icon}
                 index={index}
                 url={service.url} // Pass URL if you have it in JSON

@@ -718,7 +718,11 @@ const en = {
     iM: "I'm",
     viewDetails: "View Details",
     zoom: "Zoom",
-    
+    sendingMessage: "Sending message...",
+    messageFailed: "Failed to send message. Please try again later.",
+    networkError: "A network error occurred. Please check your connection.",
+    sending: "Sending..."
+
   };
   
   export default en;

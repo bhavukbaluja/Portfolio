@@ -1,6 +1,6 @@
 export const URL_CONFIG = {
     PANEL_SITE_URL : "http://localhost:3000/",
-    API_URL: "http://localhost:8080",
+    API_URL: "https://portfolio-mailer.bhavuk-baluja.workers.dev/",
     SITE_URL: "http://localhost:3001/",
     // API_URL: "https://poshdori-server.poshdori.com",
     // SITE_URL: "https://poshdori.com",

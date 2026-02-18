@@ -6,7 +6,6 @@ import { LanguageContext } from '@ui/literals/LanguageProvider';
 import Literal from "@ui/literals";
 import "../Middle.scss";
 
-// ✅ 1. Accept 'onViewDetails' prop
 const PortfolioItem = ({ item, onViewDetails }) => {
   const [isHovered, setIsHovered] = useState(false);
   const { lang } = useContext(LanguageContext);
@@ -24,7 +23,6 @@ const PortfolioItem = ({ item, onViewDetails }) => {
       <div 
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        // Optional: Clicking the whole card can also open details
         onClick={() => onViewDetails && onViewDetails(item)}
         style={{
           position: 'relative',
@@ -70,11 +68,17 @@ const PortfolioItem = ({ item, onViewDetails }) => {
             <a 
               href={item.img} 
               className="glightbox preview-link"
-              onClick={(e) => e.stopPropagation()} // Prevent triggering card click
+              onClick={(e) => {
+                e.stopPropagation(); // Prevents the dialog modal from opening
+              }} 
               data-gallery={`portfolio-gallery-${item.category}`}
               title={Literal[lang].zoom}
               data-title={item.title}
-              data-description={item.desc}
+              data-description={item.shortDesc || item.desc}
+              
+              // ✅ FIX: Explicitly tell GLightbox this is an image so it doesn't hang on loading
+              data-type="image" 
+              
               style={{ 
                 color: '#fff', 
                 fontSize: '1.2rem', 
@@ -92,10 +96,10 @@ const PortfolioItem = ({ item, onViewDetails }) => {
                 <ZoomOutMapOutlinedIcon fontSize="small"/>
             </a>
 
-            {/* ✅ 2. Details Button - Triggers Modal */}
+            {/* 2. Details Button - Triggers Modal */}
             <div
               onClick={(e) => {
-                e.stopPropagation(); // Stop bubble so it doesn't click twice
+                e.stopPropagation(); 
                 if (onViewDetails) onViewDetails(item);
               }}
               title={Literal[lang].viewDetails}
@@ -154,7 +158,7 @@ const PortfolioItem = ({ item, onViewDetails }) => {
               transition: 'all 0.4s ease 0.1s'      
             }}>
               <p style={{ color: '#fff', fontSize: '0.9rem', margin: '5px 0 0 0', lineHeight: '1.4' }}>
-                {item.shortDesc || item.desc} {/* Prefer shortDesc for tile */}
+                {item.shortDesc || item.desc} 
               </p>
             </div>
           </div>

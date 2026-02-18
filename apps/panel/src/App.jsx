@@ -6,8 +6,7 @@ import { ErrorProvider } from '@utils/helper/ApiConfig/ErrorContext.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { SnackbarProvider, useSnackbar } from 'notistack';
 import React, { useEffect, useRef, useState } from 'react';
-// ✅ FIXED: Changed BrowserRouter to HashRouter
-import { Navigate, Route, HashRouter as Router, Routes, useLocation } from 'react-router-dom';
+import { Route, HashRouter as Router, Routes, useLocation } from 'react-router-dom';
 import './App.css';
 import ScrollToTop from '@ui/pages/Common/ScrollToTop.js';
 import { ThemeProvider } from "@utils/Config/ThemeProvider.js";
@@ -40,7 +39,6 @@ function App() {
     <LanguageProvider>
       <ErrorProvider>
           <SnackbarProvider maxSnack={3}>
-              {/* ✅ Router is now HashRouter */}
               <Router>
                 <MainContent isMobile={isMobile} selectedItem={selectedItem} setSelectedItem={setSelectedItem} loading={loading} setLoading={setLoading}/>
               </Router>
@@ -58,13 +56,34 @@ function MainContent({ isMobile, selectedItem, setSelectedItem, loading, setLoad
   const headerRef = useRef();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // 1. Initial Load: Read from React Router
   useEffect(() => {
     if (location?.pathname) {
-      // In HashRouter, pathname will be just "/" or "/about", avoiding the "/Portfolio" prefix issue
-      const firstPart = "/" + location.pathname.split("/")[1]; 
-      setSelectedItem(firstPart);
+      const firstPart = location.pathname.split("/")[1]; 
+      setSelectedItem(firstPart ? firstPart : "home");
     }
-  }, [location]); 
+  }, [location, setSelectedItem]); 
+
+  // 2. ✅ FIX: Listen for Scroll Spy updates from Home.js
+  useEffect(() => {
+    const handleScrollUpdate = (e) => {
+      // e.detail is exactly "portfolio", "about", etc.
+      if (e.detail) {
+        setSelectedItem(e.detail);
+      }
+    };
+
+    window.addEventListener('active-section-update', handleScrollUpdate);
+    return () => window.removeEventListener('active-section-update', handleScrollUpdate);
+  }, [setSelectedItem]);
+
+  // useEffect(() => {
+  //   if (location?.pathname) {
+  //     const firstPart = location.pathname.split("/")[1]; 
+  //     // ✅ FIX: Default to "home" if firstPart is empty (e.g., when path is just "/")
+  //     setSelectedItem(firstPart ? firstPart : "home");
+  //   }
+  // }, [location, setSelectedItem]); 
   
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -119,14 +138,13 @@ function MainContent({ isMobile, selectedItem, setSelectedItem, loading, setLoad
                 />
               }
             >
-            <Route path="/" element={<Home isMobile={isMobile}/>} />
-            <Route path="" element={<Home isMobile={isMobile}/>} />
             
-            {/* Catch-all for sub-routes */}
-            <Route path="*" element={<NotFound />} />
+            {/* ✅ FIX: Add a dynamic route so any section parameter renders Home */}
+            <Route path="/" element={<Home isMobile={isMobile}/>} />
+            <Route path="/:section" element={<Home isMobile={isMobile}/>} />
+            
         </Route>
 
-        {/* Catch-all for root level */}
         <Route path="*" element={<NotFound />} />
       </Routes>
       <FloatingButtons handleDrawerToggle={handleDrawerToggle} isMobile={isMobile}/>

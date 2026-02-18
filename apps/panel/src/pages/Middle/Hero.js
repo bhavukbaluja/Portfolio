@@ -23,13 +23,7 @@ const Hero = ({isMobile}) => {
 
   useEffect(() => {
     const typed = new Typed(el.current, {
-      strings: [
-        'Full-Stack Developer', 
-        'E-Commerce Specialist', 
-        'Frontend Developer', 
-        'Backend Engineer', 
-        'Freelancer'
-      ],
+      strings: properties?.user?.roles,
       typeSpeed: 100,
       backSpeed: 50,
       backDelay: 2000,
