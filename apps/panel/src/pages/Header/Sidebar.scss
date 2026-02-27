@@ -26,19 +26,6 @@
   flex-direction: column;
 }
 
-/* Sidebar Navigation */
-// .sidebar-nav {
-//   flex-grow: 1; /* Allow content to grow and take available space */
-//   display: flex;
-//   flex-direction: column;
-//   background-color: var(--headerBg-color);
-//   border-right: 1px solid #e5e7eb; /* tailwind's border-r */
-//   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* tailwind's shadow-sm */
-//   overflow-y: auto; /* Enable scrolling */
-//   overflow-x: hidden;
-//   align-items: center;
-// }
-
 /* Sidebar Header */
 .sidebar-header {
   padding: 1rem;
@@ -126,14 +113,12 @@
   }
 
   &.collapsed {
-    /* 2. REMOVE visibility: hidden */
-    
-    /* 3. Collapse all dimensions to 0 */
+    /* Collapses dimensions to 0 */
     width: 0;
-    height: 0;      /* Collapses vertical space */
-    padding: 0;     /* Critical: Padding adds space even if height is 0 */
-    margin: 0;      /* Removes gap */
-    opacity: 0;     /* Fades out content */
+    height: 0;      
+    padding: 0;     
+    margin: 0;      
+    opacity: 0;     
   }
 }
 
@@ -180,6 +165,15 @@
   }
 }
 
+/* Sidebar Item Content Wrapper (Added for flexbox truncation logic) */
+.sidebar-item-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0; /* Magic rule to allow inner text to truncate */
+}
+
 /* Sidebar Badge */
 .sidebar-badge {
   width: 20px;
@@ -211,27 +205,23 @@
 .sidebar-text {
   overflow: hidden;
   transition: all 0.3s ease;
-  display: inline-block; /* Ensure that the text doesn't go to the next line */
   
-  /* 1. Force the text to stay on a single line */
+  display: block; /* Better for flexbox than inline-block */
+  min-width: 0; /* Magic rule for truncation */
   white-space: nowrap; 
-  
-  /* 2. Add the "..." when the text exceeds the width */
   text-overflow: ellipsis; 
 
-  /* Optional: Helps align the text vertically with your icons */
-  vertical-align: middle; 
-
   &.expanded {
-    width: 13rem; /* The ellipsis will trigger if text is wider than this */
+    width: 100%;
+    max-width: 11rem; /* Adjust this value if it still pushes the sidebar */
     margin-left: 0.75rem;
   }
 
   &.collapsed {
     width: 0;
+    margin-left: 0;
   }
 }
-
 
 /* Sidebar Tooltip (on Hover) */
 .sidebar-tooltip {
@@ -259,15 +249,16 @@
 }
 
 /* Sidebar Item Icon Wrapper */
-.sidebar-item-icon,
-.sidebar-subitem-content {
+.sidebar-item-icon {
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start; /* Changed from center */
+  flex: 1; /* Allow it to take up available space */
+  min-width: 0; /* Magic rule */
 
   &.collapsed {
-    /* When collapsed, the badge is on the icon */
+    justify-content: center; /* Center only when collapsed */
     .sidebar-badge {
       top: -17px;
       right: -7px;
@@ -275,7 +266,6 @@
   }
 
   &.expanded {
-    /* When expanded, the badge moves to the text */
     .sidebar-badge {
       top: 0;
       right: 10px;
@@ -283,6 +273,12 @@
   }
 }
 
+.expand-collapse{
+  align-items: flex-end;
+  flex-shrink: 0; /* Prevents the arrow from getting squished by long text */
+}
+
+/* Sidebar Subitem */
 .sidebar-subitem {
   width: 100%;
   position: relative;
@@ -297,6 +293,7 @@
   transition: background-color 0.2s ease;
   color: var(--maindarker-color);
   white-space: nowrap; /* Prevent text from wrapping */
+  font-size: 0.875rem;
   
   &:hover {
     background-color: var(--mainlighter-color);
@@ -306,40 +303,27 @@
     background: linear-gradient(to top right, var(--maindark-color), var(--mainlight-color));
     color: var(--light-color);
   }
-  font-size: 0.875rem;
-  margin: 0.25rem 0;
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--mainlighter-color);
-  }
-
-  .sidebar-text.expanded {
-    width: auto;
-    margin-left: 0;
-  }
 
   .sidebar-text.collapsed {
     display: none;
   }
 }
 
-.expand-collapse{
-  align-items: flex-end;
-}
-
+/* Sidebar Subitem Content */
 .sidebar-subitem-content {
   display: flex;
   align-items: center;
   position: relative;
   width: 100%;
+  min-width: 0; /* Magic rule */
 
   .sidebar-text {
     margin-left: 0.75rem;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    flex: 1;
+    display: block;
+    min-width: 0; 
   }
 
   .sidebar-badge {
