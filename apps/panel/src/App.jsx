@@ -23,14 +23,16 @@ function App() {
 
   useEffect(() => {
     const checkIsMobile = () => {
-      const width = window.innerWidth;
-      const userAgent = navigator.userAgent.toLowerCase();
-      const isTablet = /ipad|tablet|playbook|silk/.test(userAgent);
-      const isMobileDevice = /android|iphone|ipod|blackberry|iemobile|opera mini/.test(userAgent);
-      setIsMobile(isMobileDevice || isTablet || width <= 1024);
+      // 1024px is the width of a standard iPad in landscape.
+      // Using < 1024 means:
+      // - Phones & Portrait Tablets = true (Mobile Layout)
+      // - Landscape Tablets & Laptops = false (Desktop Layout)
+      setIsMobile(window.innerWidth < 1024);
     };
+
     checkIsMobile(); 
     window.addEventListener("resize", checkIsMobile);
+    
     return () => window.removeEventListener("resize", checkIsMobile);
   }, []);
 

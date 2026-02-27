@@ -8,7 +8,6 @@
     align-items: flex-start;
     position: relative;
     width: 100%;
-    // height: 500px; /* Optional constraint */
 
     /* ------------------------------ */
     /* LAYOUT VARIANTS (Desktop)      */
@@ -63,29 +62,11 @@
         .thumbnail { width: 60px; height: 60px; }
     }
 
-    /* LEFT / RIGHT Layouts */
-    // &.layout-left, &.layout-right {
-    //   .thumbnail-list {
-    //       /* 1. Increase the container width */
-    //       min-width: 150px; 
-    //       width: 150px;
-    //       gap: 12px; // Slightly more gap looks better with larger thumbs
-    //   }
-
-    //   .thumbnail {
-    //       /* 2. Increase the thumbnail size */
-    //       width: 100%; // Takes up the full 150px of the container
-    //       height: 100px; // You can adjust height to keep your desired aspect ratio
-    //       aspect-ratio: 3 / 2; // Landscape look
-    //   }
-    // }
-
     /* TOP / BOTTOM Layouts */
     &.layout-top, &.layout-bottom {
         .thumbnail-list {
-            height: 120px; // Increase height for horizontal row
+            height: 120px;
         }
-
         .thumbnail {
             width: 120px;
             height: 100%;
@@ -96,13 +77,14 @@
     .thumbnail img {
         width: 100%;
         height: 100%;
-        object-fit: cover; // Ensures the large thumb fills the space without distortion
+        object-fit: cover;
     }
+
     /* ------------------------------ */
     /* MOBILE OVERRIDE (Always Bottom)*/
     /* ------------------------------ */
     @media (max-width: 768px) {
-        flex-direction: column-reverse !important; // Force Bottom layout
+        flex-direction: column-reverse !important;
         align-items: center;
 
         .main-image-container {
@@ -132,9 +114,8 @@
         display: flex;
         gap: 10px;
         flex-shrink: 0;
-        padding: 2px; // Prevent focus outline clipping
+        padding: 2px;
 
-        /* Scrollbar Styling */
         &::-webkit-scrollbar { width: 6px; height: 6px; }
         &::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 3px; }
 
@@ -181,13 +162,15 @@
     }
 
     /* --- MAIN VIEWER CONTAINER --- */
-    .main-image-container {
+  .main-image-container {
         position: relative;
         flex: 1;
-        aspect-ratio: 16 / 9;
+        
         max-width: 800px;
         width: 100%;
-        height: 100%; // Fill flex parent
+        
+        /* 2. CHANGE height to auto so the inline aspect-ratio can do the math */
+        height: auto;
         overflow: hidden;
         cursor: zoom-in;
         border: 2px solid var(--color-gray-300);
@@ -222,7 +205,7 @@
 }
 
 /* =========================================
-   FULLSCREEN OVERLAY (Unchanged)
+   FULLSCREEN OVERLAY
    ========================================= */
 .fullscreen-carousel {
     position: fixed;
@@ -250,9 +233,9 @@
         &:hover { transform: scale(1.2); color: var(--theme-color); }
     }
 
+    /* Dimension constraints handled natively in React inline styles now */
     .fullscreen-image-container {
         position: relative;
-        width: 90%; height: 70%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -261,15 +244,16 @@
         cursor: zoom-in;
         border-radius: 4px;
 
-        .fullscreen-image {
-            max-width: 100%; max-height: 100%;
-            width: 100%; height: 100%;
-            object-fit: contain;
+        .main-image {
             display: block;
             transition: transform 0.1s ease-out;
             transform-origin: 0 0;
         }
-        .media-iframe, .media-video { width: 100%; height: 100%; object-fit: contain; }
+        
+        .media-iframe, .media-video {
+            display: block;
+            border: none;
+        }
     }
 
     .nav-btn {

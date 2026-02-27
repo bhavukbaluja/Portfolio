@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { 
   Box, 
   Typography, 
@@ -8,8 +8,12 @@ import {
 import LaunchIcon from '@mui/icons-material/Launch';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import ProductImageViewer from '@ui/components/UI/fields/ProductImageViewer'; // ✅ Import your new viewer
+import { LanguageContext } from '@ui/literals/LanguageProvider';
+import Literal from "@ui/literals";
 
 const PortfolioDetail = ({ project, isMobile }) => {
+
+  const { lang } = useContext(LanguageContext);
   if (!project) return null;
 
   // ✅ Helper to parse **bold** text manually
@@ -56,7 +60,7 @@ const PortfolioDetail = ({ project, isMobile }) => {
         {/* LEFT: Project Overview */}
         <Box sx={{ flex: 1.5 }}>
           <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, color: 'var(--primarytext-color)' }}>
-            Project Overview
+            {Literal[lang].projectOverview}
           </Typography>
           
           <Typography 
@@ -88,14 +92,14 @@ const PortfolioDetail = ({ project, isMobile }) => {
             }}
           >
             <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
-              Project Info
+            {Literal[lang].projectInfo}
             </Typography>
 
             <Divider sx={{ mb: 2 }} />
 
             {/* Category */}
             <Box sx={{ mb: 3 }}>
-              <Typography variant="subtitle2" sx={{ color: 'var(--secondarytext-color)' }}>Category</Typography>
+              <Typography variant="subtitle2" sx={{ color: 'var(--secondarytext-color)' }}>{Literal[lang].category}</Typography>
               <Typography variant="body1" sx={{ fontWeight: 500, textTransform: 'capitalize', color: 'var(--primarytext-color)' }}>
                 {project.category}
               </Typography>
@@ -104,7 +108,7 @@ const PortfolioDetail = ({ project, isMobile }) => {
             {/* Tech Stack */}
             <Box sx={{ mb: 3, flexGrow: 1 }}>
               <Typography variant="subtitle2" sx={{ color: 'var(--secondarytext-color)', mb: 1 }}>
-                Technologies
+              {Literal[lang].technologies}
               </Typography>
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                 {project.techStack?.map((tech) => (
@@ -132,7 +136,7 @@ const PortfolioDetail = ({ project, isMobile }) => {
                   className='form-button'
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', width: '100%' }}
                 >
-                  <LaunchIcon fontSize="small" /> Live Demo
+                  <LaunchIcon fontSize="small" /> {Literal[lang].liveDemo}
                 </button>
               )}
               {project.repo && (
@@ -141,7 +145,7 @@ const PortfolioDetail = ({ project, isMobile }) => {
                   className='form-skip-button'
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', width: '100%' }}
                 >
-                  <GitHubIcon fontSize="small" /> Source Code
+                  <GitHubIcon fontSize="small" /> {Literal[lang].sourceCode}
                 </button>
               )}
             </Box>
@@ -153,13 +157,15 @@ const PortfolioDetail = ({ project, isMobile }) => {
       {uniqueMediaItems.length > 0 && (
         <Box style={{width: '100%'}}>
             <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
-                Gallery & Media
+              {Literal[lang].galleryNMedia}
             </Typography>
             
             {/* ✅ INTEGRATED VIEWER */}
             <ProductImageViewer 
                 mediaItems={uniqueMediaItems} 
                 alt={project.title}
+                fullscreenImageRatio="3/2"
+                fullscreenVideoRatio="16/9"
                 // Desktop: Thumbnails on Left | Mobile: Thumbnails on Bottom (handled by CSS, but passed logically here)
                 thumbnailPosition={isMobile ? 'bottom' : 'right'} 
             />

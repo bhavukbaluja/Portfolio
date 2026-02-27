@@ -721,8 +721,14 @@ const en = {
     sendingMessage: "Sending message...",
     messageFailed: "Failed to send message. Please try again later.",
     networkError: "A network error occurred. Please check your connection.",
-    sending: "Sending..."
-
+    sending: "Sending...",
+    liveDemo: "Live Demo",
+    sourceCode: "Source Code",
+    projectOverview: "Project Overview",
+    projectInfo: "Project Info",
+    technologies: "Technologies",
+    galleryNMedia: "Gallery & Media",
+    
   };
   
   export default en;

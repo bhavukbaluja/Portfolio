@@ -5,22 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f34ad273-111c-450b-80ed-b98404323278" name="Changes" comment="update literals">
-      <change beforePath="$PROJECT_DIR$/apps/panel/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/apps/panel/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/panel/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/apps/panel/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/panel/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/apps/panel/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/panel/src/layouts/DashboardLayout.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/panel/src/layouts/DashboardLayout.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/panel/src/layouts/Layouts.scss" beforeDir="false" afterPath="$PROJECT_DIR$/apps/panel/src/layouts/Layouts.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/panel/src/pages/Header/SideBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/panel/src/pages/Header/SideBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/panel/src/pages/Header/SideBarHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/panel/src/pages/Header/SideBarHeader.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/panel/src/pages/Header/Sidebar.scss" beforeDir="false" afterPath="$PROJECT_DIR$/apps/panel/src/pages/Header/Sidebar.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/panel/src/pages/Middle/Middle.scss" beforeDir="false" afterPath="$PROJECT_DIR$/apps/panel/src/pages/Middle/Middle.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apps/panel/vite.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/apps/panel/vite.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/node_modules/.package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/components/FloatingButtons.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/components/FloatingButtons.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/utils/src/Config/Properties.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/utils/src/Config/Properties.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/utils/src/helper/Helper.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/utils/src/helper/Helper.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/as.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/as.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/bn.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/bn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/gu.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/gu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/hi.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/hi.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/kn.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/kn.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/ml.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/ml.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/mr.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/mr.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/or.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/or.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/pa.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/pa.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/ta.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/ta.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/te.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/te.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/ur.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/ur.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

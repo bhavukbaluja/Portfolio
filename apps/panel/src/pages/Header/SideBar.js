@@ -233,7 +233,7 @@ function SidebarContent({ expanded, setExpanded, isMobile, closeTrigger, activeH
                       <h4 className="sidebar-user-name">{Literal[lang].welcomeUser}</h4>
                     )
                   }
-                <div className={`sidebar-user ${expanded ? "expanded" : "collapsed"}`}>
+                {/* <div className={`sidebar-user ${expanded ? "expanded" : "collapsed"}`}>
                     <Grid item xs={4} display="flex" flexDirection="row" gap="10px" alignItems="center">
                         {[
                             { icon: faInstagram, url: Instagram_URL },
@@ -245,7 +245,7 @@ function SidebarContent({ expanded, setExpanded, isMobile, closeTrigger, activeH
                             </a>
                         ))}
                     </Grid>
-                </div>
+                </div> */}
               </div>
            </div>
         </Box>

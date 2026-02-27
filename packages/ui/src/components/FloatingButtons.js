@@ -32,7 +32,21 @@ export default function FloatingButtons({isMobile, handleDrawerToggle}) {
     window.scrollTo({ top: 0, behavior: "smooth" });
 
   const navigateToContact = () => {
+    // 1. Let your existing hook update the URL and Sidebar active state
     NavigateTo("#contact", "", true);
+
+    // 2. Tell your Sidebar's scroll spy to temporarily pause 
+    // (using the exact same custom event you built in Sidebar.js)
+    window.dispatchEvent(new CustomEvent('manual-scroll-start'));
+
+    // 3. Physically scroll the browser window to the contact section
+    // (Using a tiny setTimeout ensures React Router has finished updating the URL first)
+    setTimeout(() => {
+      const element = document.getElementById("contact");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 10);
   };
 
   return (

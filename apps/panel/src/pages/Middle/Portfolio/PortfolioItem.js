@@ -144,9 +144,9 @@ const PortfolioItem = ({ item, onViewDetails }) => {
             <h4 style={{ 
               color: '#fff', 
               fontSize: '1.25rem', 
-              fontWeight: 'bold', 
+              // fontWeight: 'bold', 
               margin: '0 0 5px 0',
-              textShadow: '0 2px 5px rgba(0,0,0,0.7)' 
+              textShadow: '0 1px 5px rgba(0,0,0,0.7)' 
             }}>
               {item.title}
             </h4>

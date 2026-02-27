@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import "./ProductImageViewer.scss";
 import { PrevArrow, NextArrow } from "@utils/helper/Helper";
 import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'; 
@@ -6,14 +6,12 @@ import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 const ProductImageViewer = ({ 
   mediaItems = [], 
   alt = "Product Media",
-  thumbnailPosition = "left" // Options: 'left', 'right', 'top', 'bottom'
+  thumbnailPosition = "left", // Options: 'left', 'right', 'top', 'bottom'
+  fullscreenImageRatio,       // e.g., "2/3", "16/9", "1/1", etc.
+  fullscreenVideoRatio        // e.g., "16/9", "4/3", etc.
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  
-  // We can remove 'windowWidth' state for layout since CSS handles it now,
-  // but we keep it if you have specific JS-only mobile logic.
-  // For this refactor, CSS handles the responsive layout switch.
 
   // --- Zoom State ---
   const [isMainViewerZoomed, setIsMainViewerZoomed] = useState(false);
@@ -129,13 +127,23 @@ const ProductImageViewer = ({
 
   // --- Render Helpers ---
 
-  const renderMediaContent = (url, ref, zoomStyle = {}) => {
+  const renderMediaContent = (url, ref, zoomStyle = {}, isForFullscreen = false) => {
     const type = getMediaType(url);
+    
+    // In fullscreen, we force the media to perfectly fill the ratio-box we make below.
+    // 'cover' means it will crop slightly to fit the 2/3 or 16/9 shape perfectly.
+    const combinedStyle = { 
+      ...zoomStyle, 
+      width: '100%', 
+      height: '100%', 
+      objectFit: isForFullscreen ? 'cover' : 'contain' 
+    };
 
     if (type === 'youtube') {
       const videoId = getYoutubeId(url);
       return (
         <iframe
+          style={combinedStyle}
           className="media-iframe"
           src={`https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0`}
           title="YouTube video player"
@@ -150,6 +158,7 @@ const ProductImageViewer = ({
        const previewUrl = url.replace('/view', '/preview');
        return (
         <iframe
+          style={combinedStyle}
           className="media-iframe"
           src={previewUrl}
           title="Drive Video"
@@ -161,6 +170,7 @@ const ProductImageViewer = ({
     if (type === 'video') {
       return (
         <video 
+            style={combinedStyle}
             className="media-video" 
             controls 
             src={url}
@@ -178,7 +188,7 @@ const ProductImageViewer = ({
         alt={alt}
         className="main-image"
         loading="eager"
-        style={zoomStyle}
+        style={combinedStyle}
       />
     );
   };
@@ -221,8 +231,7 @@ const ProductImageViewer = ({
     <div style={{width: '100%'}}>
       <div className={`product-image-viewer layout-${thumbnailPosition}`}>
         
-        {/* Thumbnails (Unified Render) */}
-        {/* CSS Flexbox order will handle position relative to main viewer */}
+        {/* Thumbnails */}
         <div className="thumbnail-list">
           {mediaItems.map((url, idx) => renderThumbnail(url, idx))}
         </div>
@@ -231,6 +240,10 @@ const ProductImageViewer = ({
         <div
           ref={mainImageContainerRef}
           className={`main-image-container ${!isImage ? 'no-zoom' : ''}`}
+          // Apply the exact same ratio logic here. (Fallback to 16/9 if not provided)
+          style={{
+            aspectRatio: isImage ? (fullscreenImageRatio || '16/9') : (fullscreenVideoRatio || '16/9')
+          }}
           onMouseMove={isImage ? handleMainViewerMouseMove : undefined}
           onMouseEnter={isImage ? handleMainViewerMouseEnter : undefined}
           onMouseLeave={isImage ? handleMainViewerMouseLeave : undefined}
@@ -242,7 +255,8 @@ const ProductImageViewer = ({
             isImage ? {
                 transform: `scale(${mainViewerZoomTransform.scale}) translate(${mainViewerZoomTransform.x / mainViewerZoomTransform.scale}px, ${mainViewerZoomTransform.y / mainViewerZoomTransform.scale}px)`,
                 transformOrigin: '0 0'
-            } : {}
+            } : {},
+            false // Not fullscreen
           )}
         </div>
       </div>
@@ -257,6 +271,18 @@ const ProductImageViewer = ({
           <div
             ref={fullscreenContainerRef}
             className="fullscreen-image-container"
+            style={{
+              // Apply dynamic aspect ratio directly to the wrapper
+              aspectRatio: isImage ? fullscreenImageRatio : fullscreenVideoRatio,
+              
+              // Portrait-friendly logic for images (e.g. 2/3 ratio)
+              // Landscape-friendly logic for video (e.g. 16/9 ratio)
+              height: isImage && fullscreenImageRatio ? '80vh' : 'auto',
+              width: !isImage && fullscreenVideoRatio ? '90vw' : 'auto',
+              maxHeight: '80vh',
+              maxWidth: '90vw',
+              margin: '0 auto'
+            }}
             onMouseMove={isImage ? handleFullscreenMouseMove : undefined}
             onMouseEnter={isImage ? handleFullscreenMouseEnter : undefined}
             onMouseLeave={isImage ? handleFullscreenMouseLeave : undefined}
@@ -267,7 +293,8 @@ const ProductImageViewer = ({
                 isImage ? {
                     transform: `scale(${fullscreenZoomTransform.scale}) translate(${fullscreenZoomTransform.x / fullscreenZoomTransform.scale}px, ${fullscreenZoomTransform.y / fullscreenZoomTransform.scale}px)`,
                     transformOrigin: '0 0'
-                } : {}
+                } : {},
+                true // Is fullscreen (triggers 'cover' layout)
              )}
           </div>
 
