@@ -704,7 +704,14 @@ const bn = {
     sendingMessage: "বার্তা পাঠানো হচ্ছে...",
     messageFailed: "বার্তা পাঠাতে ব্যর্থ হয়েছে। অনুগ্রহ করে পরে আবার চেষ্টা করুন।",
     networkError: "নেটওয়ার্ক ত্রুটি ঘটেছে। আপনার সংযোগ পরীক্ষা করুন।",
-    sending: "পাঠানো হচ্ছে..."
+    sending: "পাঠানো হচ্ছে...",
+    liveDemo: "লাইভ ডেমো",
+    sourceCode: "সোর্স কোড",
+    projectOverview: "প্রজেক্ট পর্যালোচনা",
+    projectInfo: "প্রজেক্ট তথ্য",
+    technologies: "প্রযুক্তিসমূহ",
+    galleryNMedia: "গ্যালারি ও মিডিয়া"
+  
   
   };
 

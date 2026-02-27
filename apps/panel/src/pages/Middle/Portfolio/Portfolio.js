@@ -65,16 +65,24 @@ const Portfolio = ({isMobile}) => {
         <div className="isotope-layout">
           
           {/* Filters */}
-          <ul style={{display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-evenly'}} data-aos="fade-up" data-aos-delay="100">
+          <ul style={{display: 'flex', flexDirection: 'row', alignItems: 'center', width: '100%', justifyContent: 'space-evenly', flexWrap: 'wrap', gap: '10px', padding: '0'}} data-aos="fade-up" data-aos-delay="100">
             {categories.map((cat, index) => (
-               <span 
-                 key={index} 
-                 onClick={() => setFilter(cat)} 
-                 className={filter === cat ? 'filter-active' : ''}
-                 style={{textTransform: 'capitalize', cursor: 'pointer'}}
-               >
-                 {Literal[lang][cat] || cat}
-               </span>
+              <button
+                key={index} // Added the required React key prop
+                className={`form-skip-button ${filter === cat ? 'active' : ''}`}
+                onClick={() => setFilter(cat)} 
+                style={{ 
+                  width: '100px', // Set a fixed width so they are all identically sized
+                  minWidth: '50px',
+                  padding: '0 20px', 
+                  display: 'flex', // These 3 lines ensure the text stays centered 
+                  justifyContent: 'center', 
+                  alignItems: 'center',
+                  borderRadius: '25px'
+                }}
+              >
+                  {Literal[lang][cat] || cat}
+              </button>
             ))}
           </ul>
 

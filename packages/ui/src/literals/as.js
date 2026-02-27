@@ -703,7 +703,14 @@ const as = {
     sendingMessage: "বাৰ্তা পঠিওৱা হৈছে...",
     messageFailed: "বাৰ্তা পঠিয়াবলৈ ব্যৰ্থ হৈছে। অনুগ্ৰহ কৰি পিছত পুনৰ চেষ্টা কৰক।",
     networkError: "নেটৱৰ্ক ত্ৰুটি হৈছে। অনুগ্ৰহ কৰি আপোনাৰ সংযোগ পৰীক্ষা কৰক।",
-    sending: "পঠিওৱা হৈছে..."
+    sending: "পঠিওৱা হৈছে...",
+    liveDemo: "লাইভ ডেমো",
+    sourceCode: "চোৰ্চ কোড",
+    projectOverview: "প্ৰজেক্ট অৱলোকন",
+    projectInfo: "প্ৰজেক্ট তথ্য",
+    technologies: "প্ৰযুক্তিসমূহ",
+    galleryNMedia: "গেলাৰী আৰু মিডিয়া"
+  
   
 };
 

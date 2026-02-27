@@ -704,7 +704,13 @@ const pa = {
     sendingMessage: "ਸੁਨੇਹਾ ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ...",
     messageFailed: "ਸੁਨੇਹਾ ਭੇਜਣ ਵਿੱਚ ਅਸਫਲ। ਕਿਰਪਾ ਕਰਕੇ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਕੋਸ਼ਿਸ਼ ਕਰੋ।",
     networkError: "ਨੈੱਟਵਰਕ ਗਲਤੀ ਆਈ ਹੈ। ਕਿਰਪਾ ਕਰਕੇ ਆਪਣੀ ਕਨੈਕਸ਼ਨ ਜਾਂਚੋ।",
-    sending: "ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ..."
+    sending: "ਭੇਜਿਆ ਜਾ ਰਿਹਾ ਹੈ...",
+    liveDemo: "ਲਾਈਵ ਡੈਮੋ",
+    sourceCode: "ਸੋਰਸ ਕੋਡ",
+    projectOverview: "ਪ੍ਰੋਜੈਕਟ ਝਲਕ",
+    projectInfo: "ਪ੍ਰੋਜੈਕਟ ਜਾਣਕਾਰੀ",
+    technologies: "ਤਕਨਾਲੋਜੀਆਂ",
+    galleryNMedia: "ਗੈਲਰੀ ਅਤੇ ਮੀਡੀਆ"  
   
   };
 

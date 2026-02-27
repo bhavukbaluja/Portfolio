@@ -704,7 +704,13 @@ const ur = {
     sendingMessage: "پیغام بھیجا جا رہا ہے...",
     messageFailed: "پیغام بھیجنے میں ناکامی۔ براہ کرم بعد میں دوبارہ کوشش کریں۔",
     networkError: "نیٹ ورک کی خرابی پیش آئی ہے۔ براہ کرم اپنا کنکشن چیک کریں۔",
-    sending: "بھیجا جا رہا ہے..."
+    sending: "بھیجا جا رہا ہے...",
+    liveDemo: "لائیو ڈیمو",
+    sourceCode: "سورس کوڈ",
+    projectOverview: "پروجیکٹ کا جائزہ",
+    projectInfo: "پروجیکٹ کی معلومات",
+    technologies: "ٹیکنالوجیز",
+    galleryNMedia: "گیلری اور میڈیا"  
   
 };
 

@@ -91,6 +91,14 @@
     background-color: var(--color-gray-500);
     color: var(--headerBg-color);
   }
+
+  // Add this: This applies when React adds the "active" class
+  &.active {
+    background-color: var(--mainlight-color);
+    // color: var(--headerBg-color);
+    // You might also want to change the border color to match
+    border-color: var(--color-gray-500); 
+  }
   
   &:disabled {
     cursor: not-allowed;

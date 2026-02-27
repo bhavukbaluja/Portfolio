@@ -703,7 +703,13 @@ const mr = {
     sendingMessage: "संदेश पाठवला जात आहे...",
     messageFailed: "संदेश पाठवण्यात अयशस्वी. कृपया नंतर पुन्हा प्रयत्न करा.",
     networkError: "नेटवर्क त्रुटी आली. कृपया आपले कनेक्शन तपासा.",
-    sending: "पाठवले जात आहे..."
+    sending: "पाठवले जात आहे...",
+    liveDemo: "लाईव्ह डेमो",
+    sourceCode: "स्रोत कोड",
+    projectOverview: "प्रोजेक्ट आढावा",
+    projectInfo: "प्रोजेक्ट माहिती",
+    technologies: "तंत्रज्ञान",
+    galleryNMedia: "गॅलरी आणि मीडिया"  
   
 };
 

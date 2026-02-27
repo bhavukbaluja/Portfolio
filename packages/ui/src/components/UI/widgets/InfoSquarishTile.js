@@ -133,7 +133,7 @@ const InfoSquarishTile = ({
             body.map((key, i) => (
               <span
                 key={i}
-                style={{color:"var(--secondarytext-color)", fontSize: '14px', lineHeight: 1.3, display: 'flex', alignItems: 'center', justifyContent:'center' }}
+                style={{color:"var(--secondarytext-color)", fontSize: '14px', lineHeight: 1.3, display: 'flex', alignItems: 'center', justifyContent:'center', textAlign: 'center' }}
               >
                 {properties[key]}
               </span>

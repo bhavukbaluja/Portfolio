@@ -95,14 +95,14 @@ const Contact = ({ isMobile }) => {
             <ContactDetailsTile
               isMobile={isMobile}
               icon={<HeadsetMicOutlinedIcon />}
-              title={"contactUs"}
+              title={"contactNo"}
               body={properties?.user?.mobile}
               url={"tel:" + properties?.user?.mobile}
             />
             <ContactDetailsTile
               isMobile={isMobile}
               icon={<WhatsAppIcon />}
-              title={"whatsAppUs"}
+              title={"whatsapp"}
               body={properties?.user?.mobile}
               url={WhatsApp_URL}
             />

@@ -704,7 +704,13 @@ const hi = {
   sendingMessage: "संदेश भेजा जा रहा है...",
   messageFailed: "संदेश भेजने में विफल। कृपया बाद में पुनः प्रयास करें।",
   networkError: "नेटवर्क त्रुटि हुई। कृपया अपना कनेक्शन जांचें।",
-  sending: "भेजा जा रहा है..."
+  sending: "भेजा जा रहा है...",
+  liveDemo: "लाइव डेमो",
+  sourceCode: "स्रोत कोड",
+  projectOverview: "प्रोजेक्ट अवलोकन",
+  projectInfo: "प्रोजेक्ट जानकारी",
+  technologies: "प्रौद्योगिकियाँ",
+  galleryNMedia: "गैलरी और मीडिया"
 
 };
   

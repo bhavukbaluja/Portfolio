@@ -717,7 +717,13 @@ const or = {
     sendingMessage: "ସନ୍ଦେଶ ପଠାଯାଉଛି...",
     messageFailed: "ସନ୍ଦେଶ ପଠାଇବାରେ ବିଫଳ। ଦୟାକରି ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ।",
     networkError: "ନେଟୱର୍କ ତ୍ରୁଟି ଘଟିଛି। ଦୟାକରି ଆପଣଙ୍କ ସଂଯୋଗ ଯାଞ୍ଚ କରନ୍ତୁ।",
-    sending: "ପଠାଯାଉଛି..."
+    sending: "ପଠାଯାଉଛି...",
+    liveDemo: "ଲାଇଭ୍ ଡେମୋ",
+    sourceCode: "ସୋର୍ସ କୋଡ୍",
+    projectOverview: "ପ୍ରୋଜେକ୍ଟ ଅଭଲୋକନ",
+    projectInfo: "ପ୍ରୋଜେକ୍ଟ ସୂଚନା",
+    technologies: "ପ୍ରଯୁକ୍ତିଗୁଡ଼ିକ",
+    galleryNMedia: "ଗ୍ୟାଲେରୀ ଏବଂ ମିଡିଆ"  
   
 };
 

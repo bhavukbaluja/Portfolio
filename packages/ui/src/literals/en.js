@@ -728,7 +728,7 @@ const en = {
     projectInfo: "Project Info",
     technologies: "Technologies",
     galleryNMedia: "Gallery & Media",
-    
+    contactNo: "Contact No."
   };
   
   export default en;
