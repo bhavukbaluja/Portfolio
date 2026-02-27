@@ -24,6 +24,19 @@
   height: 100vh; /* Take full height */
   display: flex;
   flex-direction: column;
+  
+  /* 1. Add a smooth transition for the width change */
+  transition: width 0.3s ease; 
+
+  /* 2. Set the expanded width */
+  &.expanded {
+    width: 300px; 
+  }
+
+  /* 3. Set the collapsed width (Usually matches the width of your icons + padding) */
+  &.collapsed {
+    width: 120px; /* Adjust this if your icons need slightly more or less space */
+  }
 }
 
 /* Sidebar Header */
@@ -62,8 +75,9 @@
 
 /* Sidebar List */
 .sidebar-list {
-  flex: 1;
+  // flex: 1;
   display: flex;
+  width: 100%;
   flex-direction: column;
   gap: 3px;
   padding: 0 0.75rem;

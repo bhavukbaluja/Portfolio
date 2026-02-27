@@ -126,7 +126,7 @@ export default function Sidebar({ isMobile, sideBarContent, setSelectedItem, sel
             ModalProps={{ keepMounted: true }} 
             sx={{
               '& .MuiDrawer-paper': { 
-                width: '280px', 
+                width: '300px', 
                 boxSizing: 'border-box',
                 backgroundColor: 'var(--bg-color)', 
                 borderRight: '1px solid var(--divider-color)'
@@ -149,8 +149,8 @@ export default function Sidebar({ isMobile, sideBarContent, setSelectedItem, sel
             />
          </Drawer>
       ) : (
-        <aside className="sidebar-container">
-           <SidebarContent 
+          <aside className={`sidebar-container ${expanded ? 'expanded' : 'collapsed'}`}>
+            <SidebarContent 
               expanded={expanded}
               setExpanded={setExpanded}
               isMobile={false}
