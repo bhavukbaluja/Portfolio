@@ -42,6 +42,7 @@ const SmallImageTileWithColor = ({
   price,
   theme,
   index,
+  isActive
 }) => {
   const fallbackImg = useFallbackImage("default"); 
   const { lang } = useContext(LanguageContext);
@@ -112,7 +113,7 @@ const SmallImageTileWithColor = ({
 
   return (
     <div 
-      className="service-item position-relative" 
+      className={`service-item position-relative ${isActive ? 'active-tile' : ''}`}
       onClick={handleClick}
       style={{ "--theme-color": config.color }} 
     >

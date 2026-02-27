@@ -112,7 +112,10 @@
     font-size: 1.125rem;
     line-height: 1.75rem;
     letter-spacing: -0.0025em;
-    font-weight: 500;
+    font-weight: 600;
+    color: var(--maindark-color);
+    font-style: italic;
+    text-shadow: 0 2px 4px var(--color-gray-400);
   }
   
   .Description {

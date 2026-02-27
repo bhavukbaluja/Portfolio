@@ -118,40 +118,47 @@
 }
   
 /* =========================================
-    HOVER EFFECTS
+    HOVER & ACTIVE EFFECTS
     ========================================= */
   
-.service-item:hover {
+/* 1. Apply the pop effect to both hover and active states */
+.service-item:hover,
+.service-item.active-tile {
     transform: translateY(-5px);
-    
-    /* ✅ KEY FIX: High z-index ensures shadow renders OVER adjacent items */
     z-index: 10; 
-    
-    /* Borders */
     border-color: transparent; 
     border-bottom: 4px solid var(--theme-color);
-    
     /* Standard Pop Shadow */
-    // box-shadow: 0 50px 90px -10px var(--color-gray-500, rgba(0,0,0,0.1));
+    /* box-shadow: 0 50px 90px -10px var(--color-gray-500, rgba(0,0,0,0.1)); */
 }
   
-.service-item:hover .icon .blob-svg path {
+/* 2. Fill the blob background */
+.service-item:hover .icon .blob-svg path,
+.service-item.active-tile .icon .blob-svg path {
     fill: var(--theme-color); 
 }
   
-.service-item:hover .icon .tile-icon {
+/* 3. Turn the Material Icon white */
+.service-item:hover .icon .tile-icon,
+.service-item.active-tile .icon .tile-icon {
     color: #ffffff !important; 
 }
   
-.service-item:hover .icon .tile-image {
+/* 4. Turn the Image white (if using images instead of MUI icons) */
+.service-item:hover .icon .tile-image,
+.service-item.active-tile .icon .tile-image {
     filter: brightness(0) invert(1); 
 }
   
-.service-item:hover h3 {
+/* 5. Highlight the Title */
+.service-item:hover h3,
+.service-item.active-tile h3 {
     color: var(--theme-color);
 }
 
-.service-item:hover .price-tag {
+/* 6. Highlight the Price Tag */
+.service-item:hover .price-tag,
+.service-item.active-tile .price-tag {
     background-color: var(--theme-color);
     color: #fff;
     border-color: var(--theme-color);

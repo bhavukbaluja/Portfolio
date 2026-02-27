@@ -3,10 +3,24 @@ import DescriptionOutlinedIcon from '@mui/icons-material/DescriptionOutlined';
 import DynamicFeedOutlinedIcon from '@mui/icons-material/DynamicFeedOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+
+// 1. IMPORT THE SERVICE ICONS
+import LayersOutlinedIcon from '@mui/icons-material/LayersOutlined';
+import WebOutlinedIcon from '@mui/icons-material/WebOutlined';
+import MonitorOutlinedIcon from '@mui/icons-material/MonitorOutlined';
+import StorageOutlinedIcon from '@mui/icons-material/StorageOutlined';
+import ApiOutlinedIcon from '@mui/icons-material/ApiOutlined';
+import DatasetOutlinedIcon from '@mui/icons-material/DatasetOutlined';
+import StorefrontOutlinedIcon from '@mui/icons-material/StorefrontOutlined';
+import CloudUploadOutlinedIcon from '@mui/icons-material/CloudUploadOutlined';
+import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
+import BugReportOutlinedIcon from '@mui/icons-material/BugReportOutlined';
+
 import Literal from "@ui/literals";
 import { LanguageContext } from "@ui/literals/LanguageProvider";
 import { OrderServices } from "@utils/services/OrderServices";
-import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import propertiesData from "@utils/Config/Properties.json";
 import React, {
   forwardRef,
   useContext,
@@ -14,6 +28,20 @@ import React, {
   useState,
 } from "react";
 import Sidebar from "./SideBar";
+
+// 2. CREATE THE MAPPING OBJECT (Without the .tile-icon class, as the sidebar likely has its own icon styling)
+const MuiIconMap = {
+  LayersOutlined: <LayersOutlinedIcon />,
+  WebOutlined: <WebOutlinedIcon />,
+  MonitorOutlined: <MonitorOutlinedIcon />,
+  StorageOutlined: <StorageOutlinedIcon />,
+  ApiOutlined: <ApiOutlinedIcon />,
+  DatasetOutlined: <DatasetOutlinedIcon />,
+  StorefrontOutlined: <StorefrontOutlinedIcon />,
+  CloudUploadOutlined: <CloudUploadOutlinedIcon />,
+  BuildOutlined: <BuildOutlinedIcon />,
+  BugReportOutlined: <BugReportOutlinedIcon />
+};
 
 const Header = forwardRef(
   (
@@ -36,21 +64,10 @@ const Header = forwardRef(
     const [counts, setCounts] = useState({});
     const { lang } = useContext(LanguageContext);
     
-    // Wrapped in useMemo to recalculate when counts/lang changes
     const sideBarContent = useMemo(() => {
       
-      const getAlertCount = (textKeys = []) => {
-        let total = 0;
-        textKeys.forEach((key) => {
-          const statuses = Literal[lang].orderPages[key]?.statuses || [];
-          statuses.forEach((status) => {
-            total += counts?.[status] || 0;
-          });
-        });
-        return total;
-      };
+      const services = propertiesData[lang]?.services || [];
 
-      // ✅ FIX: Explicitly added 'path' to every item to prevent navigation errors
       const allMenuItems = [
         {
           text: "home",
@@ -71,6 +88,12 @@ const Header = forwardRef(
         { 
           text: "services", 
           icon: <DynamicFeedOutlinedIcon />,
+          // 3. MAP THE STRING TO THE ICON COMPONENT HERE
+          subItems: services.map((service, index) => ({
+            text: service.title,
+            path: `#service-${index}`,
+            icon: MuiIconMap[service.icon] || <DynamicFeedOutlinedIcon /> // Fallback icon just in case
+          }))
         },
         { 
           text: "contact", 
@@ -78,10 +101,8 @@ const Header = forwardRef(
         },
       ];
 
-      // Filter Function based on 'userRole' (if needed later)
       const filterMenuItems = (items) => {
         return items.reduce((acc, item) => {
-          // Rule: Recursively filter subItems if they exist
           let processedSubItems = item.subItems;
           if (item.subItems && item.subItems.length > 0) {
             processedSubItems = filterMenuItems(item.subItems);

@@ -44,8 +44,8 @@ export default function Sidebar({ isMobile, sideBarContent, setSelectedItem, sel
   const [activeHash, setActiveHash] = useState(window.location.hash || '#home'); 
   const [closeTrigger, setCloseTrigger] = useState(0); 
 
-  // --- 🛠️ HANDLE CLICK LOGIC ---
-  const handleClick = (path, isSubItem) => {
+ // --- 🛠️ HANDLE CLICK LOGIC (Inside Sidebar.js) ---
+ const handleClick = (path, isSubItem) => {
     if(!isSubItem){ setCloseTrigger(prev => prev + 1); }
 
     const cleanId = (path || "").toString().replace(/^[#/]+/, '').toLowerCase();
@@ -54,7 +54,6 @@ export default function Sidebar({ isMobile, sideBarContent, setSelectedItem, sel
     if (!cleanId) return;
 
     // 1. 🔒 DISPATCH LOCK EVENT
-    // This tells Home.js to STOP listening to scroll events for a moment
     window.dispatchEvent(new CustomEvent('manual-scroll-start'));
 
     // 2. Force Scroll
@@ -71,6 +70,9 @@ export default function Sidebar({ isMobile, sideBarContent, setSelectedItem, sel
         window.location.hash = newHash;
     }
 
+    // ✅ ADD THIS LINE: Manually tell the rest of the app (like Services.js) that the hash changed
+    window.dispatchEvent(new CustomEvent('active-section-update', { detail: newHash }));
+
     // 4. Update Internal State Immediately
     setActiveHash(newHash);
 
@@ -78,7 +80,6 @@ export default function Sidebar({ isMobile, sideBarContent, setSelectedItem, sel
       setMobileOpen(false);
     }
   };
-
   // ✅ Listen for React Router changes
   useEffect(() => {
     if (location.hash) {
@@ -274,12 +275,17 @@ function SidebarItem({ icon, text, alert, subItems, path, handleClick }) {
   const { expanded, closeTrigger, activeHash } = useContext(SidebarContext);
   const { lang } = useContext(LanguageContext);
 
-  const currentHashClean = (activeHash || "").replace('#', '').toLowerCase();
-  const itemTarget = (path || text || "").toLowerCase();
+  // ✅ 1. Create a helper function to strictly clean ALL strings for comparison
+  const cleanString = (str) => (str || "").toString().replace(/^[#/]+/, '').toLowerCase();
+
+  const currentHashClean = cleanString(activeHash);
+  const itemTarget = cleanString(path || text);
   
   const isSelfActive = currentHashClean === itemTarget;
+  
+  // ✅ 2. Use the helper function to clean the subItem targets too
   const isSubActive = subItems?.some(sub => {
-    const subTarget = (sub.path || sub.text || "").toLowerCase();
+    const subTarget = cleanString(sub.path || sub.text);
     return currentHashClean === subTarget;
   });
 
@@ -316,7 +322,7 @@ function SidebarItem({ icon, text, alert, subItems, path, handleClick }) {
           <div className={`sidebar-item-icon ${expanded ? "expanded" : "collapsed"}`}>
             <div className={`sidebar-item-icon ${expanded ? "expanded" : "collapsed"}`}>
               {icon}
-              <span className={`sidebar-text ${expanded ? "expanded" : "collapsed"}`}>
+              <span className={`sidebar-text ${expanded ? "expanded" : "collapsed"}`} title={Literal[lang][text] || text}>
                 {Literal[lang][text] || text}
               </span>
               {alert>0 && <span className="sidebar-badge">{alert}</span>}
@@ -336,8 +342,10 @@ function SidebarItem({ icon, text, alert, subItems, path, handleClick }) {
       </li>
 
       {isOpen && subItems?.map((sub, idx) => {
-        const subTarget = (sub.path || sub.text || "").toLowerCase();
+        const subTarget = cleanString(sub.path || sub.text);
         const isThisSubActive = currentHashClean === subTarget;
+        const displayText = Literal[lang][sub.text] || sub.text; // Get the text once
+
         return (
             <li
               key={idx}
@@ -349,8 +357,12 @@ function SidebarItem({ icon, text, alert, subItems, path, handleClick }) {
             >
             <div className="sidebar-subitem-content" style={{ paddingLeft: expanded ? '3rem' : '0rem' }}>
                 {sub.icon}
-                <span className={`sidebar-text ${expanded ? "expanded" : "collapsed"}`} style={{ paddingLeft: "10px" }}>
-                  {Literal[lang][sub.text] || sub.text}
+                <span 
+                  className={`sidebar-text ${expanded ? "expanded" : "collapsed"}`} 
+                  style={{ paddingLeft: "10px" }}
+                  title={displayText} // Add this so hovering reveals the full title!
+                >
+                  {displayText}
                 </span>
                 {sub?.alert>0 && (<span className={`sidebar-badge ${expanded ? "expanded" : "collapsed"}`}>{sub.alert}</span>)}
             </div>

@@ -212,9 +212,18 @@
   overflow: hidden;
   transition: all 0.3s ease;
   display: inline-block; /* Ensure that the text doesn't go to the next line */
+  
+  /* 1. Force the text to stay on a single line */
+  white-space: nowrap; 
+  
+  /* 2. Add the "..." when the text exceeds the width */
+  text-overflow: ellipsis; 
+
+  /* Optional: Helps align the text vertically with your icons */
+  vertical-align: middle; 
 
   &.expanded {
-    width: 13rem;
+    width: 13rem; /* The ellipsis will trigger if text is wider than this */
     margin-left: 0.75rem;
   }
 
@@ -222,6 +231,7 @@
     width: 0;
   }
 }
+
 
 /* Sidebar Tooltip (on Hover) */
 .sidebar-tooltip {
@@ -285,7 +295,7 @@
   border-radius: 0.375rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
-  color: var(--secondarytext-color);
+  color: var(--maindarker-color);
   white-space: nowrap; /* Prevent text from wrapping */
   
   &:hover {
