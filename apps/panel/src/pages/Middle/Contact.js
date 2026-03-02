@@ -18,7 +18,8 @@ import "@ui/pages/Account/Account.scss";
 const Contact = ({ isMobile }) => {
   const { lang } = useContext(LanguageContext);
   const properties = propertiesData[lang];
-
+  // 2. Create the encoded message for the URL
+  const whatsAppMessage = encodeURIComponent("Hi Bhavuk, I saw your portfolio and I have a project to discuss!");
   // Form State
   const [formData, setFormData] = useState({
     name: '',
@@ -104,7 +105,7 @@ const Contact = ({ isMobile }) => {
               icon={<WhatsAppIcon />}
               title={"whatsapp"}
               body={properties?.user?.mobile}
-              url={WhatsApp_URL}
+              url={`${WhatsApp_URL}?text=${whatsAppMessage}`}
             />
             <ContactDetailsTile
               isMobile={isMobile}
