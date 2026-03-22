@@ -5,22 +5,30 @@
    .product-image-viewer {
     display: flex;
     gap: 16px;
-    align-items: flex-start;
+    align-items: stretch;
     position: relative;
-    width: 100%;
+
+    /* ✅ FIX 1: Change to fit-content and add auto margins for centering */
+    width: fit-content;
+    max-width: 100%; /* Ensures it doesn't break mobile screens */
+    margin: 0 auto;
+
+    height: 100%;
+    min-height: 0;
 
     /* ------------------------------ */
     /* LAYOUT VARIANTS (Desktop)      */
     /* ------------------------------ */
-    
+
     /* LEFT (Default): Thumbnails | Main */
     &.layout-left {
         flex-direction: row;
         .thumbnail-list {
             flex-direction: column;
+            height: 100%;
             width: 80px;
-            max-height: 500px;
             overflow-y: auto;
+            // max-height: 500px;
         }
     }
 
@@ -30,9 +38,10 @@
         justify-content: flex-end;
         .thumbnail-list {
             flex-direction: column;
+            height: 100%;
             width: 80px;
-            max-height: 500px;
             overflow-y: auto;
+            // max-height: 500px;
         }
     }
 
@@ -87,8 +96,15 @@
         flex-direction: column-reverse !important;
         align-items: center;
 
+        /* ✅ FIX 2a: Release the strict heights on mobile */
+        height: auto;
+        width: 100%;
+
         .main-image-container {
             width: 100%;
+            /* ✅ FIX 2b: Let the inline aspect-ratio determine the exact height natively */
+            height: auto;
+            max-height: 60vh; /* Safety net: never let it exceed 60% of the phone screen */
             max-width: none;
             margin-bottom: 10px;
         }
@@ -116,8 +132,30 @@
         flex-shrink: 0;
         padding: 2px;
 
-        &::-webkit-scrollbar { width: 6px; height: 6px; }
-        &::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 3px; }
+        // &::-webkit-scrollbar { width: 6px; height: 6px; }
+        // &::-webkit-scrollbar-thumb { background-color: #ccc; border-radius: 3px; }
+        /* Width of the scrollbar */
+        &::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        /* Background color of the scrollbar track */
+        &::-webkit-scrollbar-track {
+            background: var(--color-gray-100);
+        }
+
+        /* Color of the scrollbar handle */
+        &::-webkit-scrollbar-thumb {
+            background: var(--maindark-color); /* Change this to your desired color */
+            border-radius: 6px;
+        }
+
+        /* On hover */
+        &::-webkit-scrollbar-thumb:hover {
+            background: var(--maindarker-color); /* Darker shade */
+        }
+
 
         .thumbnail {
             aspect-ratio: 1 / 1;
@@ -127,12 +165,14 @@
             cursor: pointer;
             transition: border-color 0.2s ease;
             position: relative;
-            background-color: #000;
-            flex-shrink: 0;
+            background-color: var(--color-gray-200, #f5f5f5);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-sizing: border-box;
 
             &.active {
-                border-color: var(--maindarker-color, #000);
-                opacity: 1;
+                border-color: var(--maindarker-color, #333);
+                box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+                transform: scale(1.02); 
             }
 
             img {
@@ -164,18 +204,17 @@
     /* --- MAIN VIEWER CONTAINER --- */
   .main-image-container {
         position: relative;
-        flex: 1;
-        
-        max-width: 800px;
-        width: 100%;
-        
-        /* 2. CHANGE height to auto so the inline aspect-ratio can do the math */
-        height: auto;
+
+        /* ✅ FIX 2: Remove 'flex: 1' and 'width: 100%' so it hugs the aspect ratio */
+        height: 100%;
+        max-width: 100%; /* Allows shrinking on smaller screens */
+        min-height: 0;
+        min-width: 0;
         overflow: hidden;
         cursor: zoom-in;
         border: 2px solid var(--color-gray-300);
         border-radius: 8px;
-        background-color: var(--color-gray-100);
+        background-color: var(--color-gray-200, #f5f5f5);
         align-items: center;
         justify-content: center;
         display: flex;
@@ -190,8 +229,8 @@
             height: 100%;
             object-fit: contain;
             display: block;
-            transition: transform 0.1s ease-out;
-            transform-origin: 0 0;
+            will-change: transform, transform-origin;
+            transition: transform 0.2s ease-out, transform-origin 0.1s ease-out;
         }
 
         .media-iframe, .media-video {
@@ -202,6 +241,59 @@
             object-fit: contain;
         }
     }
+
+    /* Autoplay Progress Bar */
+        .autoplay-progress-bar {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background-color: var(--maindarker-color, #333);
+            z-index: 10;
+            width: 0%;
+            animation: progressLinear linear forwards;
+        }
+
+        /* ------------------------------ */
+        /* ANIMATIONS                     */
+        /* ------------------------------ */
+        @keyframes progressLinear {
+            from { width: 0%; }
+            to { width: 100%; }
+        }
+
+        @keyframes slideInNext {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInPrev {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* ------------------------------ */
+        /* MOBILE OVERRIDE                */
+        /* ------------------------------ */
+        @media (max-width: 768px) {
+            flex-direction: column !important;
+
+            .thumbnail-list {
+                order: 2;
+                flex-direction: row !important;
+                width: 100% !important;
+                gap: 10px;
+                // height: 90px !important;
+                padding: 4px !important;
+            }
+
+            .main-image-container {
+                order: 1;
+                width: 100%;
+                margin-bottom: 10px;
+                cursor: default;
+            }
+        }
 }
 
 /* =========================================
@@ -226,11 +318,10 @@
         position: absolute;
         top: 20px; right: 30px;
         background: none; border: none;
-        color: white; font-size: 40px;
-        cursor: pointer; z-index: 2002;
-        transition: transform 0.2s ease;
-        line-height: 1;
-        &:hover { transform: scale(1.2); color: var(--theme-color); }
+        color: #fff; font-size: 50px;
+        cursor: pointer; z-index: 10001;
+        transition: 0.3s;
+        &:hover { transform: rotate(90deg); color: #ff4d4d; }
     }
 
     /* Dimension constraints handled natively in React inline styles now */
@@ -249,7 +340,7 @@
             transition: transform 0.1s ease-out;
             transform-origin: 0 0;
         }
-        
+
         .media-iframe, .media-video {
             display: block;
             border: none;
@@ -258,13 +349,15 @@
 
     .nav-btn {
         position: absolute;
-        top: 50%; transform: translateY(-50%);
-        background: rgba(255, 255, 255, 0.1);
-        border: 1px solid rgba(255,255,255,0.2);
-        color: white; font-size: 30px;
-        width: 50px; height: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        color: #fff;
+        width: 70px; height: 70px;
         border-radius: 50%;
-        cursor: pointer; z-index: 2001;
+        cursor: pointer;
+        z-index: 2001;
         transition: all 0.2s ease;
         display: flex; align-items: center; justify-content: center;
         &:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-50%) scale(1.1); }

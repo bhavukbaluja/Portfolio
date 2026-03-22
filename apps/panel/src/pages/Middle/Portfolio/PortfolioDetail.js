@@ -7,13 +7,31 @@ import {
 } from '@mui/material';
 import LaunchIcon from '@mui/icons-material/Launch';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import ProductImageViewer from '@ui/components/UI/fields/ProductImageViewer'; // ✅ Import your new viewer
+import ProductImageViewer from '@ui/components/UI/fields/ProductImageViewer'; 
 import { LanguageContext } from '@ui/literals/LanguageProvider';
 import Literal from "@ui/literals";
+
+// ==========================================
+// 🚀 BUNDLER DIRECTORY IMPORT MAGIC
+// ==========================================
+
+// OPTION A: If you are using VITE (Active by default)
+const allPortfolioImages = import.meta.glob('/public/assets/img/portfolio/**/*.{png,jpg,jpeg,svg}', { eager: true, import: 'default' });
+
+// OPTION B: If you are using Webpack / Create React App (Uncomment below and delete Option A)
+/*
+const importAll = (r) => {
+  let images = {};
+  r.keys().map((item) => { images[item] = r(item); });
+  return images;
+};
+const allPortfolioImages = importAll(require.context('../../assets/img/portfolio', true, /\.(png|jpe?g|svg)$/));
+*/
 
 const PortfolioDetail = ({ project, isMobile }) => {
 
   const { lang } = useContext(LanguageContext);
+  
   if (!project) return null;
 
   // ✅ Helper to parse **bold** text manually
@@ -28,13 +46,28 @@ const PortfolioDetail = ({ project, isMobile }) => {
     });
   };
 
+  // ==========================================
+  // 📂 DYNAMIC FOLDER FILTERING & SORTING
+  // ==========================================
+  let dynamicGallery = [];
+  
+  if (project.galleryFolder) {
+    dynamicGallery = Object.keys(allPortfolioImages)
+      // 1. Filter images to only include ones matching this project's folder name
+      .filter(path => path.includes(`/${project.galleryFolder}/`))
+      // 2. 👈 NEW: Sort the file paths alphabetically & numerically (e.g., 1, 2, 10)
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
+      // 3. Extract the actual URL from the bundler object
+      .map(path => allPortfolioImages[path]);
+  }
+
   // ✅ PREPARE MEDIA LIST
-  // Combine Video -> Main Image -> Gallery into one array for the viewer
-  // We use Set to remove duplicates if the main image is also in the gallery
+  // Combine Video -> Main Image -> Hardcoded Gallery -> Dynamic Folder Gallery
   const mediaItems = [
     project.video, 
     project.img, 
-    ...(project.gallery || [])
+    ...(project.gallery || []),
+    ...dynamicGallery
   ].filter(item => item && item !== ""); // Remove null/empty strings
   
   const uniqueMediaItems = [...new Set(mediaItems)];
@@ -60,7 +93,7 @@ const PortfolioDetail = ({ project, isMobile }) => {
         {/* LEFT: Project Overview */}
         <Box sx={{ flex: 1.5 }}>
           <Typography variant="h5" sx={{ fontWeight: 700, mb: 2, color: 'var(--primarytext-color)' }}>
-            {Literal[lang].projectOverview}
+            {Literal[lang].projectOverview || "Project Overview"}
           </Typography>
           
           <Typography 
@@ -86,20 +119,23 @@ const PortfolioDetail = ({ project, isMobile }) => {
               backgroundColor: 'var(--color-gray-50)', 
               borderRadius: '12px', 
               border: '1px solid var(--color-gray-100)',
-              height: '470px', 
+              height: '100%', 
+              minHeight: '470px',
               display: 'flex',
               flexDirection: 'column'
             }}
           >
             <Typography variant="h6" sx={{ fontWeight: 700, mb: 2 }}>
-            {Literal[lang].projectInfo}
+              {Literal[lang].projectInfo || "Project Info"}
             </Typography>
 
             <Divider sx={{ mb: 2 }} />
 
             {/* Category */}
             <Box sx={{ mb: 3 }}>
-              <Typography variant="subtitle2" sx={{ color: 'var(--secondarytext-color)' }}>{Literal[lang].category}</Typography>
+              <Typography variant="subtitle2" sx={{ color: 'var(--secondarytext-color)' }}>
+                {Literal[lang].category || "Category"}
+              </Typography>
               <Typography variant="body1" sx={{ fontWeight: 500, textTransform: 'capitalize', color: 'var(--primarytext-color)' }}>
                 {project.category}
               </Typography>
@@ -108,7 +144,7 @@ const PortfolioDetail = ({ project, isMobile }) => {
             {/* Tech Stack */}
             <Box sx={{ mb: 3, flexGrow: 1 }}>
               <Typography variant="subtitle2" sx={{ color: 'var(--secondarytext-color)', mb: 1 }}>
-              {Literal[lang].technologies}
+                {Literal[lang].technologies || "Technologies"}
               </Typography>
               <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                 {project.techStack?.map((tech) => (
@@ -136,7 +172,7 @@ const PortfolioDetail = ({ project, isMobile }) => {
                   className='form-button'
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', width: '100%' }}
                 >
-                  <LaunchIcon fontSize="small" /> {Literal[lang].liveDemo}
+                  <LaunchIcon fontSize="small" /> {Literal[lang].liveDemo || "Live Demo"}
                 </button>
               )}
               {project.repo && (
@@ -145,7 +181,7 @@ const PortfolioDetail = ({ project, isMobile }) => {
                   className='form-skip-button'
                   style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', width: '100%' }}
                 >
-                  <GitHubIcon fontSize="small" /> {Literal[lang].sourceCode}
+                  <GitHubIcon fontSize="small" /> {Literal[lang].sourceCode || "Source Code"}
                 </button>
               )}
             </Box>
@@ -156,19 +192,29 @@ const PortfolioDetail = ({ project, isMobile }) => {
       {/* 2. BOTTOM SECTION: Interactive Media Viewer */}
       {uniqueMediaItems.length > 0 && (
         <Box style={{width: '100%'}}>
-            <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
-              {Literal[lang].galleryNMedia}
-            </Typography>
-            
-            {/* ✅ INTEGRATED VIEWER */}
-            <ProductImageViewer 
+          <Typography variant="h6" sx={{ fontWeight: 600, mb: 2 }}>
+            {Literal[lang].galleryNMedia || "Gallery & Media"}
+          </Typography>
+          <Box 
+            sx={{ 
+              width: '100%', 
+              height: { xs: 'auto', md: '470px' },
+              overflow: 'hidden', 
+              borderRadius: '12px',
+              display: 'flex',          
+              flexDirection: 'column',   
+              alignItems: 'center'
+            }}
+          >
+              <ProductImageViewer 
                 mediaItems={uniqueMediaItems} 
                 alt={project.title}
                 fullscreenImageRatio="3/2"
                 fullscreenVideoRatio="16/9"
-                // Desktop: Thumbnails on Left | Mobile: Thumbnails on Bottom (handled by CSS, but passed logically here)
+                isAutoplay={false}
                 thumbnailPosition={isMobile ? 'bottom' : 'right'} 
             />
+          </Box>
         </Box>
       )}
 

@@ -5,21 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f34ad273-111c-450b-80ed-b98404323278" name="Changes" comment="update literals">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/as.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/as.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/bn.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/bn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/gu.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/gu.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/hi.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/hi.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/kn.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/kn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/ml.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/ml.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/mr.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/mr.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/or.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/or.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/pa.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/pa.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/ta.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/ta.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/te.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/te.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/ui/src/literals/ur.js" beforeDir="false" afterPath="$PROJECT_DIR$/packages/ui/src/literals/ur.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages/utils/src/Config/Properties.json" beforeDir="false" afterPath="$PROJECT_DIR$/packages/utils/src/Config/Properties.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

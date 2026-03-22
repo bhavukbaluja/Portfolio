@@ -6,9 +6,12 @@ import { LanguageContext } from '@ui/literals/LanguageProvider';
 import Literal from "@ui/literals";
 import "../Middle.scss";
 
-const PortfolioItem = ({ item, onViewDetails }) => {
+const PortfolioItem = ({ item, onViewDetails, ratio = "3:2" }) => {
   const [isHovered, setIsHovered] = useState(false);
   const { lang } = useContext(LanguageContext);
+
+  // Helper to ensure the ratio string is CSS-compliant (e.g., "3:2" becomes "3 / 2")
+  const formatRatio = (r) => (typeof r === 'string' ? r.replace(':', ' / ') : r);
 
   return (
     <motion.div
@@ -30,9 +33,15 @@ const PortfolioItem = ({ item, onViewDetails }) => {
           border: '1px solid var(--color-gray-200)',
           boxShadow: isHovered ? '0 10px 20px rgba(0,0,0,0.2)' : '0 4px 10px var(--color-gray-600)',
           overflow: 'hidden',
-          height: '300px',
+          
+          // --- DYNAMIC RATIO LOGIC ---
+          width: '100%',
+          aspectRatio: formatRatio(ratio), 
+          height: 'auto', 
+          // ---------------------------
+          
           backgroundColor: 'var(--color-gray-200)',
-          transition: 'box-shadow 0.3s ease-in-out',
+          transition: 'all 0.3s ease-in-out',
           cursor: 'pointer'
         }}
       >
@@ -69,16 +78,13 @@ const PortfolioItem = ({ item, onViewDetails }) => {
               href={item.img} 
               className="glightbox preview-link"
               onClick={(e) => {
-                e.stopPropagation(); // Prevents the dialog modal from opening
+                e.stopPropagation(); // Prevents the details modal from opening
               }} 
               data-gallery={`portfolio-gallery-${item.category}`}
               title={Literal[lang].zoom}
               data-title={item.title}
               data-description={item.shortDesc || item.desc}
-              
-              // ✅ FIX: Explicitly tell GLightbox this is an image so it doesn't hang on loading
               data-type="image" 
-              
               style={{ 
                 color: '#fff', 
                 fontSize: '1.2rem', 
@@ -129,8 +135,8 @@ const PortfolioItem = ({ item, onViewDetails }) => {
             bottom: 0,
             left: 0,
             width: '100%',
-            height: isHovered ? '60%' : '25%', 
-            background: 'linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)',
+            height: isHovered ? '70%' : '30%', 
+            background: 'linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 60%, transparent 100%)',
             padding: '20px',
             display: 'flex',
             flexDirection: 'column',
@@ -141,28 +147,35 @@ const PortfolioItem = ({ item, onViewDetails }) => {
         >
           {/* Title & Description */}
           <div style={{ transform: isHovered ? 'translateY(0)' : 'translateY(5px)', transition: 'transform 0.3s ease' }}>
-            <h4 style={{ 
-              color: '#fff', 
-              fontSize: '1.25rem', 
-              // fontWeight: 'bold', 
-              margin: '0 0 5px 0',
-              textShadow: '0 1px 5px rgba(0,0,0,0.7)' 
-            }}>
-              {item.title}
-            </h4>
-
             <div style={{
               opacity: isHovered ? 1 : 0,           
-              maxHeight: isHovered ? '100px' : '0', 
+              maxHeight: isHovered ? '150px' : '0', 
               overflow: 'hidden',
               transition: 'all 0.4s ease 0.1s'      
             }}>
-              <p style={{ color: '#fff', fontSize: '0.9rem', margin: '5px 0 0 0', lineHeight: '1.4' }}>
+              <h4 style={{ 
+                color: '#fff', 
+                fontSize: '1.2rem', 
+                fontWeight: '600', 
+                margin: '0 0 5px 0',
+                textShadow: '0 1px 5px rgba(0,0,0,0.7)' 
+              }}>
+                {item.title}
+              </h4>
+              <p style={{ 
+                color: '#eee', 
+                fontSize: '0.85rem', 
+                margin: '5px 0 0 0', 
+                lineHeight: '1.4',
+                display: '-webkit-box',
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden'
+              }}>
                 {item.shortDesc || item.desc} 
               </p>
             </div>
           </div>
-
         </div>
 
       </div>

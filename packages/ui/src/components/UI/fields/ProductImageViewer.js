@@ -1,17 +1,21 @@
-import React, { useState, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback, useEffect } from "react";
 import "./ProductImageViewer.scss";
 import { PrevArrow, NextArrow } from "@utils/helper/Helper";
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline'; 
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 
-const ProductImageViewer = ({ 
-  mediaItems = [], 
+const ProductImageViewer = ({
+  mediaItems = [],
   alt = "Product Media",
   thumbnailPosition = "left", // Options: 'left', 'right', 'top', 'bottom'
-  fullscreenImageRatio,       // e.g., "2/3", "16/9", "1/1", etc.
-  fullscreenVideoRatio        // e.g., "16/9", "4/3", etc.
+  fullscreenImageRatio = "2/3",
+  fullscreenVideoRatio = "16/9",
+  isAutoplay = true,        // Toggle autoplay on/off
+  autoplaySpeed = 2000      // Speed in milliseconds
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [direction, setDirection] = useState("next");
 
   // --- Zoom State ---
   const [isMainViewerZoomed, setIsMainViewerZoomed] = useState(false);
@@ -44,7 +48,36 @@ const ProductImageViewer = ({
   };
 
   const currentType = getMediaType(mediaItems[activeIndex]);
-  const isImage = currentType === 'image'; 
+  const isImage = currentType === 'image';
+
+  // --- Navigation Logic ---
+  const navigateImage = useCallback((dir) => {
+    setDirection(dir);
+    setActiveIndex((prev) => {
+      const newIndex = dir === 'prev'
+        ? (prev === 0 ? mediaItems.length - 1 : prev - 1)
+        : (prev === mediaItems.length - 1 ? 0 : prev + 1);
+
+      // Reset zoom states on navigation
+      setMainViewerZoomTransform({ x: 0, y: 0, scale: 1 });
+      setIsMainViewerZoomed(false);
+      setFullscreenZoomTransform({ x: 0, y: 0, scale: 1 });
+      setIsFullscreenZoomed(false);
+
+      return newIndex;
+    });
+  }, [mediaItems.length]);
+
+  // --- Autoplay Logic ---
+  useEffect(() => {
+    if (!isAutoplay || isPaused || isFullscreen || mediaItems.length <= 1) return;
+    
+    const interval = setInterval(() => {
+      navigateImage('next');
+    }, autoplaySpeed);
+    
+    return () => clearInterval(interval);
+  }, [isAutoplay, isPaused, isFullscreen, mediaItems.length, navigateImage, autoplaySpeed]);
 
   // --- Zoom Logic ---
   const applyZoomTransform = useCallback(
@@ -72,33 +105,19 @@ const ProductImageViewer = ({
   const handleMainViewerMouseMove = useCallback((e) => {
     if (!isMainViewerZoomed || !isImage) return;
     applyZoomTransform(e, mainImageContainerRef, actualMainImageRef, setMainViewerZoomTransform, setIsMainViewerZoomed, mainZoomFactor);
-  }, [isMainViewerZoomed, applyZoomTransform, isImage]);
+  }, [isMainViewerZoomed, isImage, applyZoomTransform]);
 
   const handleMainViewerMouseEnter = useCallback(() => {
+    setIsPaused(true);
     if (!isImage) return;
     setIsMainViewerZoomed(true);
     setMainViewerZoomTransform(prev => ({ ...prev, scale: mainZoomFactor }));
   }, [isImage]);
 
   const handleMainViewerMouseLeave = useCallback(() => {
+    setIsPaused(false);
     setIsMainViewerZoomed(false);
     setMainViewerZoomTransform({ x: 0, y: 0, scale: 1 });
-  }, []);
-
-  const handleFullscreenMouseMove = useCallback((e) => {
-    if (!isFullscreenZoomed || !isImage) return;
-    applyZoomTransform(e, fullscreenContainerRef, actualFullscreenImageRef, setFullscreenZoomTransform, setIsFullscreenZoomed, fullscreenZoomFactor);
-  }, [isFullscreenZoomed, applyZoomTransform, isImage]);
-
-  const handleFullscreenMouseEnter = useCallback(() => {
-    if (!isImage) return;
-    setIsFullscreenZoomed(true);
-    setFullscreenZoomTransform(prev => ({ ...prev, scale: fullscreenZoomFactor }));
-  }, [isImage]);
-
-  const handleFullscreenMouseLeave = useCallback(() => {
-    setIsFullscreenZoomed(false);
-    setFullscreenZoomTransform({ x: 0, y: 0, scale: 1 });
   }, []);
 
   const toggleFullscreen = useCallback(() => {
@@ -111,89 +130,78 @@ const ProductImageViewer = ({
     });
   }, []);
 
-  const navigateImage = useCallback((direction) => {
-    setActiveIndex(prev => {
-      const newIndex = direction === 'prev'
-        ? (prev === 0 ? mediaItems.length - 1 : prev - 1)
-        : (prev === mediaItems.length - 1 ? 0 : prev + 1);
-
-      if (isFullscreen) {
-        setFullscreenZoomTransform({ x: 0, y: 0, scale: 1 });
-        setIsFullscreenZoomed(false);
-      }
-      return newIndex;
-    });
-  }, [mediaItems, isFullscreen]);
-
   // --- Render Helpers ---
-
   const renderMediaContent = (url, ref, zoomStyle = {}, isForFullscreen = false) => {
     const type = getMediaType(url);
-    
-    // In fullscreen, we force the media to perfectly fill the ratio-box we make below.
-    // 'cover' means it will crop slightly to fit the 2/3 or 16/9 shape perfectly.
-    const combinedStyle = { 
-      ...zoomStyle, 
-      width: '100%', 
-      height: '100%', 
-      objectFit: isForFullscreen ? 'cover' : 'contain' 
+    const combinedStyle = {
+      ...zoomStyle,
+      width: '100%',
+      height: '100%',
+      objectFit: isForFullscreen ? 'cover' : 'contain'
     };
+
+    const mediaWrapperClass = `media-wrapper slide-${direction} ${isMainViewerZoomed || isFullscreenZoomed ? 'is-zoomed' : ''}`;
 
     if (type === 'youtube') {
       const videoId = getYoutubeId(url);
       return (
-        <iframe
-          style={combinedStyle}
-          className="media-iframe"
-          src={`https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0`}
-          title="YouTube video player"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+        <div key={url} className={mediaWrapperClass}>
+          <iframe
+            style={combinedStyle}
+            className="media-iframe"
+            src={`https://www.youtube.com/embed/${videoId}?enablejsapi=1&rel=0`}
+            title="YT"
+            frameBorder="0"
+            allowFullScreen
+          />
+        </div>
       );
     }
 
     if (type === 'drive') {
-       const previewUrl = url.replace('/view', '/preview');
-       return (
-        <iframe
-          style={combinedStyle}
-          className="media-iframe"
-          src={previewUrl}
-          title="Drive Video"
-          allow="autoplay"
-        />
-       );
+      const previewUrl = url.replace('/view', '/preview');
+      return (
+        <div key={url} className={mediaWrapperClass}>
+          <iframe
+            style={combinedStyle}
+            className="media-iframe"
+            src={previewUrl}
+            title="Drive Video"
+            allow="autoplay"
+          />
+        </div>
+      );
     }
 
     if (type === 'video') {
       return (
-        <video 
+        <div key={url} className={mediaWrapperClass}>
+          <video
             style={combinedStyle}
-            className="media-video" 
-            controls 
+            className="media-video"
+            controls
             src={url}
-            onClick={(e) => e.stopPropagation()} 
-        >
-            Your browser does not support the video tag.
-        </video>
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
       );
     }
 
     return (
-      <img
-        ref={ref}
-        src={url}
-        alt={alt}
-        className="main-image"
-        loading="eager"
-        style={combinedStyle}
-      />
+      <div key={url} className={mediaWrapperClass}>
+        <img
+          ref={ref}
+          src={url}
+          alt={alt}
+          className="main-image"
+          loading="eager"
+          style={combinedStyle}
+        />
+      </div>
     );
   };
 
-  const renderThumbnail = (url, idx) => {
+  const renderThumbnail = (url, idx, isFS = false) => {
     const type = getMediaType(url);
     let content;
 
@@ -201,36 +209,42 @@ const ProductImageViewer = ({
       const videoId = getYoutubeId(url);
       content = (
         <>
-            <img src={`https://img.youtube.com/vi/${videoId}/default.jpg`} alt={`Video ${idx}`} loading="lazy" />
-            <div className="thumb-overlay"><PlayCircleOutlineIcon fontSize="small"/></div>
+          <img src={`https://img.youtube.com/vi/${videoId}/default.jpg`} alt={`thumb-${idx}`} loading="lazy" />
+          <div className="thumb-overlay"><PlayCircleOutlineIcon fontSize="small" /></div>
         </>
       );
     } else if (type === 'video' || type === 'drive') {
-        content = (
-            <div className="video-thumb-placeholder">
-                <PlayCircleOutlineIcon />
-                <span>Video</span>
-            </div>
-        );
+      content = (
+        <div className="video-thumb-placeholder">
+          <PlayCircleOutlineIcon />
+          <span>Video</span>
+        </div>
+      );
     } else {
-        content = <img src={url} alt={`${alt} thumbnail ${idx}`} loading="lazy" />;
+      content = <img src={url} alt={`${alt} thumb ${idx}`} loading="lazy" />;
     }
 
     return (
-        <div
-            key={idx}
-            className={`thumbnail ${idx === activeIndex ? "active" : ""}`}
-            onClick={() => setActiveIndex(idx)}
-        >
-            {content}
-        </div>
+      <div
+        key={idx}
+        className={`thumbnail ${idx === activeIndex ? "active" : ""}`}
+        onClick={() => {
+          setDirection(idx > activeIndex ? "next" : "prev");
+          setActiveIndex(idx);
+        }}
+        onMouseEnter={() => !isFS && setIsPaused(true)}
+        onMouseLeave={() => !isFS && setIsPaused(false)}
+        style={{ aspectRatio: type === 'image' ? fullscreenImageRatio : fullscreenVideoRatio }}
+      >
+        {content}
+      </div>
     );
   };
 
   return (
-    <div style={{width: '100%'}}>
+    <div style={{ height: '100%', width: '100%', minHeight: 0 }}>
       <div className={`product-image-viewer layout-${thumbnailPosition}`}>
-        
+
         {/* Thumbnails */}
         <div className="thumbnail-list">
           {mediaItems.map((url, idx) => renderThumbnail(url, idx))}
@@ -240,23 +254,32 @@ const ProductImageViewer = ({
         <div
           ref={mainImageContainerRef}
           className={`main-image-container ${!isImage ? 'no-zoom' : ''}`}
-          // Apply the exact same ratio logic here. (Fallback to 16/9 if not provided)
           style={{
-            aspectRatio: isImage ? (fullscreenImageRatio || '16/9') : (fullscreenVideoRatio || '16/9')
+            aspectRatio: isImage ? fullscreenImageRatio : fullscreenVideoRatio
           }}
           onMouseMove={isImage ? handleMainViewerMouseMove : undefined}
-          onMouseEnter={isImage ? handleMainViewerMouseEnter : undefined}
-          onMouseLeave={isImage ? handleMainViewerMouseLeave : undefined}
+          onMouseEnter={handleMainViewerMouseEnter}
+          onMouseLeave={handleMainViewerMouseLeave}
           onClick={isImage ? toggleFullscreen : undefined}
         >
+          {/* Autoplay Progress Bar - Only if enabled */}
+          {isAutoplay && !isPaused && !isFullscreen && mediaItems.length > 1 && (
+            <div 
+              key={`progress-${activeIndex}`} 
+              className="autoplay-progress-bar" 
+              style={{ animationDuration: `${autoplaySpeed}ms` }} 
+            />
+          )}
+
           {renderMediaContent(
-            mediaItems[activeIndex], 
-            actualMainImageRef, 
+            mediaItems[activeIndex],
+            actualMainImageRef,
             isImage ? {
-                transform: `scale(${mainViewerZoomTransform.scale}) translate(${mainViewerZoomTransform.x / mainViewerZoomTransform.scale}px, ${mainViewerZoomTransform.y / mainViewerZoomTransform.scale}px)`,
-                transformOrigin: '0 0'
+              transform: `scale(${mainViewerZoomTransform.scale}) translate(${mainViewerZoomTransform.x / mainViewerZoomTransform.scale}px, ${mainViewerZoomTransform.y / mainViewerZoomTransform.scale}px)`,
+              transformOrigin: '0 0',
+              transition: isMainViewerZoomed ? 'none' : 'transform 0.3s ease'
             } : {},
-            false // Not fullscreen
+            false
           )}
         </div>
       </div>
@@ -265,43 +288,39 @@ const ProductImageViewer = ({
       {isFullscreen && (
         <div className="fullscreen-carousel">
           <button className="close-btn" onClick={toggleFullscreen}>&times;</button>
-          
+
           <PrevArrow onClick={() => navigateImage('prev')} className="nav-btn prev" />
 
           <div
             ref={fullscreenContainerRef}
             className="fullscreen-image-container"
             style={{
-              // Apply dynamic aspect ratio directly to the wrapper
               aspectRatio: isImage ? fullscreenImageRatio : fullscreenVideoRatio,
-              
-              // Portrait-friendly logic for images (e.g. 2/3 ratio)
-              // Landscape-friendly logic for video (e.g. 16/9 ratio)
-              height: isImage && fullscreenImageRatio ? '80vh' : 'auto',
-              width: !isImage && fullscreenVideoRatio ? '90vw' : 'auto',
+              height: isImage ? '80vh' : 'auto',
+              width: !isImage ? '90vw' : 'auto',
               maxHeight: '80vh',
-              maxWidth: '90vw',
+              maxWidth: '100%',
               margin: '0 auto'
             }}
-            onMouseMove={isImage ? handleFullscreenMouseMove : undefined}
-            onMouseEnter={isImage ? handleFullscreenMouseEnter : undefined}
-            onMouseLeave={isImage ? handleFullscreenMouseLeave : undefined}
+            onMouseMove={isImage ? (e) => applyZoomTransform(e, fullscreenContainerRef, actualFullscreenImageRef, setFullscreenZoomTransform, setIsFullscreenZoomed, fullscreenZoomFactor) : undefined}
+            onMouseEnter={() => isImage && setIsFullscreenZoomed(true)}
+            onMouseLeave={() => { setIsFullscreenZoomed(false); setFullscreenZoomTransform({ x: 0, y: 0, scale: 1 }); }}
           >
-             {renderMediaContent(
-                mediaItems[activeIndex], 
-                actualFullscreenImageRef, 
-                isImage ? {
-                    transform: `scale(${fullscreenZoomTransform.scale}) translate(${fullscreenZoomTransform.x / fullscreenZoomTransform.scale}px, ${fullscreenZoomTransform.y / fullscreenZoomTransform.scale}px)`,
-                    transformOrigin: '0 0'
-                } : {},
-                true // Is fullscreen (triggers 'cover' layout)
-             )}
+            {renderMediaContent(
+              mediaItems[activeIndex],
+              actualFullscreenImageRef,
+              isImage ? {
+                transform: `scale(${fullscreenZoomTransform.scale}) translate(${fullscreenZoomTransform.x / fullscreenZoomTransform.scale}px, ${fullscreenZoomTransform.y / fullscreenZoomTransform.scale}px)`,
+                transformOrigin: '0 0'
+              } : {},
+              true
+            )}
           </div>
 
           <NextArrow onClick={() => navigateImage('next')} className="nav-btn next" />
 
           <div className="fullscreen-thumbnails">
-            {mediaItems.map((url, idx) => renderThumbnail(url, idx))}
+            {mediaItems.map((url, idx) => renderThumbnail(url, idx, true))}
           </div>
         </div>
       )}

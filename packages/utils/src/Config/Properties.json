@@ -185,7 +185,7 @@
         "title": "Enterprise UI Modernization & Analytics Dashboard (Adeptia)",
         "shortDesc": "Collaborated with a large development team to transition a B2B enterprise application to a modern React architecture, and independently engineered an interactive data visualization dashboard.",
         "fullDesc": "When the company decided to refresh their legacy B2B platform, I worked alongside our development team to drive the UI modernization. The goal was to replace the older interface with a highly responsive, modern React.js architecture that could handle complex enterprise data efficiently. Work was highly collaborative, and I engineered a strict library of reusable React components that were implemented across multiple complex application entities.\n\nWhile the broader modernization was a distributed team effort, a major personal highlight of this project was single-handedly engineering the platform's central command dashboard to give users instant, visual insights into their application data.\n\n• **UI/UX Architecture:** Collaborated on the frontend migration from Ext JS to React.js, building reusable components that established the foundation for the new UI.\n• **Advanced Data Visualization:** Independently architected and developed the complete interactive dashboard from scratch utilizing MUI v6 React Charts.\n• **Complex Data Rendering:** Implemented dynamic pie charts, bar graphs, and custom metric formats to visualize heavy, real-time application data clearly and efficiently.",
-        "img": "assets/img/portfolio/Portfolio2.png",
+        "img": "assets/img/portfolio/Portfolio2a.png",
         "gallery": [ ],
         "video": "",
         "techStack": [
@@ -206,7 +206,7 @@
         "title": "B2B Data Automation Platform Engineering (Adeptia)",
         "shortDesc": "Contributed to a ~30-person development team maintaining an intelligent B2B data automation platform, engineering solutions for both monolithic and microservices deployment architectures.",
         "fullDesc": "I worked as part of a ~30-person development team responsible for the core engineering and maintenance of Adeptia's intelligent data automation platform—a system designed to turn messy, incoming first-mile data into clean, structured information. Work was highly distributed, requiring us to be adaptable and work across the full stack based on our experience levels.\n\nA unique engineering aspect of this product was its dual-architecture offering. We developed and maintained the software to run as both a traditional monolithic application and a modern microservices architecture, allowing different enterprise clients to utilize the system according to their specific infrastructure requirements. By collaborating closely with client services and QA teams, we translated direct client feedback into tangible features.\n\n• **Dual-Architecture Engineering:** Developed and optimized backend services using Java Spring Boot, ensuring feature parity, stability, and performance across both the monolithic and microservices versions of the platform.\n• **Data Automation Logic:** Engineered backend processes to support the platform's core capability of ingesting, transforming, and structuring complex B2B data feeds.\n• **Legacy System Management:** Shared responsibilities in maintaining and updating existing frontend interfaces built on Ext JS, ensuring stability for established clients.\n• **Cross-Functional Agile Delivery:** Actively managed the software defect lifecycle, resolving complex bugs reported by the QA team to maintain high system reliability.\n• **Client-Driven Development:** Implemented database schema updates and backend improvements directly driven by client functionality requests and service team meetings.",
-        "img": "assets/img/portfolio/Portfolio3.png",
+        "img": "assets/img/portfolio/Portfolio3a.png",
         "gallery": [ ],
         "video": "",
         "techStack": [
@@ -225,30 +225,28 @@
         "id": 4,
         "category": "app",
         "title": "Face Recognition & GPS Attendance App",
-        "shortDesc": "A smart Android application that automates attendance tracking using facial recognition and location-based GPS verification.",
-        "fullDesc": "To solve the problem of proxy attendance and the time wasted on manual tracking, I co-developed a secure Android application that acts as an automated attendance management system. The core engineering challenge was combining two distinct validation layers into a seamless mobile experience.\n\nBy utilizing the device's hardware, the app ensures that a user is both who they say they are, and exactly where they are supposed to be.\n\n• **Biometric Validation:** Integrated facial recognition technology using the device camera to accurately identify the user attempting to log attendance.\n• **Strict Geofencing:** Utilized Android GPS to cross-reference the user's physical coordinates with the required classroom or office boundary. Attendance is only logged successfully if the location accurately matches.\n• **Role-Based Dashboards:** Engineered comprehensive data views allowing users to check their daily and monthly attendance history, while providing teachers and employers with a master dashboard to monitor all student or employee records.\n• **Secure Cloud Architecture:** Implemented Firebase for backend database management and secure user authentication flows, including email verification and encrypted credential storage.",
+        "shortDesc": "A smart Android application that automates attendance tracking using facial recognition, location-based GPS verification, and dynamic timetable scheduling.",
+        "fullDesc": "To solve the problem of proxy attendance and the time wasted on manual tracking, I co-developed a secure Android application that acts as an automated attendance management system. The core engineering challenge was combining multiple validation layers—biometrics, location, and schedule scheduling—into a seamless mobile experience.\n\n• **Biometric & Location Validation:** Integrated facial recognition technology via the device camera to identify the user, combined with Android GPS to cross-reference their physical coordinates with the classroom boundary.\n• **Smart Timetable Integration:** Built a scheduling engine that allows faculty to upload timetables. The system actively prevents scheduling overlaps for both batches and faculty, and ensures students can only mark attendance if a class is actively scheduled at that exact time.\n• **Role-Based Dashboards & Overrides:** Engineered distinct interfaces for Students, Faculty, and Admins. While students can view their attendance history, faculty members have administrative power to manually manage attendance, including adding students or removing detected proxies.\n• **Domain-Restricted Authentication:** Implemented Firebase for secure backend database management and user authentication. The signup flow enforces institutional domain restrictions (e.g., university email addresses) and requires email verification before granting dashboard access.",
         "img": "assets/img/portfolio/attendance-app.png",
-        "gallery": [
-          "assets/img/portfolio/attendance-1.jpg",
-          "assets/img/portfolio/attendance-2.jpg"
-        ],
+        "galleryFolder": "AttendanceApp",
+        "gallery": [],
         "video": "",
         "techStack": [
           "Android SDK",
           "Java",
-          "Firebase",
+          "Firebase Auth & Database",
           "Face Recognition API",
           "GPS / Location Services"
         ],
         "link": "",
-        "repo": "https://github.com/tushargoyal420/Attendance-System/tree/Face-recognition-third"
+        "repo": "https://github.com/bhavukbaluja/Face-Recognition-GPS-Attendance-System"
       },
       {
         "id": 5,
         "category": "Security",
         "title": "2-Factor IRIS Biometric Authentication System",
-        "shortDesc": "A Python-based 2FA security system developed by a 2-person team, utilizing a custom-trained machine learning model for iris recognition.",
-        "fullDesc": "As a 4th-year academic project, I collaborated in a 2-person team to build a high-security 2-Factor Authentication (2FA) system. Instead of relying on standard SMS codes, we implemented an immutable biological marker—the human iris—as the second layer of verification.\n\n• **Custom ML Model Training:** Trained a specialized machine learning model using a dataset of approximately 30,000 eye images to accurately identify and differentiate unique iris patterns.\n• **Zero-Trust Authentication Flow:** Designed a dual-layer login system where users first authenticate via traditional credentials (username/password) before being challenged by the biometric layer.\n• **Real-Time Image Processing:** Integrated camera functionality to capture real-time facial/eye images during both the registration (profile storage) and login (verification) phases.\n• **Identity Verification Logic:** Engineered the backend script to securely compare live camera captures against stored biometric profiles, outputting a strict success or failure state based on the iris match.",
+        "shortDesc": "A Python-based 2FA security desktop application developed by a 3-person team, utilizing a custom-trained Convolutional Neural Network (CNN) for iris recognition.",
+        "fullDesc": "As a 4th-year academic project, I collaborated in a 3-person team to build a high-security 2-Factor Authentication (2FA) system. Instead of relying on standard SMS codes, we implemented an immutable biological marker—the human iris—as the second layer of verification.\n\n• **Custom Deep Learning Model:** Trained a specialized Convolutional Neural Network (DenseNet architecture) to accurately classify and differentiate unique iris patterns, evaluating accuracy and loss across multiple epochs to ensure high reliability.\n• **Zero-Trust Authentication Flow:** Designed a strict dual-layer system where users must first authenticate via traditional credentials (username/password) before the system triggers the biometric challenge.\n• **Real-Time Image Processing:** Integrated OpenCV to capture live video feeds during the registration and login phases, applying dynamic thresholding to detect, extract, and isolate the user's eyes from the raw camera frame.\n• **Identity Verification Logic:** Engineered the Python backend to securely process the live iris capture and pass it through the trained model, outputting a definitive access granted or rejected state based on the biometric match.",
         "img": "assets/img/portfolio/iris-auth.png",
         "gallery": [
           "assets/img/portfolio/iris-1.jpg",
@@ -257,10 +255,10 @@
         "video": "",
         "techStack": [
           "Python",
-          "Machine Learning",
-          "Computer Vision",
-          "Biometrics",
-          "Security Protocols"
+          "OpenCV",
+          "TensorFlow / Keras",
+          "Convolutional Neural Networks (CNN)",
+          "Biometrics Security"
         ],
         "link": "",
         "repo": "https://github.com/bhavukbaluja/2-Factor-Authentication-using-IRIS-Verification"
@@ -270,22 +268,20 @@
         "category": "app",
         "title": "Campus Lost & Found Android App",
         "shortDesc": "An Android application built as a semester project by a 4-person team to help users report, locate, and securely claim lost items through in-app messaging.",
-        "fullDesc": "Developed as a 3rd-year semester group project, this native Android application centralizes the recovery of lost items within a campus or local community. Working in a 4-person team, we engineered a digital platform to replace disorganized physical notice boards with a clean, searchable digital feed.\n\n• **Interactive Feeds:** Built dedicated 'Lost' and 'Found' sections where users can publish detailed posts containing images, short descriptions, dates, and location coordinates.\n• **Secure In-App Chat:** Engineered a real-time messaging system allowing the finder and the owner to communicate seamlessly to coordinate the item's return. To protect privacy, only the user's name is visible without exposing personal contact info.\n• **Status Management:** Implemented post-state toggles allowing users to mark items as 'resolved' once returned, keeping the public feeds clean and up-to-date.\n• **User Accountability:** Integrated a standard signup and login authentication flow to ensure all posts and messages are tied to verified users.",
-        "img": "assets/img/portfolio/lost-found.png",
-        "gallery": [
-          "assets/img/portfolio/lost-found-1.jpg",
-          "assets/img/portfolio/lost-found-2.jpg"
-        ],
+        "fullDesc": "Developed as a 3rd-year semester group project, this native Android application centralizes the recovery of lost items within a campus or local community. Working in a 4-person team, we engineered a digital platform to replace disorganized physical notice boards with a clean, searchable digital feed.\n\n• **Interactive & Searchable Feeds:** Built dedicated 'Lost' and 'Found' sections where users can search for items or publish detailed posts containing images, short descriptions, dates, and location coordinates.\n• **Real-Time Chat & Push Notifications:** Engineered a messaging system allowing the finder and the owner to communicate seamlessly. Integrated native Android push notifications to alert users of new messages instantly, while keeping personal contact info private.\n• **Status Management:** Implemented post-state toggles allowing users to mark items as 'resolved' once returned, keeping the public feeds clean and up-to-date.\n• **Secure Firebase Authentication:** Integrated a robust user authentication flow utilizing Firebase, complete with email verification links and secure password reset functionalities to ensure all posts are tied to verified users.",
+        "img": "assets/img/portfolio/Lost&Found2.png",
+        "galleryFolder": "Lost&Found",
+        "gallery": [],
         "video": "",
         "techStack": [
           "Android SDK",
           "Java",
-          "Firebase",
-          "In-App Messaging",
-          "Mobile UI/UX"
+          "Firebase Auth & Database",
+          "Push Notifications",
+          "In-App Messaging"
         ],
         "link": "",
-        "repo": "https://github.com/tushargoyal420/Minor-2"
+        "repo": "https://github.com/bhavukbaluja/Lost-Found-App"
       }
     ],
 
